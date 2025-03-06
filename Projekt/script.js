@@ -86,20 +86,23 @@ function parseCSV(fileContent)
 function parseXML(file)
 {
     const reader = new FileReader();
-    var text = "";
 
     reader.onload = function(event) {
         const fileContent = event.target.result;
-        text = fileContent;
+
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(fileContent, "text/xml");
+
+        const heading = doc.getElementsByTagName("heading")[0]?.childNodes[0]?.nodeValue;
+        
+        console.log(heading);
     };
 
     reader.onerror = function(error) {
         console.error('Error reading file:', error);
     };
+
     reader.readAsText(file);
-    const parser = new DOMParser();
-    const doc = parser.parseFromString(text, "text/xml");
-    console.log(doc.documentElement.nodeName);
 }
 
 document.addEventListener("DOMContentLoaded", function() {
