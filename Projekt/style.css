@@ -1,0 +1,251 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f1f6;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+}
+
+header {
+    position: absolute;
+    top: 10px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 20px;
+    box-sizing: border-box;
+}
+
+.menu-container {
+    position: relative;
+}
+
+.menu-btn {
+    background-color: #f5a3e0;
+    color: rgb(255, 255, 255);
+    border: 5px solid #d67eb8;
+    padding: 10px 20px;
+    font-size: 30px;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+.menu-btn:hover {
+    background-color: #d1b8c9;
+    border-color: #bf6ba6;
+}
+.graphyti{
+    font-size: 45px;
+    padding: 10px;
+    margin: 1px;
+}
+.menu {
+    display: none;
+    position: absolute;
+    top: 65px;
+    font-size: 20px;
+    right: 0;
+    background-color: #fff;
+    border: 2px solid #d67eb8;
+    border-radius: 25px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 150px;
+    text-align: center;
+}
+
+.menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 10;
+}
+
+.menu ul li {
+    padding: 10px;
+    border-bottom: 1px solid #d67eb8;
+}
+
+.menu ul li:last-child {
+    border-bottom: none;
+}
+
+.menu ul li a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    display: block;
+}
+
+.menu ul li a:hover {
+    background-color: #f5a3e0;
+    color: white;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f1f6;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+}
+
+header {
+    position: absolute;
+    top: 10px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 20px;
+    box-sizing: border-box;
+}
+
+.menu-container {
+    position: relative;
+}
+
+.menu-btn {
+    background-color: #f5a3e0;
+    color: white;
+    border: 2px solid #d67eb8;
+    padding: 10px 20px;
+    font-size: 18px;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+.menu-btn:hover {
+    background-color: #e48ac8;
+    border-color: #bf6ba6;
+}
+
+.menu {
+    display: none;
+    position: absolute;
+    top: 50px;
+    right: 0;
+    background-color: #fff;
+    border: 2px solid #d67eb8;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 150px;
+    text-align: center;
+}
+
+.menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menu ul li {
+    padding: 10px;
+    border-bottom: 1px solid #d67eb8;
+}
+
+.menu ul li:last-child {
+    border-bottom: none;
+}
+
+.menu ul li a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    display: block;
+}
+
+.menu ul li a:hover {
+    background-color: #f5a3e0;
+    color: white;
+}
+
+/* --- tlačitko velke --- */
+.upload-container {
+    position: relative;
+    text-align: center;
+}
+
+.upload-btn {
+    background-color: #f5a3e0;
+    color: white;
+    border: 4px solid #d67eb8;
+    padding: 20px 40px;
+    font-size: 64px;
+    font-weight: bold;
+    font-family: "Arial", sans-serif;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: 15px;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.upload-btn:hover {
+    background-color: #e48ac8;
+    border-color: #bf6ba6;
+}
+
+/* ---možnosti --- */
+.upload-options {
+    display: none;
+    position: absolute;
+    top: 125px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: white;
+    border: 2px solid #d67eb8;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 200px;
+    text-align: center;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.upload-options li {
+    padding: 10px;
+    border-bottom: 1px solid #d67eb8;
+}
+
+.upload-options li:last-child {
+    border-bottom: none;
+}
+
+.upload-options li a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    display: block;
+}
+
+.upload-options li a:hover {
+    background-color: #f5a3e0;
+    color: white;
+}
+
+footer {
+    position: absolute;
+    bottom: 10px;
+    text-align: center;
+    width: 100%;
+    padding: 10px;
+}

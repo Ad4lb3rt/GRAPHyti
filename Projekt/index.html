@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>GRAPHyti</title>
+</head>
+<body>
+    <header>
+        <h1>GRAPHyti</h1>
+        <div class="menu-container">
+            <button class="menu-btn">MENU</button>
+            <nav class="menu">
+                <ul>
+                    <li><a href="index.html">Domů</a></li>
+                    <li><a href="tvorba.html">Tvorba</a></li>
+                    <li><a href="about.html">O nás</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="upload-container">
+            <button class="upload-btn">UPLOAD</button>
+            <ul class="upload-options">
+                <li><a href="#" id="uploadFromPc">📂 Nahrát z PC</a></li>
+                <li><a href="#" id="?">🔗 Nahrát z URL</a></li>
+                <li><a href="#" id="?">☁️ OneDrive</a></li>
+                <li><a href="#" id="?">📁 Google Drive</a></li>
+                <li><a href="#" id="?">📦 Dropbox</a></li>
+            </ul>
+            
+            <form enctype="multipart/form-data" action="/upload/image" method="post">
+                <input id="fileInput" type="file" accept=".json,.csv,.xml" style="display: none;"/>
+            </form>
+        </div>
+    </main>  
+
+    <footer>
+        <p>&copy; 2025 GRAPHyti</p>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>
