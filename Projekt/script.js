@@ -1,3 +1,7 @@
+const onedriveClientId = "88a7f8fb-128c-4f06-9f0d-465ada16d12e";
+const redirectUri = "http://localhost:5500/Projekt";
+const scope = "Files.Read User.Read";
+
 document.getElementById("fileInput").addEventListener('change', function(event) {
     const file = event.target.files[0];
     if (file) {
@@ -34,6 +38,75 @@ function onFileUpload(file)
         console.error("Unsupported extension!");
     }
 }
+
+function signInToMicrosoft() {
+    const authUrl = `https://login.microsoftonline.com/common/oauth2/v2.0/authorize?client_id=${onedriveClientId}&response_type=code&redirect_uri=${redirectUri}&scope=${scope}`;
+    window.location.href = authUrl;
+}
+
+function handleOAuthRedirect() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const authCode = urlParams.get("code");
+  
+    if (authCode) {
+      exchangeCodeForToken(authCode);
+    }
+}
+
+function exchangeCodeForToken(authCode) {
+    const clientSecret = "03cd2beb-943a-4474-912b-3c2a487d6a58";
+    const tokenUrl = "https://login.microsoftonline.com/common/oauth2/v2.0/token";
+    const params = new URLSearchParams();
+    params.append("client_id", clientId);
+    params.append("client_secret", clientSecret);
+    params.append("code", authCode);
+    params.append("redirect_uri", redirectUri);
+    params.append("grant_type", "authorization_code");
+  
+    fetch(tokenUrl, {
+      method: "POST",
+      body: params,
+    })
+    .then((response) => response.json())
+    .then((data) => {
+        const accessToken = data.access_token; // Save the access token
+        console.log("Access Token:", accessToken);
+        // You can now use this token to make API requests to OneDrive
+        getFilesFromOneDrive(accessToken);
+    })
+    .catch((error) => console.error("Error exchanging code for token:", error));
+}
+
+function getFilesFromOneDrive(accessToken) {
+    const endpoint = "https://graph.microsoft.com/v1.0/me/drive/root/children"; // Get files from root directory
+    const headers = {
+      Authorization: `Bearer ${accessToken}`,
+    };
+  
+    fetch(endpoint, { headers })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Files:", data.value);
+        displayFiles(data.value); // Display the files (you can choose how to display them)
+      })
+      .catch((error) => console.error("Error fetching files:", error));
+}
+  
+// Display the files on your page
+function displayFiles(files) {
+const fileList = document.getElementById("fileList");
+files.forEach((file) => 
+    {
+        const listItem = document.createElement("li");
+        listItem.textContent = file.name;
+        const downloadLink = document.createElement("a");
+        downloadLink.href = file.webUrl;
+        downloadLink.textContent = "Download";
+        listItem.appendChild(downloadLink);
+        fileList.appendChild(listItem);
+    });
+}
+
 
 function parseJSON(file)
 {
@@ -140,5 +213,12 @@ document.addEventListener("DOMContentLoaded", function() {
     uploadFromPcBtn.addEventListener('click', function(event) {
         event.preventDefault();
         document.getElementById('fileInput').click();
+    });
+
+    // "Nahrát z OneDrive"
+    const uploadFromOneDriveBtn = document.querySelector('.upload-options li:nth-child(3) a');
+    uploadFromOneDriveBtn.addEventListener('click', function(event) {
+        event.preventDefault();
+        signInToMicrosoft();
     });
 });
