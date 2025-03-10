@@ -47,9 +47,8 @@ function signInToMicrosoft() {
 function handleOAuthRedirect() {
     const urlParams = new URLSearchParams(window.location.search);
     const authCode = urlParams.get("code");
-  
     if (authCode) {
-      exchangeCodeForToken(authCode);
+        exchangeCodeForToken(authCode);
     }
 }
 
@@ -57,7 +56,7 @@ function exchangeCodeForToken(authCode) {
     const clientSecret = "03cd2beb-943a-4474-912b-3c2a487d6a58";
     const tokenUrl = "https://login.microsoftonline.com/common/oauth2/v2.0/token";
     const params = new URLSearchParams();
-    params.append("client_id", clientId);
+    params.append("client_id", onedriveClientId);
     params.append("client_secret", clientSecret);
     params.append("code", authCode);
     params.append("redirect_uri", redirectUri);
@@ -69,10 +68,14 @@ function exchangeCodeForToken(authCode) {
     })
     .then((response) => response.json())
     .then((data) => {
-        const accessToken = data.access_token; // Save the access token
-        console.log("Access Token:", accessToken);
-        // You can now use this token to make API requests to OneDrive
-        getFilesFromOneDrive(accessToken);
+        if (data.access_token) {
+            const accessToken = data.access_token; // Save the access token
+            console.log("Access Token:", accessToken);
+            // Now you can use this token to make API requests to OneDrive
+            getFilesFromOneDrive(accessToken);
+        } else {
+            console.error("Error: No access token returned.", data);
+        }
     })
     .catch((error) => console.error("Error exchanging code for token:", error));
 }
@@ -221,4 +224,7 @@ document.addEventListener("DOMContentLoaded", function() {
         event.preventDefault();
         signInToMicrosoft();
     });
+
+    // Call handleOAuthRedirect after page load to handle the redirect from the OAuth flow
+    handleOAuthRedirect();
 });
