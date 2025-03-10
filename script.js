@@ -1,5 +1,5 @@
 const onedriveClientId = "88a7f8fb-128c-4f06-9f0d-465ada16d12e";
-const redirectUri = "http://localhost:5500/Projekt";
+const redirectUri = window.location.href;
 const scope = "Files.Read User.Read";
 
 document.getElementById("fileInput").addEventListener('change', function(event) {
