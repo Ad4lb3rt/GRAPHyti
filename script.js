@@ -53,7 +53,7 @@ function handleOAuthRedirect() {
 }
 
 function exchangeCodeForToken(authCode) {
-    const clientSecret = "03cd2beb-943a-4474-912b-3c2a487d6a58";
+    const clientSecret = "yLv8Q~FQrznOkMRikP.gJ5SDevjyFCT17OuTSb6I";
     const tokenUrl = "https://login.microsoftonline.com/common/oauth2/v2.0/token";
     const params = new URLSearchParams();
     params.append("client_id", onedriveClientId);
