@@ -1,5 +1,5 @@
 const onedriveClientId = "88a7f8fb-128c-4f06-9f0d-465ada16d12e";
-const redirectUri = window.location.href;
+const redirectUri = "https://ad4lb3rt.github.io/GRAPHyti/";
 const scope = "Files.Read User.Read";
 
 document.getElementById("fileInput").addEventListener('change', function(event) {
@@ -181,20 +181,22 @@ function parseXML(file)
     reader.readAsText(file);
 }
 
+//menicko
+const menuBtn = document.querySelector(".menu-btn");
+const menu = document.querySelector(".menu");
+
+menuBtn.addEventListener("click", function() {
+    menu.style.display = menu.style.display === "block" ? "none" : "block";
+});
+
+document.addEventListener("click", function(event) {
+    if (!menu.contains(event.target) && !menuBtn.contains(event.target)) {
+        menu.style.display = "none";
+    }
+});
+
+
 document.addEventListener("DOMContentLoaded", function() {
-    //menicko
-    const menuBtn = document.querySelector(".menu-btn");
-    const menu = document.querySelector(".menu");
-
-    menuBtn.addEventListener("click", function() {
-        menu.style.display = menu.style.display === "block" ? "none" : "block";
-    });
-
-    document.addEventListener("click", function(event) {
-        if (!menu.contains(event.target) && !menuBtn.contains(event.target)) {
-            menu.style.display = "none";
-        }
-    });
 
     // přepinac
     const uploadBtn = document.querySelector(".upload-btn");
