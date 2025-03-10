@@ -181,20 +181,22 @@ function parseXML(file)
     reader.readAsText(file);
 }
 
+//menicko
+const menuBtn = document.querySelector(".menu-btn");
+const menu = document.querySelector(".menu");
+
+menuBtn.addEventListener("click", function() {
+    menu.style.display = menu.style.display === "block" ? "none" : "block";
+});
+
+document.addEventListener("click", function(event) {
+    if (!menu.contains(event.target) && !menuBtn.contains(event.target)) {
+        menu.style.display = "none";
+    }
+});
+
+
 document.addEventListener("DOMContentLoaded", function() {
-    //menicko
-    const menuBtn = document.querySelector(".menu-btn");
-    const menu = document.querySelector(".menu");
-
-    menuBtn.addEventListener("click", function() {
-        menu.style.display = menu.style.display === "block" ? "none" : "block";
-    });
-
-    document.addEventListener("click", function(event) {
-        if (!menu.contains(event.target) && !menuBtn.contains(event.target)) {
-            menu.style.display = "none";
-        }
-    });
 
     // přepinac
     const uploadBtn = document.querySelector(".upload-btn");
