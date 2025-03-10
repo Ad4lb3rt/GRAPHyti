@@ -12,11 +12,11 @@
             background-color: #f4f4f4;
             text-align: center; /* To center the content */
         }
-        h1.nadpis {
-            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+        .nadpis {
+            font-family: "Comic Sans MS", "Comic Sans", cursive;
             color: black;
             text-align: center;
-            font-size: 36px;
+            font-size: 50px;
             font-weight: bold;
         }
         table {
@@ -42,9 +42,98 @@
             vertical-align: top;
 
         }   
+        footer {
+            position: center;
+            bottom: 10px;
+            text-align: center;
+            width: 20%;
+            padding: 10px;
+            margin-left: 750px;
+        }
+        header {
+            position: absolute;
+            top: 10px;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 20px;
+            box-sizing: border-box;
+        }
+        .menu-container {
+            position: relative;
+        }
+        .menu-btn {
+            top: 15px;
+            background-color: #f5a3e0;
+            color: rgb(255, 255, 255);
+            border: 5px solid #d67eb8;
+            padding: 10px 20px;
+            font-size: 30px;
+            font-weight: bold;
+            text-transform: uppercase;
+            cursor: pointer;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        .menu {
+            display: none;
+            position: absolute;
+            top: 65px;
+            font-size: 20px;
+            right: 0;
+            background-color: #fff;
+            border: 2px solid #d67eb8;
+            border-radius: 25px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 150px;
+            text-align: center;
+        }
+
+        .menu ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .menu ul li {
+            padding: 10px;
+            border-bottom: 1px solid #d67eb8;
+        }
+
+        .menu ul li:last-child {
+            border-bottom: none;
+        }
+
+        .menu ul li a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+            display: block;
+        }
+
+        .menu ul li a:hover {
+            background-color: #f5a3e0;
+            color: white;
+        }
     </style>
 </head>
 <body>
+    <header>
+        <h1>GRAPHyti</h1>
+        <div class="menu-container">
+            <button class="menu-btn">MENU</button>
+            <nav class="menu">
+                <ul>
+                    <li><a href="index.html">Domů</a></li>
+                    <li><a href="tvorba.html">Tvorba</a></li>
+                    <li><a href="about.html">O nás</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
     <h1 class="nadpis">About us</h1>
     <table>
         <tr>
@@ -64,7 +153,27 @@
             <td></td>
             <td><strong>Jaroslav Ráček</strong><br>Náš oblíbený učitel má na starosti průběžnou kontrolu a poskytování zpětné vazby týmu. Průběžně prochází kód a design stránky a upozorňuje na oblasti, které je třeba zlepšit. Doporučuje vylepšení ve funkcionalitě, například jak zrychlit načítání nebo zlepšit uživatelskou zkušenost, a navrhuje úpravy v designu pro lepší přehlednost a přístupnost.</td>
         </tr>
-    </table>    
-    
+    </table>  
+
+<footer>
+    <p>&copy; 2025 GRAPHyti</p>
+</footer>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            //menicko
+            const menuBtn = document.querySelector(".menu-btn");
+            const menu = document.querySelector(".menu");
+        
+            menuBtn.addEventListener("click", function() {
+                menu.style.display = menu.style.display === "block" ? "none" : "block";
+            });
+        
+            document.addEventListener("click", function(event) {
+                if (!menu.contains(event.target) && !menuBtn.contains(event.target)) {
+                    menu.style.display = "none";
+                }
+            });
+        });
+    </script>
 </body>
 </html>
