@@ -38,6 +38,43 @@ function onFileUpload(file)
     }
 }
 
+function fetchFileFromUrl(url) {
+    const headers = {
+        "X-Requested-With": "XMLHttpRequest",
+        "Content-Type": "application/xml",
+        "Access-Control-Allow-Origin": "*",
+        "Vary": "Origin"
+    };
+    fetch(url, { headers })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`Failed to fetch file: ${response.statusText}`);
+            }
+            return response.text(); // Read the file content as text
+        })
+        .then(fileContent => {
+            const fileExtension = url.split('.').pop();
+            console.log('Fetched file from URL:', fileContent);
+            if (fileExtension === 'json')
+            {
+                parseJSONContent(fileContent);
+            } 
+            else if (fileExtension === 'csv')
+            {
+                parseCSV(fileContent);
+            } 
+            else if (fileExtension === 'xml') 
+            {
+                parseXMLContent(fileContent);
+            } else {
+                console.error('Unsupported file extension!');
+            }
+        })
+        .catch(error => {
+            console.error('Error fetching the file from URL:', error);
+        });
+}
+
 function parseJSON(file)
 {
     const reader = new FileReader();
@@ -145,5 +182,15 @@ document.addEventListener("DOMContentLoaded", function() {
     uploadFromPcBtn.addEventListener('click', function(event) {
         event.preventDefault();
         document.getElementById('fileInput').click();
+    });
+
+    // "Nahrát z URL"
+    document.getElementById("uploadFromUrlBtn").addEventListener('click', function(event) {
+        const url = document.getElementById('urlInput').value;
+        if (url) {
+            fetchFileFromUrl(url);
+        } else {
+            console.error("Please enter a valid URL.");
+        }
     });
 });
