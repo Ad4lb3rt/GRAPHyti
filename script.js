@@ -1,12 +1,12 @@
 if(window.location.href == window.location.hostname + "/index.html")
 {
-document.getElementById("fileInput").addEventListener('change', function(event) {
-    const file = event.target.files[0];
-    if (file) {
-        console.log('File selected:', file.name);
-        onFileUpload(file);
-    }
-});
+    document.getElementById("fileInput").addEventListener('change', function(event) {
+        const file = event.target.files[0];
+        if (file) {
+            console.log('File selected:', file.name);
+            onFileUpload(file);
+        }
+    });
 }
 
 function onFileUpload(file)
@@ -39,13 +39,7 @@ function onFileUpload(file)
 }
 
 function fetchFileFromUrl(url) {
-    const headers = {
-        "X-Requested-With": "XMLHttpRequest",
-        "Content-Type": "application/xml",
-        "Access-Control-Allow-Origin": "*",
-        "Vary": "Origin"
-    };
-    fetch(url, { headers })
+    fetch(url)
         .then(response => {
             if (!response.ok) {
                 throw new Error(`Failed to fetch file: ${response.statusText}`);
@@ -54,10 +48,17 @@ function fetchFileFromUrl(url) {
         })
         .then(fileContent => {
             const fileExtension = url.split('.').pop();
-            console.log('Fetched file from URL:', fileContent);
+            const regex = /<\?([^?]+)\?>/g;
+            const text = fileContent.split("\n")[0];
+
+            let match;
+            while ((match = regex.exec(text)) !== null) {
+                fileContent = fileContent.split("\n").slice( 1).join("\n");
+            }
+            console.log(fileContent)
             if (fileExtension === 'json')
             {
-                parseJSONContent(fileContent);
+                parseJSON(fileContent);
             } 
             else if (fileExtension === 'csv')
             {
@@ -65,7 +66,7 @@ function fetchFileFromUrl(url) {
             } 
             else if (fileExtension === 'xml') 
             {
-                parseXMLContent(fileContent);
+                parseXML(fileContent);
             } else {
                 console.error('Unsupported file extension!');
             }
