@@ -38,44 +38,6 @@ function onFileUpload(file)
     }
 }
 
-function fetchFileFromUrl(url) {
-    fetch(url)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`Failed to fetch file: ${response.statusText}`);
-            }
-            return response.text(); // Read the file content as text
-        })
-        .then(fileContent => {
-            const fileExtension = url.split('.').pop();
-            const regex = /<\?([^?]+)\?>/g;
-            const text = fileContent.split("\n")[0];
-
-            let match;
-            while ((match = regex.exec(text)) !== null) {
-                fileContent = fileContent.split("\n").slice( 1).join("\n");
-            }
-            console.log(fileContent)
-            if (fileExtension === 'json')
-            {
-                parseJSON(fileContent);
-            } 
-            else if (fileExtension === 'csv')
-            {
-                parseCSV(fileContent);
-            } 
-            else if (fileExtension === 'xml') 
-            {
-                parseXML(fileContent);
-            } else {
-                console.error('Unsupported file extension!');
-            }
-        })
-        .catch(error => {
-            console.error('Error fetching the file from URL:', error);
-        });
-}
-
 function parseJSON(file)
 {
     const reader = new FileReader();
@@ -146,52 +108,6 @@ function parseXML(file)
     reader.readAsText(file);
 }
 
-//menicko
-const menuBtn = document.querySelector(".menu-btn");
-const menu = document.querySelector(".menu");
-
-menuBtn.addEventListener("click", function() {
-    menu.style.display = menu.style.display === "block" ? "none" : "block";
-});
-
-document.addEventListener("click", function(event) {
-    if (!menu.contains(event.target) && !menuBtn.contains(event.target)) {
-        menu.style.display = "none";
-    }
-});
-
-
-document.addEventListener("DOMContentLoaded", function() {
-
-    // přepinac
-    const uploadBtn = document.querySelector(".upload-btn");
-    const uploadOptions = document.querySelector(".upload-options");
-
-    uploadBtn.addEventListener("click", function(event) {
-        event.stopPropagation(); 
-        uploadOptions.style.display = (uploadOptions.style.display === "block") ? "none" : "block";
-    });
-
-    document.addEventListener("click", function(event) {
-        if (!uploadBtn.contains(event.target) && !uploadOptions.contains(event.target)) {
-            uploadOptions.style.display = "none";
-        }
-    });
-
-    // "Nahrát z PC"
-    const uploadFromPcBtn = document.querySelector('.upload-options li:first-child a');
-    uploadFromPcBtn.addEventListener('click', function(event) {
-        event.preventDefault();
-        document.getElementById('fileInput').click();
-    });
-
-    // "Nahrát z URL"
-    document.getElementById("uploadFromUrlBtn").addEventListener('click', function(event) {
-        const url = document.getElementById('urlInput').value;
-        if (url) {
-            fetchFileFromUrl(url);
-        } else {
-            console.error("Please enter a valid URL.");
-        }
-    });
+document.getElementById("uploadButton").addEventListener("click", function() {
+    document.getElementById("fileInput").click();
 });
