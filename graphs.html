@@ -1,15 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GRAPHyti</title>
   <link rel="stylesheet" href="style.css">
+  <title>GRAPHyti</title>
 </head>
-
 <body>
-  
   <div class="header">
 
     <div class="logo">
@@ -26,29 +23,6 @@
     </nav>
 
   </div>
-
-  <div class="upload">
-
-    <div class="upload-icon">
-      <img src="resources\svgs\upload.svg" alt="Upload" width="92" height="92">
-    </div>
-
-    <div class="upload-title">
-      <h1>Upload file</h1>
-      <p>Turn your data file into a graph</p>
-    </div>
-
-    <div class="upload-form">
-      <button class="button" id="uploadButton" type="button">Select file</button>
-      <form enctype="multipart/form-data" action="/upload/image" method="post">
-        <input id="fileInput" type="file" accept=".json,.csv,.xml" style="display: none;"/>
-      </form>
-    </div>
-
-  </div>
-  
   <script src="script.js"></script>
-
 </body>
-
 </html>

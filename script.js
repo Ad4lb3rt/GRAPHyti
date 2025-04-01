@@ -108,45 +108,9 @@ function parseXML(file)
     reader.readAsText(file);
 }
 
-//menicko
-const menuBtn = document.querySelector(".menu-btn");
-const menu = document.querySelector(".menu");
-
-menuBtn.addEventListener("click", function() {
-    menu.style.display = menu.style.display === "block" ? "none" : "block";
-});
-
-document.addEventListener("click", function(event) {
-    if (!menu.contains(event.target) && !menuBtn.contains(event.target)) {
-        menu.style.display = "none";
-    }
-});
-
-
 if(window.location.href == window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + "/index.html")
 {
-    document.addEventListener("DOMContentLoaded", function() {
-
-        // přepinac
-        const uploadBtn = document.querySelector(".upload-btn");
-        const uploadOptions = document.querySelector(".upload-options");
-    
-        uploadBtn.addEventListener("click", function(event) {
-            event.stopPropagation(); 
-            uploadOptions.style.display = (uploadOptions.style.display === "block") ? "none" : "block";
-        });
-    
-        document.addEventListener("click", function(event) {
-            if (!uploadBtn.contains(event.target) && !uploadOptions.contains(event.target)) {
-                uploadOptions.style.display = "none";
-            }
-        });
-    
-        // "Nahrát z PC"
-        const uploadFromPcBtn = document.querySelector('.upload-options li:first-child a');
-        uploadFromPcBtn.addEventListener('click', function(event) {
-            event.preventDefault();
-            document.getElementById('fileInput').click();
-        });
+    document.getElementById("uploadButton").addEventListener("click", function() {
+        document.getElementById("fileInput").click();
     });
 }
