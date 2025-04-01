@@ -1,6 +1,13 @@
-Username;Identifier;First name;Last name
-booker12;9012;Rachel;Booker
-grey07;2070;Laura;Grey
-johnson81;4081;Craig;Johnson
-jenkins46;9346;Mary;Jenkins
-smith79;5079;Jamie;Smith
+Month,Sales
+January,120
+February,150
+March,170
+April,180
+May,200
+June,210
+July,240
+August,230
+September,250
+October,260
+November,280
+December,300

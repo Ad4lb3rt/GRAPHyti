@@ -108,6 +108,34 @@ function parseXML(file)
     reader.readAsText(file);
 }
 
+function generateGraph()
+{
+    // Get the context of the canvas element we want to select
+    var ctx = document.getElementById('myChart').getContext('2d');
+  
+    // Create a new chart
+    var myChart = new Chart(ctx, {
+      type: 'line', // Define chart type, e.g., line, bar, pie, etc.
+      data: {
+        labels: ['January', 'February', 'March', 'April', 'May'], // X-axis labels
+        datasets: [{
+          label: 'My First Dataset',
+          data: [65, 59, 80, 81, 56], // Y-axis data points
+          borderColor: 'rgb(75, 192, 192)', // Line color
+          tension: 0.1 // Line tension
+        }]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+}
+
 if(window.location.href == window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + "/index.html")
 {
     document.getElementById("uploadButton").addEventListener("click", function() {
