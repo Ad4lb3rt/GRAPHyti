@@ -1,4 +1,4 @@
-if(window.location.href == window.location.hostname + "/index.html")
+if(window.location.href == window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + "/index.html")
 {
     document.getElementById("fileInput").addEventListener('change', function(event) {
         const file = event.target.files[0];
@@ -36,44 +36,6 @@ function onFileUpload(file)
     {
         console.error("Unsupported extension!");
     }
-}
-
-function fetchFileFromUrl(url) {
-    fetch(url)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`Failed to fetch file: ${response.statusText}`);
-            }
-            return response.text(); // Read the file content as text
-        })
-        .then(fileContent => {
-            const fileExtension = url.split('.').pop();
-            const regex = /<\?([^?]+)\?>/g;
-            const text = fileContent.split("\n")[0];
-
-            let match;
-            while ((match = regex.exec(text)) !== null) {
-                fileContent = fileContent.split("\n").slice( 1).join("\n");
-            }
-            console.log(fileContent)
-            if (fileExtension === 'json')
-            {
-                parseJSON(fileContent);
-            } 
-            else if (fileExtension === 'csv')
-            {
-                parseCSV(fileContent);
-            } 
-            else if (fileExtension === 'xml') 
-            {
-                parseXML(fileContent);
-            } else {
-                console.error('Unsupported file extension!');
-            }
-        })
-        .catch(error => {
-            console.error('Error fetching the file from URL:', error);
-        });
 }
 
 function parseJSON(file)
@@ -161,37 +123,30 @@ document.addEventListener("click", function(event) {
 });
 
 
-document.addEventListener("DOMContentLoaded", function() {
+if(window.location.href == window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + "/index.html")
+{
+    document.addEventListener("DOMContentLoaded", function() {
 
-    // přepinac
-    const uploadBtn = document.querySelector(".upload-btn");
-    const uploadOptions = document.querySelector(".upload-options");
-
-    uploadBtn.addEventListener("click", function(event) {
-        event.stopPropagation(); 
-        uploadOptions.style.display = (uploadOptions.style.display === "block") ? "none" : "block";
+        // přepinac
+        const uploadBtn = document.querySelector(".upload-btn");
+        const uploadOptions = document.querySelector(".upload-options");
+    
+        uploadBtn.addEventListener("click", function(event) {
+            event.stopPropagation(); 
+            uploadOptions.style.display = (uploadOptions.style.display === "block") ? "none" : "block";
+        });
+    
+        document.addEventListener("click", function(event) {
+            if (!uploadBtn.contains(event.target) && !uploadOptions.contains(event.target)) {
+                uploadOptions.style.display = "none";
+            }
+        });
+    
+        // "Nahrát z PC"
+        const uploadFromPcBtn = document.querySelector('.upload-options li:first-child a');
+        uploadFromPcBtn.addEventListener('click', function(event) {
+            event.preventDefault();
+            document.getElementById('fileInput').click();
+        });
     });
-
-    document.addEventListener("click", function(event) {
-        if (!uploadBtn.contains(event.target) && !uploadOptions.contains(event.target)) {
-            uploadOptions.style.display = "none";
-        }
-    });
-
-    // "Nahrát z PC"
-    const uploadFromPcBtn = document.querySelector('.upload-options li:first-child a');
-    uploadFromPcBtn.addEventListener('click', function(event) {
-        event.preventDefault();
-        document.getElementById('fileInput').click();
-    });
-
-    // "Nahrát z URL"
-    document.getElementById("uploadFromUrlBtn").addEventListener('click', function(event) {
-        const url = document.getElementById('urlInput').value;
-        if (url) {
-            fetchFileFromUrl(url);
-        } else {
-            console.error("Please enter a valid URL.");
-        }
-    });
-});
+}
