@@ -80,7 +80,15 @@ function parseCSV(fileContent)
     const rows = fileContent.split('\n');
 
     rows.forEach((row, index) => {
-        const columns = row.split(';');
+        var columns = "";
+        if(row.includes(";"))
+        {
+            columns = row.split(';');   
+        }
+        else
+        {
+            columns = row.split(",");
+        }
 
         console.log(`Row ${index + 1}:`, columns);
     });
