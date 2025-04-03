@@ -1,6 +1,26 @@
-<note>
-<to>Tove</to>
-<from>Jani</from>
-<heading>Reminder</heading>
-<body>Don't forget me this weekend!</body>
-</note>
+<dataset name="Sales Data">
+    <record>
+        <month>January</month>
+        <sales>150</sales>
+    </record>
+    <record>
+        <month>February</month>
+        <sales>180</sales>
+    </record>
+    <record>
+        <month>March</month>
+        <sales>210</sales>
+    </record>
+    <record>
+        <month>April</month>
+        <sales>240</sales>
+    </record>
+    <record>
+        <month>May</month>
+        <sales>270</sales>
+    </record>
+    <record>
+        <month>June</month>
+        <sales>300</sales>
+    </record>
+</dataset>

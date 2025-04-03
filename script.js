@@ -1,3 +1,5 @@
+var currentChart = null;
+
 if(window.location.href == window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + "/index.html")
 {
     document.getElementById("fileInput").addEventListener('change', function(event) {
@@ -41,12 +43,19 @@ function onFileUpload(file)
 function parseJSON(file)
 {
     const reader = new FileReader();
+    var labels = [];
+    var values = [];
 
     reader.onload = function(event) {
         const fileContent = event.target.result
         try {
             const parsedData = JSON.parse(fileContent);
             console.log('Parsed JSON:', parsedData);
+            parsedData.data.forEach(element => {
+                labels.push(element.label);
+                values.push(element.value);
+            });
+            generateGraph(labels, values);
         } catch (e) {
             console.error('Failed to parse JSON:', e);
         }
@@ -78,6 +87,8 @@ function parseCSV(fileContent)
 {
     fileContent = String(fileContent)
     const rows = fileContent.split('\n');
+    var labels = [];
+    var values = [];
 
     rows.forEach((row, index) => {
         var columns = "";
@@ -89,9 +100,12 @@ function parseCSV(fileContent)
         {
             columns = row.split(",");
         }
-
+        columns[1] = columns[1].replace(/\r/g, '');
+        labels.push(columns[0]);
+        values.push(columns[1]);
         console.log(`Row ${index + 1}:`, columns);
     });
+    generateGraph(labels, values);
 }
 
 function parseXML(file)
@@ -116,19 +130,24 @@ function parseXML(file)
     reader.readAsText(file);
 }
 
-function generateGraph()
+function generateGraph(labels = [], data = [])
 {
     // Get the context of the canvas element we want to select
     var ctx = document.getElementById('myChart').getContext('2d');
+
+    if(currentChart)
+    {
+        currentChart.destroy();
+    }
   
     // Create a new chart
-    var myChart = new Chart(ctx, {
+    var newChart = new Chart(ctx, {
       type: 'line', // Define chart type, e.g., line, bar, pie, etc.
       data: {
-        labels: ['January', 'February', 'March', 'April', 'May'], // X-axis labels
+        labels: labels, // X-axis labels
         datasets: [{
           label: 'My First Dataset',
-          data: [65, 59, 80, 81, 56], // Y-axis data points
+          data: data, // Y-axis data points
           borderColor: 'rgb(75, 192, 192)', // Line color
           tension: 0.1 // Line tension
         }]
@@ -142,6 +161,8 @@ function generateGraph()
         }
       }
     });
+
+    currentChart = newChart;
 }
 
 if(window.location.href == window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + "/index.html")
