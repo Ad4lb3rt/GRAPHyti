@@ -169,14 +169,40 @@ a {
 .text{
   margin-left: 20px;
 }
+
 h1{color: rgb(169, 103, 228);
   font-weight:1000;
   
 }
+
 h2{
   color: rgb(124, 89, 165);
 }
 
 h3{
   color: rgb(105, 77, 136);
+}
+
+/* about us */
+
+.slider {
+  width: fit-content;
+  text-align: center;
+  display: flex;
+  overflow: hidden;
+  margin-left: auto;
+  margin-top: 5%;
+  margin-right: auto;
+}
+
+.card {
+  min-height: 200px;
+  min-width: 275px;
+  background-color: violet;
+  border-radius: 10px;
+  margin: 0 15px;
+}
+
+.card h3 {
+  margin-top: 20%;
 }
