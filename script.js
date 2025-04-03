@@ -43,19 +43,41 @@ function onFileUpload(file)
 function parseJSON(file)
 {
     const reader = new FileReader();
-    var labels = [];
-    var values = [];
+    let labels = [];
+    let values = [];
 
     reader.onload = function(event) {
-        const fileContent = event.target.result
+        const fileContent = event.target.result;
         try {
             const parsedData = JSON.parse(fileContent);
             console.log('Parsed JSON:', parsedData);
-            parsedData.data.forEach(element => {
-                labels.push(element.label);
-                values.push(element.value);
-            });
-            generateGraph(labels, values);
+            
+            // Function to recursively find all 'label' and 'value' pairs
+            const findLabelsAndValues = (obj) => {
+                for (const key in obj) {
+                    if (obj.hasOwnProperty(key)) {
+                        // If the current key is 'label' and the value is not empty, push it
+                        if (key.toLowerCase() === 'label' && obj[key]) {
+                            labels.push(obj[key]);
+                        }
+                        // If the current key is 'value' and the value is a number, push it
+                        if (key.toLowerCase() === 'value' && typeof obj[key] === 'number') {
+                            values.push(obj[key]);
+                        }
+                        // Recursively search in nested objects or arrays
+                        if (typeof obj[key] === 'object' || Array.isArray(obj[key])) {
+                            findLabelsAndValues(obj[key]);
+                        }
+                    }
+                }
+            };
+
+            // Start recursive search
+            findLabelsAndValues(parsedData);
+
+            
+            // Function to generate graph (just a placeholder for your graph generation logic)
+            generateGraph(labels, values)
         } catch (e) {
             console.error('Failed to parse JSON:', e);
         }
@@ -65,6 +87,7 @@ function parseJSON(file)
         console.error('Error reading file:', error);
     };
 
+    // Read the file content (this assumes 'file' is the input file object)
     reader.readAsText(file);
 }
 
@@ -108,9 +131,10 @@ function parseCSV(fileContent)
     generateGraph(labels, values);
 }
 
-function parseXML(file)
-{
+function parseXML(file) {
     const reader = new FileReader();
+    var labels = [];
+    var values = [];
 
     reader.onload = function(event) {
         const fileContent = event.target.result;
@@ -118,9 +142,80 @@ function parseXML(file)
         const parser = new DOMParser();
         const doc = parser.parseFromString(fileContent, "text/xml");
 
-        const heading = doc.getElementsByTagName("heading")[0]?.childNodes[0]?.nodeValue;
-        
-        console.log(heading);
+        // Recursively parse the XML document
+        function traverseNode(node) {
+            const nodeData = {};
+
+            if (node.nodeType === Node.ELEMENT_NODE) {
+                // Process the current node if it's an element node
+                Array.from(node.childNodes).forEach(childNode => {
+                    if (childNode.nodeType === Node.ELEMENT_NODE) {
+                        // Recursive call for child elements
+                        const childData = traverseNode(childNode);
+                        // If the child node has no name or is nested, store it as an array or object
+                        if (nodeData[childNode.tagName]) {
+                            // If there are already entries for this tag, store them as an array
+                            if (Array.isArray(nodeData[childNode.tagName])) {
+                                nodeData[childNode.tagName].push(childData);
+                            } else {
+                                nodeData[childNode.tagName] = [nodeData[childNode.tagName], childData];
+                            }
+                        } else {
+                            nodeData[childNode.tagName] = childData;
+                        }
+                    } else if (childNode.nodeType === Node.TEXT_NODE) {
+                        // Capture the text content if it's a text node
+                        const textContent = childNode.nodeValue.trim();
+                        if (textContent) {
+                            nodeData['text'] = textContent;
+                        }
+                    }
+                });
+            }
+
+            return nodeData;
+        }
+
+        // Start traversal from the root element of the XML document
+        const parsedData = traverseNode(doc.documentElement);
+
+        console.log(parsedData);
+
+        for(const [key, value] of Object.entries(parsedData)) {
+            value.forEach(element => {
+                var label = null;
+                var value = null;
+                for(const key in element)
+                {
+                    if(element[key].hasOwnProperty('text')) {
+                        if(!label)
+                        {
+                            label = element[key].text;
+                        }
+                        else
+                        {
+                            value = element[key].text;
+                        }
+                    }
+                }
+                labels.push(label);
+                values.push(value);
+            });
+        }
+
+        const allElements = doc.querySelectorAll('*');
+
+        // Iterate through all elements and check for the 'name' attribute
+        let name = null;
+
+        allElements.forEach(element => {
+            // Check if the element has a 'name' attribute
+            if (element.hasAttribute('name')) {
+                name = element.getAttribute('name');
+                return;  // Exit loop early if the 'name' attribute is found
+            }
+        });
+        generateGraph(labels, values, name);
     };
 
     reader.onerror = function(error) {
@@ -130,7 +225,9 @@ function parseXML(file)
     reader.readAsText(file);
 }
 
-function generateGraph(labels = [], data = [])
+
+
+function generateGraph(labels = [], data = [], name = "Unknown Chart")
 {
     // Get the context of the canvas element we want to select
     var ctx = document.getElementById('myChart').getContext('2d');
@@ -142,14 +239,17 @@ function generateGraph(labels = [], data = [])
   
     // Create a new chart
     var newChart = new Chart(ctx, {
-      type: 'line', // Define chart type, e.g., line, bar, pie, etc.
+      type: 'line',
       data: {
-        labels: labels, // X-axis labels
+        labels: labels,
         datasets: [{
-          label: 'My First Dataset',
-          data: data, // Y-axis data points
-          borderColor: 'rgb(75, 192, 192)', // Line color
-          tension: 0.1 // Line tension
+          label: name,
+          data: data,
+          borderColor: 'rgb(73, 42, 68)',
+          pointBorderColor: 'rgb(255, 0, 212)',
+          pointBorderWidth: 3,
+          pointBackgroundColor: 'rgb(255, 0, 212)',
+          tension: 0.1
         }]
       },
       options: {

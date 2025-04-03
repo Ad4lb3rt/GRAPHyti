@@ -1,26 +1,34 @@
-<dataset name="Sales Data">
-    <record>
-        <month>January</month>
-        <sales>150</sales>
-    </record>
-    <record>
-        <month>February</month>
-        <sales>180</sales>
-    </record>
-    <record>
-        <month>March</month>
-        <sales>210</sales>
-    </record>
-    <record>
-        <month>April</month>
-        <sales>240</sales>
-    </record>
-    <record>
-        <month>May</month>
-        <sales>270</sales>
-    </record>
-    <record>
-        <month>June</month>
-        <sales>300</sales>
-    </record>
+<dataset name="Weekly Sales Data">
+    <item>
+        <label>Week 1</label>
+        <value>100</value>
+    </item>
+    <item>
+        <label>Week 2</label>
+        <value>150</value>
+    </item>
+    <item>
+        <label>Week 3</label>
+        <value>200</value>
+    </item>
+    <item>
+        <label>Week 4</label>
+        <value>180</value>
+    </item>
+    <item>
+        <label>Week 5</label>
+        <value>210</value>
+    </item>
+    <item>
+        <label>Week 6</label>
+        <value>250</value>
+    </item>
+    <item>
+        <label>Week 7</label>
+        <value>270</value>
+    </item>
+    <item>
+        <label>Week 8</label>
+        <value>300</value>
+    </item>
 </dataset>
