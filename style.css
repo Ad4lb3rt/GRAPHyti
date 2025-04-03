@@ -1,8 +1,8 @@
 :root {
   --background: rgb(16, 14, 16);
-  --themeColor: rgb(73, 42, 68);
-  --themerColor: rgb(73, 42, 68);
-  --whiteColor: #dadada;
+  --themeColor: rgba(117, 64, 106, 0.308);
+  --themerColor: rgb(71, 52, 71);
+  --whiteColor: #ffc1fc;
 
   --buttonHover: rgb(32, 32, 36);
   --buttonInactive: rgb(28, 28, 32);
@@ -164,4 +164,45 @@ a {
   background-color: var(--themerColor);
   scale: 1.1;
   transition: 300ms;
+}
+
+.text{
+  margin-left: 20px;
+}
+
+h1{color: rgb(169, 103, 228);
+  font-weight:1000;
+  
+}
+
+h2{
+  color: rgb(124, 89, 165);
+}
+
+h3{
+  color: rgb(105, 77, 136);
+}
+
+/* about us */
+
+.slider {
+  width: fit-content;
+  text-align: center;
+  display: flex;
+  overflow: hidden;
+  margin-left: auto;
+  margin-top: 5%;
+  margin-right: auto;
+}
+
+.card {
+  min-height: 200px;
+  min-width: 275px;
+  background-color: violet;
+  border-radius: 10px;
+  margin: 0 15px;
+}
+
+.card h3 {
+  margin-top: 20%;
 }
