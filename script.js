@@ -236,6 +236,9 @@ function generateGraph(labels = [], data = [], name = "Unknown Chart")
     {
         currentChart.destroy();
     }
+
+    document.getElementsByClassName("upload-graphics-hide")[0].style.visibility = "hidden";
+    document.getElementById("uploadButton").textContent = "Select new file";
   
     // Create a new chart
     var newChart = new Chart(ctx, {
