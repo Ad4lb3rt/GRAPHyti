@@ -206,3 +206,7 @@ h3{
 .card h3 {
   margin-top: 20%;
 }
+
+a {
+  cursor: pointer;
+}
