@@ -210,3 +210,7 @@ h3{
 a {
   cursor: pointer;
 }
+
+#canvasDiv{
+  content-visibility: hidden
+}

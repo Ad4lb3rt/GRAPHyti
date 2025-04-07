@@ -229,8 +229,17 @@ function parseXML(file) {
 
 function generateGraph(labels = [], data = [], name = "Unknown Chart")
 {
-    // Get the context of the canvas element we want to select
-    var ctx = document.getElementById('myChart').getContext('2d');
+    const canvasDiv = document.getElementById('canvasDiv');
+    const canvas = document.getElementById("myChart");
+    
+    canvasDiv.width = window.innerWidth;
+    canvasDiv.height = window.innerHeight;
+    canvas.width = window.innerWidth * 0.9;
+    canvas.height = window.innerHeight * 0.5;
+    canvasDiv.style.contentVisibility = "visible";
+    canvasDiv.style.marginBottom = "50px";
+
+    var ctx = canvas.getContext('2d');
 
     if(currentChart)
     {
@@ -257,6 +266,7 @@ function generateGraph(labels = [], data = [], name = "Unknown Chart")
       },
       options: {
         responsive: true,
+        maintainAspectRatio: false,
         scales: {
           y: {
             beginAtZero: true
