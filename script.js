@@ -1,15 +1,12 @@
 var currentChart = null;
+document.getElementById("fileInput").addEventListener('change', function(event) {
+    const file = event.target.files[0];
+    if (file) {
+        console.log('File selected:', file.name);
+        onFileUpload(file);
+    }
+});
 
-if(window.location.href == window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + "/index.html")
-{
-    document.getElementById("fileInput").addEventListener('change', function(event) {
-        const file = event.target.files[0];
-        if (file) {
-            console.log('File selected:', file.name);
-            onFileUpload(file);
-        }
-    });
-}
 
 function onFileUpload(file)
 {
@@ -278,9 +275,6 @@ function generateGraph(labels = [], data = [], name = "Unknown Chart")
     currentChart = newChart;
 }
 
-if(window.location.href == window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + "/index.html")
-{
-    document.getElementById("uploadButton").addEventListener("click", function() {
-        document.getElementById("fileInput").click();
-    });
-}
+document.getElementById("uploadButton").addEventListener("click", function() {
+    document.getElementById("fileInput").click();
+});
