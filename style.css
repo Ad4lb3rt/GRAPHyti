@@ -170,16 +170,17 @@ a {
   margin-left: 20px;
 }
 
-h1{color: rgb(169, 103, 228);
+h1 {
+  color: rgb(169, 103, 228);
   font-weight:1000;
-  
+  margin-left: 3%;
 }
 
-h2{
+h2 {
   color: rgb(124, 89, 165);
 }
 
-h3{
+h3 {
   color: rgb(105, 77, 136);
 }
 
