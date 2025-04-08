@@ -128,6 +128,8 @@ function parseCSV(fileContent)
     generateGraph(labels, values);
 }
 
+
+//FIX: Generating graph whilst there are 3 parameters for one point instead of two makes the point disappear
 function parseXML(file) {
     const reader = new FileReader();
     var labels = [];
@@ -212,7 +214,14 @@ function parseXML(file) {
                 return;  // Exit loop early if the 'name' attribute is found
             }
         });
-        generateGraph(labels, values, name);
+        if(name)
+        {
+            generateGraph(labels, values, name);
+        }
+        else
+        {
+            generateGraph(labels, values);
+        }
     };
 
     reader.onerror = function(error) {
@@ -266,7 +275,16 @@ function generateGraph(labels = [], data = [], name = "Unknown Chart")
         maintainAspectRatio: false,
         scales: {
           y: {
-            beginAtZero: true
+            beginAtZero: true,
+            grid: {
+                color: "#595959"
+            }
+          },
+          x: {
+            beginAtZero: true,
+            grid: {
+                color: "#595959"
+            }
           }
         }
       }
