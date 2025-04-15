@@ -192,24 +192,53 @@ h3 {
   display: flex;
   overflow: hidden;
   margin-left: auto;
-  margin-top: 5%;
   margin-right: auto;
+  padding: 20px 0px 20px 0px;
+}
+
+#firstSlider {
+  padding-top: 5%;
 }
 
 .card {
-  min-height: 200px;
-  min-width: 275px;
-  background-color: violet;
-  border-radius: 10px;
+  height: 200px;
+  width: 300px;
+  background-color: var(--buttonInactive);
+  border-radius: 12px;
+  border: 1px solid var(--themerColor);
   margin: 0 15px;
+  transition: 300ms;
+  padding: 10px;
+  animation: 0.5s ease-in-out 0s 1 LoadIn forwards;
+  opacity: 0;
+}
+
+.card:Nth-child(1) {
+  animation-delay: 0s;
+}
+
+.card:Nth-child(2) {
+  animation-delay: 0.1s;
+}
+
+.card:Nth-child(3) {
+  animation-delay: 0.2s;
+}
+
+.card:hover {
+  background-color: var(--buttonHover);
+  scale: 1.05;
+  transition: 300ms;
 }
 
 .card h3 {
   margin-top: 20%;
+  color: var(--whiteColor);
 }
 
 a {
   cursor: pointer;
+  color: var(--themeColor);
 }
 
 #canvasDiv{
