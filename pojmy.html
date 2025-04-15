@@ -28,8 +28,54 @@
     
     
     <h1>Pojmy</h1>
-      <p>https://teorie-grafu.cz/zakladni-pojmy/</p>
-   
+    <h2>Matematická definice</h2>
+    <h3>Definice</h3>
+    <p>Jak už bylo naznačeno v úvodu, grafy jsou vhodným prostředkem pro popis situací, které lze znázornit pomocí konečného množství bodů a vztahů mezi nimi znázornění pomocí hran.<br>
+    Samotný graf G je definován jako dvojice dvou množin - vrcholů (V) a hran (E).
+    Někdy místo dvojice mluvíme o uspořádané dvojici (V,E) - myslí se tím, že na prvním místě jsou uvedeny vrcholy a na druhém hrany. Zkratky V a E pocházejí z angličtiny - vrcholy jsou anglicky VERTICES, hrany EDGES.
+    <br>
+    G = (V,E)
+    <br>
+    V dalších definicích používáme označení V(G) a E(G) pro množinu vrcholů V (resp. množinu hran E) grafu G.
+    <br>
+    <h3>Značení</h3>
+    V ... množina vrcholů
+    |V| ... velikost množiny vrcholů, tedy počet vrcholů (číslo)
+    E ... množina hran
+    |E| ... velikost množiny hran, tedy počet hran (číslo)
+    <br>
+    <h3>Důsledky</h3>
+    Množina hran E je podmnožinou množiny všech možných dvojic navzájem různých vrcholů - nepřipoušíme tedy "násobné" hrany ani "smyčky".
+
+    E je podmnožinou V nad 2
+  </p>
+  <h2>Úplný graf</h2>
+  <h3>Popis</h3>
+  Úplný graf je takový graf, ve kterém jsou každé dva vrcholy spojené hranou.
+  <br>
+  |E| = |V| nad 2
+  <br>
+  Úplné grafy značíme <strong>Kn</strong>, kde  <strong>n</strong> je počet vrcholů.
+  
+  <br>
+  <br>
+  Příklady úplných grafů:
+  <br>
+  <br>
+  <img src="resources\images\prikladyuplnychgrafu.png" alt="prikladyuplnychgrafu">
+    <h2>Kostra grafu</h2>
+    <p>
+      Kostrou grafu budeme rozumět libovolný podgraf, který hranami spojuje všechny vrcholy původního grafu a zároveň sám neobsahuje žádnou kružnici (→ jde o strom).
+  <br>
+  <h3>Definice kostry</h3>
+  <br>
+  Nechť G = (V,E) je graf. Libovolný strom (V,E'), kde E' je podmnožinouE, nazveme kostrou grafu.
+<br>
+<h3>Příklady</h3>
+<br>
+Pokud původní graf (graf, ke kterému hledáme kostru) obsahuje kružnici, pak máme více možností, jak kostru zvolit.
+    </p>
   </div>
+  
 </body>
 </html>
