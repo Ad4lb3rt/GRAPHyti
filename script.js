@@ -33,7 +33,7 @@ function onFileUpload(file)
     }
     else
     {
-        console.error("Unsupported extension!");
+        alert("Unsupported extension!");
     }
 }
 
@@ -121,15 +121,16 @@ function parseCSV(fileContent)
             columns = row.split(",");
         }
         columns[1] = columns[1].replace(/\r/g, '');
-        labels.push(columns[0]);
-        values.push(columns[1]);
+        if(isFinite(columns[1]) || isFinite(columns[0]))
+        {
+            labels.push(columns[0]);
+            values.push(columns[1]);
+        }
         console.log(`Row ${index + 1}:`, columns);
     });
     generateGraph(labels, values);
 }
 
-
-//FIX: Generating graph whilst there are 3 parameters for one point instead of two makes the point disappear
 function parseXML(file) {
     const reader = new FileReader();
     var labels = [];
@@ -191,9 +192,12 @@ function parseXML(file) {
                         {
                             label = element[key].text;
                         }
-                        else
+                        else if(!value)
                         {
-                            value = element[key].text;
+                            if(isFinite(element[key].text))
+                            {
+                                value = element[key].text;
+                            }
                         }
                     }
                 }
@@ -275,13 +279,13 @@ function generateGraph(labels = [], data = [], name = "Unknown Chart")
         maintainAspectRatio: false,
         scales: {
           y: {
-            beginAtZero: true,
+            beginAtZero: false,
             grid: {
                 color: "#595959"
             }
           },
           x: {
-            beginAtZero: true,
+            beginAtZero: false,
             grid: {
                 color: "#595959"
             }
