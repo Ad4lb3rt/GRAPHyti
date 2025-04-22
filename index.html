@@ -21,8 +21,8 @@
     </div>
 
     <nav class="navigation">
-      <a class="nav-button" href="index.html">Home</a>
-      <a class="nav-button" href="aboutus.html">About Us</a>
+      <a class="nav-button" href="index.html">Domov</a>
+      <a class="nav-button" href="aboutus.html">O nás</a>
       <a class="nav-button" href="theory.html">Teorie</a>
     </nav>
 
@@ -34,15 +34,15 @@
         <img src="resources\svgs\upload.svg" alt="Upload" width="92" height="92">
       </div>
       <div class="upload-title">
-        <h1>Upload file</h1>
-        <p>Turn your data file into a graph</p>
+        <h1>Nahrajte soubor</h1>
+        <p>Převeďte svůj datový soubor do grafu</p>
       </div>
     </div>
     <div class="upload-form">
       <div id="canvasDiv">
         <canvas id="myChart"></canvas>
       </div>
-        <button class="button" id="uploadButton" type="button">Select file</button>
+        <button class="button" id="uploadButton" type="button">Vyberte soubor</button>
         <form enctype="multipart/form-data" action="/upload/image" method="post">
           <input id="fileInput" type="file" accept=".json,.csv,.xml" style="display: none;"/>
         </form>
