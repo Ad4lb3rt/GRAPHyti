@@ -239,6 +239,10 @@ function parseXML(file) {
 
 function generateGraph(labels = [], data = [], name = "Unknown Chart")
 {
+    var uploadButton = document.getElementById("uploadButton");
+    uploadButton.style.width = "250px";
+    uploadButton.textContent = "Vyberte nový soubor";
+    
     const canvasDiv = document.getElementById('canvasDiv');
     const canvas = document.getElementById("myChart");
     
@@ -255,9 +259,13 @@ function generateGraph(labels = [], data = [], name = "Unknown Chart")
     {
         currentChart.destroy();
     }
+    
+    var hiddenGraphics = document.getElementsByClassName("upload-graphics-hide")[0];
+    if(hiddenGraphics)
+    {
+        hiddenGraphics.remove();
+    }
 
-    document.getElementsByClassName("upload-graphics-hide")[0].style.visibility = "hidden";
-    document.getElementById("uploadButton").textContent = "Select new file";
   
     // Create a new chart
     var newChart = new Chart(ctx, {
