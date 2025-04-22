@@ -30,6 +30,25 @@
   }
 }
 
+@keyframes PopIn {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  25% {
+    transform: scale(25%);
+    opacity: 0;
+  }
+  75% {
+    transform: scale(105%);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(100%);
+    opacity: 1;
+  }
+}
+
 /* Box-sizing */
 
 * {
@@ -94,6 +113,7 @@ body::after {
   margin-left: 16px;
   font-weight: bold;
   font-size: 1.5rem;
+  color: var(--whiteColor);
 }
 
 /* Navigation bar */
@@ -225,6 +245,14 @@ h3 {
   animation-delay: 0.2s;
 }
 
+.card:Nth-child(4) {
+  animation-delay: 0.3s;
+}
+
+.card:Nth-child(5) {
+  animation-delay: 0.4s;
+}
+
 .card:hover {
   background-color: var(--buttonHover);
   scale: 1.05;
@@ -243,4 +271,57 @@ a {
 
 #canvasDiv{
   content-visibility: hidden
+}
+
+.theory-link {
+  text-align: center;
+}
+
+.theory-link h3 {
+  padding: 20px 0px;
+  color: var(--whiteColor);
+}
+
+
+.theory-bar {
+  height: 80px;
+  width: 480px;
+  background-color: var(--buttonInactive);
+  border-radius: 12px;
+  border: 1px solid var(--themerColor);
+  transition: 300ms;
+  animation: 0.5s ease-in-out 0s 1 PopIn forwards;
+  opacity: 0;
+  margin: 8px auto;
+  width: 50%;
+}
+
+.theory-bar:hover {
+  background-color: var(--buttonHover);
+  scale: 1.05;
+  transition: 300ms;
+}
+
+.theory-bar:Nth-child(1) {
+  animation-delay: 0s;
+}
+
+.theory-bar:Nth-child(2) {
+  animation-delay: 0.05s;
+}
+
+.theory-bar:Nth-child(3) {
+  animation-delay: 0.1s;
+}
+
+.theory-bar:Nth-child(4) {
+  animation-delay: 0.15s;
+}
+
+.theory-bar:Nth-child(5) {
+  animation-delay: 0.2s;
+}
+
+.theory-section {
+  margin-top: 5%;
 }
