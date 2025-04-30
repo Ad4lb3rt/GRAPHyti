@@ -1,4 +1,5 @@
 {
+  "name": "Monthly Sales Report",
   "data": [
     { "label": "January", "value": 150 },
     { "label": "February", "value": 180 },
