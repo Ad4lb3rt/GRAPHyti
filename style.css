@@ -1,11 +1,11 @@
 :root {
-  --background: rgb(16, 14, 16);
-  --themeColor: rgba(117, 64, 106, 0.308);
-  --themerColor: rgb(71, 52, 71);
-  --whiteColor: #ffc1fc;
+  --color-background: rgb(16, 14, 16);
+  --color-foreground: rgba(117, 64, 106, 0.308);
+  --color-outline: rgb(71, 52, 71);
+  --color-primary: #ffc1fc;
 
-  --buttonHover: rgb(32, 32, 36);
-  --buttonInactive: rgb(28, 28, 32);
+  --color-button-hover: rgb(32, 32, 36);
+  --color-button-inactive: rgb(28, 28, 32);
 }
 
 @keyframes LoadIn {
@@ -61,10 +61,10 @@ body {
   padding: 0;
   margin: 0;
   overflow: hidden;
-  background-color: var(--background);
-  background-image: radial-gradient(var(--themeColor) 1px, transparent 1px);
+  background-color: var(--color-background);
+  background-image: radial-gradient(var(--color-foreground) 1px, transparent 1px);
   background-size: 35px 35px;
-  color: var(--whiteColor);
+  color: var(--color-primary);
   font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -76,7 +76,7 @@ body::after {
   width: 100%;
   height: 100%;
   pointer-events: none;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0) 25%, var(--background));
+  background: radial-gradient(circle, rgba(255, 255, 255, 0) 25%, var(--color-background));
   z-index: -1;
 }
 
@@ -89,10 +89,10 @@ body::after {
   justify-content: space-between;
   height: 72px;
   width: 100%;
-  background-color: var(--background);
-  color: var(--whiteColor);
+  background-color: var(--color-background);
+  color: var(--color-primary);
   padding: 0 32px;
-  border-bottom: 1px solid var(--themeColor);
+  border-bottom: 1px solid var(--color-foreground);
 }
 
 .logo {
@@ -113,7 +113,7 @@ body::after {
   margin-left: 16px;
   font-weight: bold;
   font-size: 1.5rem;
-  color: var(--whiteColor);
+  color: var(--color-primary);
 }
 
 /* Navigation bar */
@@ -131,7 +131,7 @@ a {
 }
 
 .nav-button {
-  color: var(--whiteColor);
+  color: var(--color-primary);
   cursor: pointer;
   text-decoration: none;
 }
@@ -149,10 +149,9 @@ a {
 }
 
 .upload-title h1 {
-  color: var(--whiteColor);
+  color: var(--color-primary);
   font-size: 4rem;
   margin: 0;
-  padding-top: 16px;
 }
 
 .upload-title p {
@@ -165,25 +164,25 @@ a {
 .button {
   width: 224px;
   height: 64px;
-  background-color: var(--buttonInactive);
-  border: 1px solid var(--themerColor);
+  background-color: var(--color-button-inactive);
+  border: 1px solid var(--color-outline);
   border-radius: 12px;
-  color: var(--whiteColor);
+  color: var(--color-primary);
   font-size: 1.5rem;
   cursor: pointer;
   transition: 300ms;
 }
 
 .button:hover {
-  background-color: var(--buttonHover);
+  background-color: var(--color-button-hover);
   scale: 1.05;
   transition: 300ms;
 }
 
 .button:active {
-  background-color: var(--themerColor);
-  scale: 1.1;
-  transition: 300ms;
+  background-color: var(--color-outline);
+  scale: 0.95;
+  transition: 100ms;
 }
 
 .text{
@@ -223,9 +222,9 @@ h3 {
 .card {
   height: 200px;
   width: 300px;
-  background-color: var(--buttonInactive);
+  background-color: var(--color-button-inactive);
   border-radius: 12px;
-  border: 1px solid var(--themerColor);
+  border: 1px solid var(--color-outline);
   margin: 0 15px;
   transition: 300ms;
   padding: 10px;
@@ -254,19 +253,19 @@ h3 {
 }
 
 .card:hover {
-  background-color: var(--buttonHover);
+  background-color: var(--color-button-hover);
   scale: 1.05;
   transition: 300ms;
 }
 
 .card h3 {
   margin-top: 20%;
-  color: var(--whiteColor);
+  color: var(--color-primary);
 }
 
 a {
   cursor: pointer;
-  color: var(--themeColor);
+  color: var(--color-foreground);
 }
 
 #canvasDiv{
@@ -284,16 +283,16 @@ a {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--whiteColor);
+  color: var(--color-primary);
 }
 
 
 .theory-bar {
   height: 80px;
   width: 480px;
-  background-color: var(--buttonInactive);
+  background-color: var(--color-button-inactive);
   border-radius: 12px;
-  border: 1px solid var(--themerColor);
+  border: 1px solid var(--color-outline);
   transition: 300ms;
   animation: 0.5s ease-in-out 0s 1 PopIn forwards;
   opacity: 0;
@@ -302,7 +301,7 @@ a {
 }
 
 .theory-bar:hover {
-  background-color: var(--buttonHover);
+  background-color: var(--color-button-hover);
   scale: 1.05;
   transition: 300ms;
 }
