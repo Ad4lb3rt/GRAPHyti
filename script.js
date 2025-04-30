@@ -45,40 +45,48 @@ function parseJSON(file)
 
     reader.onload = function(event) {
         const fileContent = event.target.result;
+        let name = '';  // variable to store the name
+    
         try {
             const parsedData = JSON.parse(fileContent);
             console.log('Parsed JSON:', parsedData);
-            
+    
+            // Extract the top-level 'name' field
+            if (parsedData.name) {
+                name = parsedData.name;
+                console.log('Extracted name:', name);
+            }
+    
             // Function to recursively find all 'label' and 'value' pairs
             const findLabelsAndValues = (obj) => {
                 for (const key in obj) {
                     if (obj.hasOwnProperty(key)) {
-                        // If the current key is 'label' and the value is not empty, push it
                         if (key.toLowerCase() === 'label' && obj[key]) {
                             labels.push(obj[key]);
                         }
-                        // If the current key is 'value' and the value is a number, push it
                         if (key.toLowerCase() === 'value' && typeof obj[key] === 'number') {
                             values.push(obj[key]);
                         }
-                        // Recursively search in nested objects or arrays
                         if (typeof obj[key] === 'object' || Array.isArray(obj[key])) {
                             findLabelsAndValues(obj[key]);
                         }
                     }
                 }
             };
-
+    
             // Start recursive search
             findLabelsAndValues(parsedData);
-
-            
-            // Function to generate graph (just a placeholder for your graph generation logic)
-            generateGraph(labels, values)
+    
+            // Example use of name
+            console.log(`Generating graph for: ${name}`);
+    
+            // Generate graph (placeholder)
+            generateGraph(labels, values, name);
+    
         } catch (e) {
             console.error('Failed to parse JSON:', e);
         }
-    };
+    };    
 
     reader.onerror = function(error) {
         console.error('Error reading file:', error);
