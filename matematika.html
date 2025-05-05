@@ -3,16 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GRAPHyti-Teorie</title>
+  <title>GRAPHyti - Matematika teorie grafů</title>
   <link rel="icon" type="image/x-icon" href="resources/images/pudl.png">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="theory-style.css">
 </head>
 <body>
   <div class="header">
-
     <div class="logo">
       <a href="index.html">
-        <img class="logo-img" src="resources\images\pudl.png" alt="Logo" width="32" height="32"> <!--This img is just a placeholder-->
+        <img class="logo-img" src="resources/images/pudl.png" alt="Logo" width="32" height="32">
         <span class="logo-text">GRAPHyti</span>
       </a>
     </div>
@@ -20,16 +20,304 @@
     <nav class="navigation">
       <a class="nav-button" href="index.html">Domov</a>
       <a class="nav-button" href="aboutus.html">O nás</a>
-      <a class="nav-button" href="theory.html">Teorie</a>
+      <a class="nav-button" href="teorie.html">Teorie</a>
     </nav>
-
   </div>
-  <div class = "text">
+
+  <div class="teoria-container">
+    <h1 class="teoria-nadpis">Matematika teorie grafů</h1>
     
-    
-    <h1>Matematika</h1>
-      <p>https://cs.wikipedia.org/wiki/Graf_(teorie_graf%C5%AF)</p>
-   
+    <div class="teoria-section">
+      <p>
+        V této sekci se zaměříme na hlubší matematické aspekty teorie grafů, včetně formálních definic, 
+        důležitých teorémů a jejich důkazů. Tato část je určena pro ty, kteří chtějí proniknout do 
+        matematických základů této fascinující disciplíny.
+      </p>
+    </div>
+
+    <div class="teoria-section">
+      <h2>Algebraická teorie grafů</h2>
+      
+      <div class="teoria-definition">
+        <h3>Matice sousednosti</h3>
+        <p>
+          <strong>Matice sousednosti</strong> grafu G s n vrcholy je čtvercová matice A o rozměrech n×n, kde:
+        </p>
+        <div class="teoria-formula">
+          A[i,j] = {
+            1, pokud existuje hrana mezi vrcholy i a j
+            0, jinak
+          }
+        </div>
+      </div>
+      
+      
+      
+      <p>
+        Pro neorientovaný graf je matice sousednosti symetrická (A[i,j] = A[j,i]). Pro ohodnocený graf 
+        může matice obsahovat místo jedniček ohodnocení příslušných hran.
+      </p>
+      
+      <div class="teoria-definition">
+        <h3>Matice incidence</h3>
+        <p>
+          <strong>Matice incidence</strong> grafu G s n vrcholy a m hranami je matice B o rozměrech n×m, kde:
+        </p>
+        <div class="teoria-formula">
+          B[i,j] = {
+            1, pokud vrchol i je incidentní s hranou j
+            0, jinak
+          }
+        </div>
+      </div>
+      
+      <div class="teoria-definition">
+        <h3>Laplaceova matice</h3>
+        <p>
+          <strong>Laplaceova matice</strong> (nebo Kirchhoffova matice) grafu G je definována jako:
+        </p>
+        <div class="teoria-formula">
+          L = D - A
+        </div>
+        <p>kde D je diagonální matice stupňů vrcholů a A je matice sousednosti.</p>
+      </div>
+      
+      <div class="teoria-example">
+        <h3>Vlastnosti Laplaceovy matice</h3>
+        <p>
+          Laplaceova matice má mnoho důležitých vlastností:
+        </p>
+        <ul>
+          <li>Je vždy pozitivně semidefinitní</li>
+          <li>Počet nulových vlastních čísel odpovídá počtu komponent souvislosti grafu</li>
+          <li>Druhé nejmenší vlastní číslo (algebraická souvislost) je měřítkem toho, jak dobře je graf propojen</li>
+          <li>Lze použít k výpočtu počtu koster grafu (pomocí tzv. teorému o matici-stromu)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="teoria-section">
+      <h2>Spektrální teorie grafů</h2>
+      
+      <p>
+        Spektrální teorie grafů studuje vlastnosti grafů prostřednictvím vlastních čísel a vlastních vektorů 
+        jejich matic (zejména matice sousednosti a Laplaceovy matice).
+      </p>
+      
+      <div class="teoria-definition">
+        <h3>Spektrum grafu</h3>
+        <p>
+          <strong>Spektrum grafu</strong> je soubor všech vlastních čísel matice sousednosti (nebo jiné maticové reprezentace grafu), 
+          včetně jejich násobností.
+        </p>
+      </div>
+      
+      <div class="teoria-card-container">
+        <div class="teoria-card">
+          <h4>Spektrální rozklad</h4>
+          <p>
+            Matici sousednosti A lze vyjádřit jako součet matic reprezentujících vlastní vektory vynásobené odpovídajícími vlastními čísly.
+          </p>
+        </div>
+        
+        <div class="teoria-card">
+          <h4>Spektrální mezera</h4>
+          <p>
+            Rozdíl mezi největším a druhým největším vlastním číslem indikuje, jak dobře je graf propojen.
+          </p>
+        </div>
+        
+        <div class="teoria-card">
+          <h4>Izospektrální grafy</h4>
+          <p>
+            Různé grafy mohou mít stejné spektrum, i když nejsou izomorfní.
+          </p>
+        </div>
+      </div>
+      
+      <div class="teoria-example">
+        <h3>Aplikace spektrální teorie</h3>
+        <p>
+          Spektrální teorie má mnoho praktických aplikací:
+        </p>
+        <ul>
+          <li>Analýza sítí a detekce komunit</li>
+          <li>Redukce dimenze a shlukování dat</li>
+          <li>Rozpoznávání vzorů a strojové učení na grafech</li>
+          <li>Studium dynamických procesů na grafech (např. šíření epidemií)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="teoria-section">
+      <h2>Extremální teorie grafů</h2>
+      
+      <p>
+        Extremální teorie grafů se zabývá otázkami typu "Jaký je maximální/minimální počet hran, 
+        které může mít graf s určitými vlastnostmi?"
+      </p>
+      
+      <div class="teoria-definition">
+        <h3>Turánův teorém</h3>
+        <p>
+          <strong>Turánův teorém</strong> stanovuje maximální počet hran v grafu s n vrcholy, který neobsahuje úplný podgraf K<sub>r+1</sub>.
+        </p>
+        <div class="teoria-formula">
+          |E| ≤ (1 - 1/r) × n²/2
+        </div>
+      </div>
+      
+      <div class="teoria-definition">
+        <h3>Ramseyova teorie</h3>
+        <p>
+          <strong>Ramseyova teorie</strong> se zabývá tím, jak velký musí být graf, aby v něm vždy existoval určitý typ podgrafu.
+        </p>
+        <p>
+          Ramseyovo číslo R(s,t) je nejmenší číslo n takové, že každý graf s n vrcholy obsahuje buď úplný podgraf K<sub>s</sub>, 
+          nebo nezávislou množinu velikosti t.
+        </p>
+      </div>
+      
+      <div class="teoria-example">
+        <h3>Příklad: Ramseyovo číslo R(3,3)</h3>
+        <p>
+          R(3,3) = 6 znamená, že každý graf s 6 nebo více vrcholy obsahuje buď trojúhelník (K<sub>3</sub>), 
+          nebo nezávislou množinu velikosti 3. Naproti tomu existuje graf s 5 vrcholy (pětiúhelník), 
+          který neobsahuje ani trojúhelník, ani nezávislou množinu velikosti 3.
+        </p>
+      </div>
+    </div>
+
+    <div class="teoria-section">
+      <h2>Náhodné grafy</h2>
+      
+      <div class="teoria-definition">
+        <h3>Erdős-Rényi model</h3>
+        <p>
+          <strong>Erdős-Rényi model</strong> je model náhodného grafu, kde každá potenciální hrana existuje s pravděpodobností p, 
+          nezávisle na ostatních hranách.
+        </p>
+        <p>
+          Označujeme ho G(n,p), kde n je počet vrcholů a p je pravděpodobnost existence hrany.
+        </p>
+      </div>
+      
+      <div class="teoria-example">
+        <h3>Vlastnosti náhodných grafů</h3>
+        <p>
+          Erdős-Rényi model vykazuje zajímavé vlastnosti v závislosti na pravděpodobnosti p:
+        </p>
+        <ul>
+          <li>Pro p < (1-ε)ln(n)/n má graf s vysokou pravděpodobností izolované vrcholy</li>
+          <li>Pro p > (1+ε)ln(n)/n je graf s vysokou pravděpodobností souvislý</li>
+          <li>Při p = 1/n dochází k tzv. "fázovému přechodu", kdy se v grafu začínají objevovat velké komponenty</li>
+        </ul>
+      </div>
+      
+      <div class="teoria-definition">
+        <h3>Další modely náhodných grafů</h3>
+        <p>
+          Kromě Erdős-Rényi modelu existují i další důležité modely:
+        </p>
+        <ul>
+          <li><strong>Barabási-Albert model</strong> - model bezškálových sítí s preferenčním připojováním</li>
+          <li><strong>Watts-Strogatz model</strong> - model malého světa, kombinující pravidelnost a náhodnost</li>
+          <li><strong>Geometrické náhodné grafy</strong> - vrcholy jsou rozmístěny v prostoru a hrany existují mezi blízkými vrcholy</li>
+        </ul>
+      </div>
+      
+      
+    </div>
+
+    <div class="teoria-section">
+      <h2>Důležité teorémy</h2>
+      
+      <div class="teoria-definition">
+        <h3>Věta o čtyřech barvách</h3>
+        <p>
+          <strong>Věta o čtyřech barvách</strong> říká, že každý planární graf lze obarvit nejvýše čtyřmi barvami tak, 
+          aby žádné dva sousední vrcholy neměly stejnou barvu.
+        </p>
+        <p>
+          Tato věta byla dokázána v roce 1976 Appelem a Hakenem za použití počítačů, což vedlo k diskusím o povaze matematických důkazů.
+        </p>
+      </div>
+      
+      <div class="teoria-definition">
+        <h3>Věta o handshaking (princip sudosti)</h3>
+        <p>
+          V každém grafu je součet stupňů všech vrcholů roven dvojnásobku počtu hran:
+        </p>
+        <div class="teoria-formula">
+          ∑<sub>v∈V</sub> deg(v) = 2|E|
+        </div>
+        <p>
+          Důsledkem je, že počet vrcholů s lichým stupněm musí být vždy sudý.
+        </p>
+      </div>
+      
+      <div class="teoria-definition">
+        <h3>Eulerova formule pro planární grafy</h3>
+        <p>
+          Pro každý souvislý planární graf s v vrcholy, e hranami a f stěnami platí:
+        </p>
+        <div class="teoria-formula">
+          v - e + f = 2
+        </div>
+        <p>
+          Tento vztah je základem pro důkaz mnoha vlastností planárních grafů.
+        </p>
+      </div>
+      
+      <div class="teoria-definition">
+        <h3>Teorém o matici-stromu (Kirchhoffův teorém)</h3>
+        <p>
+          Počet koster grafu je roven libovolnému algebraickému doplňku Laplaceovy matice grafu.
+        </p>
+        <p>
+          Alternativně, je to roven podílu součinu nenulových vlastních čísel Laplaceovy matice a počtu vrcholů.
+        </p>
+      </div>
+    </div>
+
+    <div class="teoria-section">
+      <h2>Další matematické koncepty</h2>
+      
+      <div class="teoria-card-container">
+        <div class="teoria-card">
+          <h4>Topologická teorie grafů</h4>
+          <p>
+            Studuje vlastnosti grafů, které zůstávají zachovány při spojitých deformacích. Zahrnuje vnořování grafů do povrchů různých rodů.
+          </p>
+        </div>
+        
+        <div class="teoria-card">
+          <h4>Algebraická teorie grafů</h4>
+          <p>
+            Využívá algebraické struktury (grupy, okruhy, tělesa) k analýze grafů. Zahrnuje koncepty jako automorfismy grafů nebo invarianty.
+          </p>
+        </div>
+        
+        <div class="teoria-card">
+          <h4>Metrická teorie grafů</h4>
+          <p>
+            Studuje grafové vzdálenosti a metrické vlastnosti grafů, jako je průměr grafu, excentricita vrcholů nebo míra centrality.
+          </p>
+        </div>
+      </div>
+      
+      <div class="teoria-alert">
+        <p>
+          Pro hlubší studium matematických aspektů teorie grafů doporučujeme odbornou literaturu 
+          nebo online zdroje, jako je například <a href="https://cs.wikipedia.org/wiki/Graf_(teorie_graf%C5%AF)" target="_blank">Wikipedie: Teorie grafů</a>.
+        </p>
+      </div>
+    </div>
+
+    <div class="teoria-navigation">
+      <a class="teoria-nav-button" href="problemy.html">Zpět na problémy</a>
+      <a class="teoria-nav-button" href="teorie.html">Zpět na přehled Teorie</a>
+    </div>
   </div>
 </body>
 </html>

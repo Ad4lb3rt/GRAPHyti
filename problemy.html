@@ -3,16 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GRAPHyti-Teorie</title>
+  <title>GRAPHyti - Problémy teorie grafů</title>
   <link rel="icon" type="image/x-icon" href="resources/images/pudl.png">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="theory-style.css">
 </head>
 <body>
   <div class="header">
-
     <div class="logo">
       <a href="index.html">
-        <img class="logo-img" src="resources\images\pudl.png" alt="Logo" width="32" height="32"> <!--This img is just a placeholder-->
+        <img class="logo-img" src="resources/images/pudl.png" alt="Logo" width="32" height="32">
         <span class="logo-text">GRAPHyti</span>
       </a>
     </div>
@@ -20,45 +20,350 @@
     <nav class="navigation">
       <a class="nav-button" href="index.html">Domov</a>
       <a class="nav-button" href="aboutus.html">O nás</a>
-      <a class="nav-button" href="theory.html">Teorie</a>
+      <a class="nav-button" href="teorie.html">Teorie</a>
     </nav>
-
   </div>
-  <div class = "text">
-    
-    
-    <h1>Problemy</h1>
-      <p>
-        <h2>Maximální kostra grafu</h2>
-        <H3>Úvod</H3>
-V případě kostry grafu jsme zvyklí většinou hledat minimální kostru, užitečné výsledky nám ale často přináší i maximální kostra = souvislý podgraf (typu strom) s celkovým maximálním ohodnocením hran. Pro zjednodušení budeme uvažovat pouze souvislé neorientované grafy (neorientované proto, aby nenastalo různé ohodnocení hran AB a BA).
-<br>
-Předpokládejme, že máme graf, ve kterém vrcholy odpovídají prvkům z reálného světa (např. státy) a hrany jsou ohodnoceny dle nějakého ukazatele znázorňujícího podobnost vrcholů. Konkrétní význam ukazatele pro nás při hledání maximální kostry není podstatný. Typicky se jedná o číslo nabývající hodnoty 1, pokud se dva vrcholy v nějaké vlastnosti naprosto shodují, hodnoty 0, pokud se neshodují vůbec, či hodnoty mezi 0 a 1 (např: 0,5 - shoda v polovině případů). Často je takový graf úplný.
-<br>
-<h3>Příklady</h3>
-<strong>A: </strong>Vrcholy grafu odpovídají státům, hrany jsou ohodnoceny podle exportu (nebo importu) zboží mezi zeměmi. Čím vyšší je hodnota ukazatele, tím větší je pohyb zboží mezi těmito dvěma státy.
-<br>
-<strong>B:</strong> Vrcholy grafu představují univerzity, ohodnocení hran odpovídá přechodům studentů mezi univerzitami.
-<br>
-<strong>C:</strong> Vrcholy grafu znázorňují zboží v obchodech. Čím větší je hodnota ukazatele mezi dvěma typy zboží, tím častěji jsou kupována společně. Hodnota 1 představuje možnost, že zákazníci vždy kupují tyto dva druhy zboží spolu (v rámci všech objednávek), a hodnota 0, že naopak neexistuje žádná objednávka, na které by byly oba druhy spolu.
-<br>
-<br>
-<h3>Význam maximální kostry grafu</h3>
-<br>
-Díky postupu, jakým maximální kostru najdeme (následuje), víme, že do maximální kostry použijeme vždy hrany s nejvyšším ohodnocením. Tím pospojujeme vrcholy, které k sobě "nejvíce patří".
-<br>
-V případě příkladu se státy (A) zapojujeme do maximální kostry dvojice států, které mezi sebou mají největší export/import.
-<br>
-Podobně u univerzit používáme takové, mezi kterými přecházejí studenti nejčastěji a u obchodů (C) zboží, které je nejčastěji objednáváno společně (podobně fungují nákupní rádci v internetových obchodech, které před potvrzením objednávky poradí, jestli nechcete k digitálnímu fotoaparátu paměťovou kartu).
 
-<h3>Nalezení maximální kostry</h3>
-<br>
-Pokud známe postup, jak najít minimální kostru, je nalezení maximální kostry jednoduché - stačí ohodnocení hran změnit na opačné (kladné → záporné) hodnoty a použít libovolný algoritmus pro nalezení minimální kostry (a opět otočit znaménko ohodnocení hran).
-<br>
-<br>
-Druhou možností je upravit samotný hladový algoritmus - např. Kruskalův. Hrany ale seřadíme nikoliv vzestupně, ale sestupně - nejprve do kostry přidáváme hrany s největším ohodnocením.
-      </p>
+  <div class="teoria-container">
+    <h1 class="teoria-nadpis">Problémy teorie grafů</h1>
     
+    <div class="teoria-section">
+      <p>
+        Teorie grafů obsahuje mnoho zajímavých a prakticky významných problémů. Některé z nich jsou poměrně 
+        jednoduché, jiné patří mezi nejnáročnější úlohy informatiky. V této části se zaměříme na několik 
+        klíčových problémů a způsoby jejich řešení.
+      </p>
+    </div>
+
+    <div class="teoria-section">
+      <h2>Maximální kostra grafu</h2>
+      
+      <div class="teoria-definition">
+        <h3>Definice problému</h3>
+        <p>
+          <strong>Maximální kostra grafu</strong> je kostra s největším možným součtem ohodnocení hran. 
+          Zatímco v mnoha aplikacích hledáme minimální kostru (např. nejlevnější síť spojující všechna města), 
+          existují i situace, kdy potřebujeme najít maximální kostru.
+        </p>
+      </div>
+      
+      
+      <h3>Využití maximální kostry</h3>
+      <p>
+        Maximální kostra má mnoho praktických aplikací:
+      </p>
+      <div class="teoria-card-container">
+        <div class="teoria-card">
+          <h4>Obchodní vztahy</h4>
+          <p>
+            Vrcholy grafu představují státy, hrany jsou ohodnoceny podle objemu exportu/importu. 
+            Maximální kostra identifikuje nejsilnější obchodní vazby.
+          </p>
+        </div>
+        
+        <div class="teoria-card">
+          <h4>Akademické prostředí</h4>
+          <p>
+            Vrcholy jsou univerzity, ohodnocení hran odpovídá počtu přecházejících studentů. 
+            Maximální kostra ukazuje nejvýznamnější akademické vztahy.
+          </p>
+        </div>
+        
+        <div class="teoria-card">
+          <h4>Nákupní chování</h4>
+          <p>
+            Vrcholy představují zboží v obchodě, hrany jsou ohodnoceny podle frekvence společného nákupu. 
+            Maximální kostra pomáhá identifikovat nejčastěji společně kupované položky.
+          </p>
+        </div>
+      </div>
+      
+      <h3>Algoritmus pro nalezení maximální kostry</h3>
+      <p>
+        Maximální kostru můžeme najít dvěma základními přístupy:
+      </p>
+      <ol>
+        <li>
+          <strong>Úprava hodnot hran</strong> - Změníme ohodnocení všech hran na opačné hodnoty (z kladných na záporné a naopak) 
+          a použijeme algoritmus pro nalezení minimální kostry. Na konci opět změníme znaménka hodnot.
+        </li>
+        <li>
+          <strong>Úprava algoritmu</strong> - Modifikujeme standardní algoritmus (např. Kruskalův) tak, že hrany seřadíme 
+          sestupně místo vzestupně - začínáme tedy od hran s nejvyšším ohodnocením.
+        </li>
+      </ol>
+      
+      <div class="teoria-code">
+        function NajdiMaximálníKostru(G):
+            E' = prázdná množina hran
+            seřaď hrany z E(G) sestupně podle ohodnocení
+            
+            pro každou hranu e z E(G) v sestupném pořadí:
+                pokud E' + e nevytvoří cyklus:
+                    přidej e do E'
+            
+            vrať (V, E') // maximální kostra
+      </div>
+      
+      <div class="teoria-example">
+        <h3>Příklad</h3>
+        <p>
+          Uvažujme graf reprezentující obchodní výměnu mezi pěti zeměmi. Ohodnocení hran představuje 
+          objem výměny zboží v miliardách dolarů.
+        </p>
+        
+        <p>
+          Pomocí modifikovaného Kruskalova algoritmu najdeme maximální kostru, která spojuje všechny země 
+          s maximálním celkovým objemem obchodní výměny.
+        </p>
+      </div>
+    </div>
+
+    <div class="teoria-section">
+      <h2>Problém nejkratší cesty</h2>
+      
+      <div class="teoria-definition">
+        <h3>Definice problému</h3>
+        <p>
+          <strong>Problém nejkratší cesty</strong> spočívá v nalezení cesty mezi dvěma vrcholy v grafu, 
+          která má minimální součet ohodnocení hran. Existují různé varianty tohoto problému:
+        </p>
+        <ul>
+          <li>Nejkratší cesta mezi dvěma konkrétními vrcholy</li>
+          <li>Nejkratší cesty z jednoho vrcholu do všech ostatních</li>
+          <li>Nejkratší cesty mezi všemi páry vrcholů</li>
+        </ul>
+      </div>
+      
+      <h3>Algoritmy pro řešení</h3>
+      <div class="teoria-table">
+        <table>
+          <thead>
+            <tr>
+              <th>Algoritmus</th>
+              <th>Použití</th>
+              <th>Složitost</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Dijkstrův algoritmus</td>
+              <td>Nejkratší cesty z jednoho vrcholu do všech ostatních<br>(pro grafy s nezápornými ohodnoceními)</td>
+              <td>O(V log V + E)</td>
+            </tr>
+            <tr>
+              <td>Bellman-Fordův algoritmus</td>
+              <td>Nejkratší cesty z jednoho vrcholu do všech ostatních<br>(umí pracovat i se zápornými ohodnoceními)</td>
+              <td>O(V × E)</td>
+            </tr>
+            <tr>
+              <td>Floyd-Warshallův algoritmus</td>
+              <td>Nejkratší cesty mezi všemi páry vrcholů<br>(vhodný i pro záporná ohodnocení)</td>
+              <td>O(V³)</td>
+            </tr>
+            <tr>
+              <td>A* algoritmus</td>
+              <td>Nejkratší cesta mezi dvěma vrcholy s využitím heuristiky</td>
+              <td>Závisí na heuristice</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      
+      <div class="teoria-example">
+        <h3>Dijkstrův algoritmus</h3>
+        <p>
+          Dijkstrův algoritmus postupně prochází vrcholy od počátečního, vždy vybírá ten s aktuálně nejkratší vzdáleností 
+          a relaxuje všechny hrany z něj vedoucí.
+        </p>
+        <div class="teoria-code">
+          function Dijkstra(G, počáteční):
+              pro každý vrchol v v G:
+                  vzdálenost[v] = nekonečno
+                  předchůdce[v] = undefined
+                  navštívený[v] = false
+              
+              vzdálenost[počáteční] = 0
+              
+              dokud existují nenavštívené vrcholy:
+                  v = vrchol s nejmenší vzdáleností z nenavštívených
+                  navštívený[v] = true
+                  
+                  pro každého souseda u vrcholu v:
+                      if vzdálenost[v] + ohodnocení(v, u) < vzdálenost[u]:
+                          vzdálenost[u] = vzdálenost[v] + ohodnocení(v, u)
+                          předchůdce[u] = v
+              
+              vrať vzdálenost, předchůdce
+        </div>
+      </div>
+    </div>
+
+    <div class="teoria-section">
+      <h2>Problém obchodního cestujícího</h2>
+      
+      <div class="teoria-definition">
+        <h3>Definice problému</h3>
+        <p>
+          <strong>Problém obchodního cestujícího</strong> (Traveling Salesman Problem, TSP) spočívá v nalezení 
+          nejkratší možné cesty, která prochází všemi vrcholy grafu právě jednou a vrací se do výchozího vrcholu.
+        </p>
+      </div>
+      
+      
+      
+      <p>
+        Tento problém patří mezi tzv. NP-těžké problémy, což znamená, že pro velké grafy neexistuje efektivní algoritmus, 
+        který by našel optimální řešení v rozumném čase. Místo toho se často používají heuristické a aproximační algoritmy:
+      </p>
+      
+      <div class="teoria-card-container">
+        <div class="teoria-card">
+          <h4>Hladový algoritmus</h4>
+          <p>
+            Začneme ve vybraném vrcholu a vždy zvolíme nejbližší dosud nenavštívený vrchol. Rychlé, ale často velmi suboptimální řešení.
+          </p>
+        </div>
+        
+        <div class="teoria-card">
+          <h4>2-aproximační algoritmus</h4>
+          <p>
+            Najdeme minimální kostru, zdvojíme všechny hrany, vytvoříme Eulerův tah a zkrátíme ho vynecháním již navštívených vrcholů.
+          </p>
+        </div>
+        
+        <div class="teoria-card">
+          <h4>Genetické algoritmy</h4>
+          <p>
+            Používají evoluční přístup - začínají s populací náhodných tras, které se postupně vylepšují pomocí operací křížení a mutace.
+          </p>
+        </div>
+      </div>
+      
+      <div class="teoria-example">
+        <h3>Praktické aplikace</h3>
+        <p>
+          Přestože je Problém obchodního cestujícího teoreticky obtížný, má mnoho praktických aplikací:
+        </p>
+        <ul>
+          <li>Plánování tras pro doručovací služby, svoz odpadu, instalační techniky</li>
+          <li>Optimalizace výrobních procesů (např. vrtání děr do desek plošných spojů)</li>
+          <li>Plánování tras pro turisty, kteří chtějí navštívit určitá místa</li>
+          <li>Sekvenování DNA a protein folding v bioinformatice</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="teoria-section">
+      <h2>Problém barvení grafu</h2>
+      
+      <div class="teoria-definition">
+        <h3>Definice problému</h3>
+        <p>
+          <strong>Problém barvení grafu</strong> spočívá v přiřazení barev vrcholům grafu tak, aby žádné dva sousední vrcholy 
+          neměly stejnou barvu. Cílem je minimalizovat počet použitých barev.
+        </p>
+      </div>
+      
+     
+      
+      <p>
+        Minimální počet barev potřebných k obarvení grafu se nazývá <strong>chromatické číslo</strong> grafu. 
+        Nalezení chromatického čísla je obecně NP-těžký problém, ale pro některé speciální třídy grafů existují 
+        efektivní algoritmy:
+      </p>
+      
+      <div class="teoria-card-container">
+        <div class="teoria-card">
+          <h4>Stromy</h4>
+          <p>
+            Všechny stromy lze obarvit dvěma barvami (jsou bipartitní).
+          </p>
+        </div>
+        
+        <div class="teoria-card">
+          <h4>Úplný graf</h4>
+          <p>
+            Úplný graf K<sub>n</sub> potřebuje přesně n barev.
+          </p>
+        </div>
+        
+        <div class="teoria-card">
+          <h4>Planární grafy</h4>
+          <p>
+            Každý planární graf lze obarvit nejvýše čtyřmi barvami (věta o čtyřech barvách).
+          </p>
+        </div>
+      </div>
+      
+      <div class="teoria-example">
+        <h3>Praktické aplikace</h3>
+        <p>
+          Barvení grafu má mnoho praktických aplikací:
+        </p>
+        <ul>
+          <li>Přidělování frekvencí v bezdrátových sítích (aby se zabránilo rušení)</li>
+          <li>Plánování rozvrhů (předměty, které nemůže stejný student navštěvovat současně, dostanou různé časy)</li>
+          <li>Přidělování registračních značek vozidlům (aby se minimalizovala možnost záměny)</li>
+          <li>Optimalizace kompilátorů při přidělování registrů</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="teoria-section">
+      <h2>Další významné problémy</h2>
+      
+      <div class="teoria-card-container">
+        <div class="teoria-card">
+          <h4>Problém toku v síti</h4>
+          <p>
+            Hledání maximálního toku v síti s omezenou kapacitou hran. Důležitý pro modelování dopravních, komunikačních nebo hydraulických sítí.
+          </p>
+        </div>
+        
+        <div class="teoria-card">
+          <h4>Problém párování</h4>
+          <p>
+            Hledání maximálního párování v grafu - množiny hran, kde žádné dvě nesdílejí stejný vrchol. Aplikace při přidělování úkolů, párování dárců a příjemců.
+          </p>
+        </div>
+        
+        <div class="teoria-card">
+          <h4>Problém Eulerova tahu</h4>
+          <p>
+            Hledání cesty, která projde každou hranu grafu právě jednou. Aplikace: návrh efektivních tras pro úklidová vozidla, poštovní doručovatele.
+          </p>
+        </div>
+      </div>
+      
+      <div class="teoria-card-container">
+        <div class="teoria-card">
+          <h4>Problém dominantní množiny</h4>
+          <p>
+            Hledání minimální množiny vrcholů, ze které lze dosáhnout všechny ostatní vrcholy přímo. Aplikace při umisťování služeb v síti.
+          </p>
+        </div>
+        
+        <div class="teoria-card">
+          <h4>Problém hamiltonovské cesty</h4>
+          <p>
+            Hledání cesty, která navštíví každý vrchol grafu právě jednou. NP-těžký problém s aplikacemi v plánování tras a logistice.
+          </p>
+        </div>
+        
+        <div class="teoria-card">
+          <h4>Problém izomorfizmu grafů</h4>
+          <p>
+            Zjištění, zda jsou dva grafy strukturálně identické (pouze jinak nakreslené). Důležitý v chemii při identifikaci molekul.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="teoria-navigation">
+      <a class="teoria-nav-button" href="pojmy.html">Zpět na pojmy</a>
+      <a class="teoria-nav-button" href="matematika.html">Pokračovat na matematiku</a>
+    </div>
   </div>
 </body>
 </html>

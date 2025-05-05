@@ -3,16 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GRAPHyti-Teorie</title>
+  <title>GRAPHyti - Teorie grafů</title>
   <link rel="icon" type="image/x-icon" href="resources/images/pudl.png">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="theory-style.css">
 </head>
 <body>
   <div class="header">
-
     <div class="logo">
       <a href="index.html">
-        <img class="logo-img" src="resources\images\pudl.png" alt="Logo" width="32" height="32"> <!--This img is just a placeholder-->
+        <img class="logo-img" src="resources/images/pudl.png" alt="Logo" width="32" height="32">
         <span class="logo-text">GRAPHyti</span>
       </a>
     </div>
@@ -20,50 +20,43 @@
     <nav class="navigation">
       <a class="nav-button" href="index.html">Domov</a>
       <a class="nav-button" href="aboutus.html">O nás</a>
-      <a class="nav-button" href="theory.html">Teorie</a>
+      <a class="nav-button" href="teorie.html">Teorie</a>
     </nav>
-
   </div>
-  <div class = "text">
+
+  <div class="teoria-homepage-container">
+    <h1 class="teoria-homepage-nadpis">Teorie grafů</h1>
     
-    <h1>Teorie grafů</h1>
-    <p>
-        Teorie grafů je obor diskrétní matematiky, který se zabývá studiem grafů a jejich vlastností. Zkoumá různé typy grafů, struktury a vztahy mezi nimi. 
-        Tato teorie je nejen teoreticky zajímavá, ale má i praktické využití v mnoha oblastech. 
-    </p>
-    <p>
-        Mezi základní druhy grafů patří:
-        <ul>
-            <li><strong>Neorientovaný graf</strong> – hrany nemají směr.</li>
-            <li><strong>Orientovaný graf (digraf)</strong> – každá hrana má směr, od jednoho vrcholu k druhému.</li>
-            <li><strong>Ohodnocený graf</strong> – hrany mají přiřazené hodnoty (např. délku, náklady).</li>
-            <li><strong>Stromy</strong> – grafy bez cyklů, které jsou souvislé a mají n-1 hran pro n vrcholů.</li>
-            <li><strong>Cyklické a acyklické grafy</strong> – grafy s cykly a bez cyklů.</li>
-        </ul>
-    </p>
-    <p>
-        Důležité pojmy v teorii grafů zahrnují:
-        <ul>
-            <li><strong>Souvislost</strong> – graf je souvislý, pokud existuje cesta mezi každou dvojicí vrcholů.</li>
-            <li><strong>Kostra grafu</strong> – podgraf, který spojuje všechny vrcholy a neobsahuje cykly.</li>
-            <li><strong>Izomorfismus</strong> – dva grafy jsou izomorfní, pokud mají stejnou strukturu (i když mohou vypadat odlišně).</li>
-            <li><strong>Plánovatelnost</strong> – graf je plánovatelný, pokud jej lze zakreslit do roviny bez křížení hran.</li>
-        </ul>
-    </p>
-    <p>
-        Teorie grafů také obsahuje mnoho důležitých algoritmů, jako například:
-        <ul>
-            <li><strong>Dijkstrův algoritmus</strong> – hledání nejkratší cesty v ohodnoceném grafu.</li>
-            <li><strong>Floyd-Warshallův algoritmus</strong> – hledání všech nejkratších cest mezi všemi vrcholy.</li>
-            <li><strong>Kruskalův a Primův algoritmus</strong> – hledání minimální kostry grafu.</li>
-            <li><strong>Topologické třídění</strong> – uspořádání vrcholů acyklického orientovaného grafu.</li>
-            <li><strong>DFS a BFS</strong> – prohledávání grafu do hloubky a do šířky.</li>
-        </ul>
-    </p>
-    <p>
-        Teorie grafů je velmi rozsáhlý obor, který tvoří základ pro další oblasti informatiky a matematiky, jako jsou algoritmy, databáze, operační výzkum, strojové učení, 
-        analýza sítí a další. Její pochopení pomáhá při řešení praktických problémů, ať už jde o logistiku, komunikaci nebo modelování složitých systémů.
-    </p>
+    <div class="teoria-grid">
+      <div class="teoria-grid-row-1">
+        <a href="uvod.html" class="teoria-box">
+          <h2>Úvod</h2>
+          <p>Co jsou grafy a kde je najdeme</p>
+        </a>
+        
+        <a href="zaklady.html" class="teoria-box">
+          <h2>Základy</h2>
+          <p>Základní koncepty a algoritmy</p>
+        </a>
+        
+        <a href="pojmy.html" class="teoria-box">
+          <h2>Pojmy</h2>
+          <p>Definice a matematické konstrukce</p>
+        </a>
+      </div>
+      
+      <div class="teoria-grid-row-2">
+        <a href="problemy.html" class="teoria-box">
+          <h2>Problémy</h2>
+          <p>Klasické úlohy teorie grafů</p>
+        </a>
+        
+        <a href="matematika.html" class="teoria-box">
+          <h2>Matematika</h2>
+          <p>Pokročilé matematické aspekty</p>
+        </a>
+      </div>
+    </div>
   </div>
 </body>
 </html>

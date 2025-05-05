@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GRAPHyti - Základy teorie grafů</title>
+  <link rel="icon" type="image/x-icon" href="resources/images/pudl.png">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="theory-style.css">
+</head>
+<body>
+  <div class="header">
+    <div class="logo">
+      <a href="index.html">
+        <img class="logo-img" src="resources/images/pudl.png" alt="Logo" width="32" height="32">
+        <span class="logo-text">GRAPHyti</span>
+      </a>
+    </div>
+
+    <nav class="navigation">
+      <a class="nav-button" href="index.html">Domov</a>
+      <a class="nav-button" href="aboutus.html">O nás</a>
+      <a class="nav-button" href="theory.html">Teorie</a>
+    </nav>
+  </div>
+
+  <div class="teoria-container">
+    <h1 class="teoria-nadpis">Základy teorie grafů</h1>
+    
+    <div class="teoria-section">
+      <p>
+        Teorie grafů je obor diskrétní matematiky, který se zabývá studiem grafů a jejich vlastností. 
+        V této části se seznámíme s různými druhy grafů, klíčovými koncepty a algoritmy, které tvoří základ 
+        tohoto fascinujícího oboru.
+      </p>
+    </div>
+
+    <div class="teoria-section">
+      <h2>Druhy grafů</h2>
+      
+      <div class="teoria-card-container">
+        <div class="teoria-card">
+          <h4>Neorientovaný graf</h4>
+          <p>Graf, kde hrany nemají určený směr. Spojení mezi vrcholy A a B je totožné se spojením mezi B a A.</p>
+          
+        </div>
+        
+        <div class="teoria-card">
+          <h4>Orientovaný graf (digraf)</h4>
+          <p>Graf, kde každá hrana má určený směr - vede od jednoho vrcholu k druhému.</p>
+          
+        </div>
+        
+        <div class="teoria-card">
+          <h4>Ohodnocený graf</h4>
+          <p>Graf, kde hrany mají přiřazené hodnoty (váhy) představující vzdálenost, cenu, čas nebo jinou vlastnost.</p>
+          
+        </div>
+      </div>
+      
+      <div class="teoria-card-container">
+        <div class="teoria-card">
+          <h4>Stromy</h4>
+          <p>Souvislý graf bez cyklů. Pro n vrcholů obsahuje přesně n-1 hran.</p>
+          
+        </div>
+        
+        <div class="teoria-card">
+          <h4>Úplný graf</h4>
+          <p>Graf, ve kterém je každý vrchol spojen s každým jiným vrcholem. Úplný graf s n vrcholy označujeme Kn.</p>
+          
+        </div>
+        
+        <div class="teoria-card">
+          <h4>Bipartitní graf</h4>
+          <p>Graf, jehož vrcholy lze rozdělit do dvou disjunktních množin tak, že každá hrana spojuje vrcholy z různých množin.</p>
+          
+        </div>
+      </div>
+    </div>
+
+    <div class="teoria-section">
+      <h2>Klíčové koncepty</h2>
+      
+      <div class="teoria-definition">
+        <h3>Souvislost</h3>
+        <p>
+          Graf je <strong>souvislý</strong>, pokud existuje cesta mezi každou dvojicí vrcholů. V opačném případě je <strong>nesouvislý</strong>.
+        </p>
+       
+      </div>
+      
+      <div class="teoria-definition">
+        <h3>Kostra grafu</h3>
+        <p>
+          <strong>Kostra grafu</strong> je podgraf původního grafu, který:
+        </p>
+        <ul>
+          <li>Obsahuje všechny vrcholy původního grafu</li>
+          <li>Je souvislý</li>
+          <li>Neobsahuje žádný cyklus (je stromem)</li>
+        </ul>
+        <p>
+          Každý souvislý graf má alespoň jednu kostru. Graf s n vrcholy má kostru s přesně n-1 hranami.
+        </p>
+      </div>
+      
+      <div class="teoria-definition">
+        <h3>Izomorfismus</h3>
+        <p>
+          Dva grafy jsou <strong>izomorfní</strong>, pokud existuje bijekce mezi jejich vrcholy zachovávající sousednost - 
+          jinými slovy, mají stejnou strukturu, přestože mohou vypadat odlišně.
+        </p>
+      </div>
+      
+      <div class="teoria-definition">
+        <h3>Plánovatelnost</h3>
+        <p>
+          Graf je <strong>plánovatelný</strong> (rovinný), pokud ho lze nakreslit v rovině tak, aby se žádné dvě hrany nekřížily.
+        </p>
+      </div>
+    </div>
+
+    <div class="teoria-section">
+      <h2>Základní algoritmy</h2>
+      
+      <div class="teoria-table">
+        <table>
+          <thead>
+            <tr>
+              <th>Algoritmus</th>
+              <th>Účel</th>
+              <th>Složitost</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Prohledávání do šířky (BFS)</td>
+              <td>Prochází graf po vrstvách, hledá nejkratší cesty v neohodnoceném grafu</td>
+              <td>O(V + E)</td>
+            </tr>
+            <tr>
+              <td>Prohledávání do hloubky (DFS)</td>
+              <td>Prochází graf do maximální hloubky, hledá cykly, komponenty souvislosti</td>
+              <td>O(V + E)</td>
+            </tr>
+            <tr>
+              <td>Dijkstrův algoritmus</td>
+              <td>Hledá nejkratší cesty v grafu s nezápornými ohodnoceními hran</td>
+              <td>O(V log V + E)</td>
+            </tr>
+            <tr>
+              <td>Kruskalův algoritmus</td>
+              <td>Hledá minimální kostru grafu</td>
+              <td>O(E log E)</td>
+            </tr>
+            <tr>
+              <td>Primův algoritmus</td>
+              <td>Hledá minimální kostru grafu</td>
+              <td>O(E log V)</td>
+            </tr>
+            <tr>
+              <td>Floyd-Warshallův algoritmus</td>
+              <td>Hledá nejkratší cesty mezi všemi páry vrcholů</td>
+              <td>O(V³)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      
+      <div class="teoria-example">
+        <h3>Příklad: Prohledávání do šířky (BFS)</h3>
+        <p>
+          BFS začíná v určeném vrcholu a nejprve prozkoumá všechny jeho sousedy, poté sousedy těchto sousedů atd.
+          Funguje jako šířící se vlna od počátečního vrcholu.
+        </p>
+        <div class="teoria-code">
+          function BFS(graf, počátečníVrchol):
+              vytvoř frontu Q
+              označ počátečníVrchol jako navštívený
+              vlož počátečníVrchol do fronty Q
+              
+              dokud fronta Q není prázdná:
+                  vrchol = první prvek z fronty Q
+                  odeber vrchol z fronty Q
+                  
+                  pro každého souseda s vrcholu:
+                      pokud s není označen jako navštívený:
+                          označ s jako navštívený
+                          vlož s do fronty Q
+        </div>
+      </div>
+    </div>
+
+    <div class="teoria-section">
+      <h2>Praktické využití</h2>
+      
+      <div class="teoria-card-container">
+        <div class="teoria-card">
+          <h4>Počítačové sítě</h4>
+          <p>Návrh a optimalizace sítí, směrování paketů, analýza síťové topologie.</p>
+        </div>
+        
+        <div class="teoria-card">
+          <h4>Logistika a doprava</h4>
+          <p>Plánování tras, optimalizace dopravních sítí, řešení dopravních problémů.</p>
+        </div>
+        
+        <div class="teoria-card">
+          <h4>Sociální sítě</h4>
+          <p>Analýza struktury sociálních sítí, identifikace komunit, šíření informací.</p>
+        </div>
+      </div>
+      
+      <div class="teoria-card-container">
+        <div class="teoria-card">
+          <h4>Chemie a biologie</h4>
+          <p>Modelování molekulárních struktur, analýza proteinových sítí, studium ekosystémů.</p>
+        </div>
+        
+        <div class="teoria-card">
+          <h4>Umělá inteligence</h4>
+          <p>Reprezentace znalostí, hledání řešení, neuronové sítě, strojové učení.</p>
+        </div>
+        
+        <div class="teoria-card">
+          <h4>Ekonomie</h4>
+          <p>Analýza tržních struktur, modelování ekonomických vztahů, optimalizace dodavatelských řetězců.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="teoria-navigation">
+      <a class="teoria-nav-button" href="uvod.html">Zpět na úvod</a>
+      <a class="teoria-nav-button" href="pojmy.html">Pokračovat na pojmy</a>
+    </div>
+  </div>
+</body>
+</html>

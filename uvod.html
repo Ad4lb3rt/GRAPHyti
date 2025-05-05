@@ -3,16 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GRAPHyti-Teorie</title>
+  <title>GRAPHyti - Úvod do teorie grafů</title>
   <link rel="icon" type="image/x-icon" href="resources/images/pudl.png">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="theory-style.css">
 </head>
 <body>
   <div class="header">
-
     <div class="logo">
       <a href="index.html">
-        <img class="logo-img" src="resources\images\pudl.png" alt="Logo" width="32" height="32"> <!--This img is just a placeholder-->
+        <img class="logo-img" src="resources/images/pudl.png" alt="Logo" width="32" height="32">
         <span class="logo-text">GRAPHyti</span>
       </a>
     </div>
@@ -20,44 +20,180 @@
     <nav class="navigation">
       <a class="nav-button" href="index.html">Domov</a>
       <a class="nav-button" href="aboutus.html">O nás</a>
-      <a class="nav-button" href="theory.html">Teorie</a>
+      <a class="nav-button" href="teorie.html">Teorie</a>
     </nav>
-
   </div>
 
-
-  <div class = "text">
+  <div class="teoria-container">
+    <h1 class="teoria-nadpis">Úvod do teorie grafů</h1>
     
-    <h1>Úvod do grafů</h1>
-    <p>
-        Graf je matematická struktura, která slouží k reprezentaci různých druhů vztahů mezi objekty. Skládá se z množiny vrcholů (také nazývaných uzly) a množiny hran, 
-        které spojují dvojice vrcholů. Grafy jsou velmi užitečné při modelování a analýze různých problémů v informatice, fyzice, sociologii, logistice a mnoha dalších oborech.
-    </p>
-    <p>
-        V každodenním životě se s grafy setkáváme častěji, než si myslíme. Například silniční síť může být modelována jako graf, kde města jsou vrcholy a silnice jsou hrany. 
-        Sociální sítě, jako je Facebook nebo Instagram, používají grafy k reprezentaci přátelství nebo sledujících. Každý uživatel je vrchol a propojení mezi nimi jsou hrany. 
-        Dalším příkladem může být počítačová síť, kde zařízení jsou uzly a propojení mezi nimi tvoří hrany.
-    </p>
-    <p>
-        Grafy mohou být neorientované, kde hrana nemá směr (například silnice obousměrná), nebo orientované, kde hrana směr má (například tok vody v potrubí, nebo jednosměrná silnice).
-        Hrany mohou být neohodnocené (jen existence propojení), nebo ohodnocené (například vzdáleností, náklady, kapacitou atd.).
-    </p>
-    <p>
-        Základní pojmy spojené s grafy zahrnují stupeň vrcholu (kolik hran k němu vede), sousedství (které vrcholy jsou spojeny), cesta (sled hran spojujících vrcholy), 
-        cyklus (cesta začínající a končící ve stejném vrcholu) a souvislost (zda je možné dojít z jednoho vrcholu do druhého).
-    </p>
-    <p>
-        Úvodní pochopení grafů je klíčové pro další studium jejich vlastností a pro aplikaci algoritmů, které nám umožňují efektivně řešit různé úlohy, jako je hledání nejkratší cesty, detekce cyklů nebo plánování tras.
-    </p>
-    <h2>Co jsou to grafy?</h2>
-    <p>Ještě před matematickou definicí grafu je vhodné si říct, co grafy jsou a k čemu se využívají. Grafů rozeznáváme celou řadu typů, v tomto textu nám však nepůjde ani o grafy využívané ve statistice (sloupcový, koláčový...), ani o grafy funkcí.</br>
-        Grafy si můžeme představit jako zjednodušení reálného světa, kde studovaný problém znázorníme pomocí bodů a čar, které je spojují, a tím popisují vlastnosti. Takovým bodům pak v teorii grafů říkáme vrcholy grafu a čáry, které je spojují, nazýváme hrany grafu. </p>
-        <h3>Příklad 1</h3>
-        <p> 
-          Jedním z typických problémů teorie grafů je hledání nejkratší cesty.
-          Představme si, že chceme zjistit nejkratší cestu mezi vybranými městy (pro zjednodušení jsou na obrázku č. 2.28 jen čtyři města).     
-          Jediná vlastnost, která nás bude zajímat, je vzdálenost mezi městy (vzdálenost = délka cesty, kterou bychom museli ujet po silnici). Jako vrcholy tedy použijeme města; hrany pak budou popisovat, že mezi městy existuje cesta a jak je dlouhá. Přitom zanedbáváme další, v tuto chvíli zbytečné informace - z kolika různých silnic se cesta skládá, jakého jsou tvaru nebo například zeměpisná poloha měst (sever, jih...). Jediné informace, které pak algoritmus (zjednodušeně: postup řešení problému) využije, budou čísla na hranách spojujících města (vzdálenosti mezi městy).
+    <div class="teoria-section">
+      <h2>Co jsou to grafy?</h2>
+      <p>
+        Graf je matematická struktura, která slouží k modelování vztahů mezi objekty. Skládá se z:
+      </p>
+      <ul>
+        <li><strong>Vrcholů</strong> (uzlů) - reprezentují objekty</li>
+        <li><strong>Hran</strong> - reprezentují vztahy mezi objekty</li>
+      </ul>
+      
+      
+      
+      <p>
+        Grafy nejsou jen teoretickým konceptem - jsou všude kolem nás. Když používáte mapovou aplikaci 
+        k nalezení nejkratší cesty, když prohlížíte své kontakty na sociální síti, nebo když vaše GPS navigace
+        přepočítává trasu - všechny tyto systémy pracují s grafy.
+      </p>
+    </div>
+
+    <div class="teoria-section">
+      <h2>Grafy v každodenním životě</h2>
+      
+      <div class="teoria-card-container">
+        <div class="teoria-card">
+          <h4>Dopravní sítě</h4>
+          <p>Města jsou vrcholy, silnice jsou hrany. Ohodnocené hrany mohou představovat vzdálenost, čas cesty nebo spotřebu paliva.</p>
+        </div>
+        
+        <div class="teoria-card">
+          <h4>Sociální sítě</h4>
+          <p>Lidé jsou vrcholy, jejich vztahy (přátelství, sledování) jsou hrany. Algoritmy sociálních sítí používají teorii grafů k doporučování nových kontaktů.</p>
+        </div>
+        
+        <div class="teoria-card">
+          <h4>Počítačové sítě</h4>
+          <p>Zařízení jsou vrcholy, síťová propojení jsou hrany. Routery používají grafové algoritmy k určení nejlepších cest pro datové pakety.</p>
+        </div>
+      </div>
+      
+      <p>
+        V každém z těchto příkladů nám grafy pomáhají zjednodušit složitý problém na základní objekty (vrcholy) 
+        a vztahy mezi nimi (hrany). Toto zjednodušení nám umožňuje efektivně řešit problémy, které by jinak byly 
+        výpočetně velmi náročné.
+      </p>
+    </div>
+
+    <div class="teoria-section">
+      <h2>Druhy grafů</h2>
+      
+      <div class="teoria-tabs">
+        <button class="teoria-tab active" onclick="openTab(event, 'neorientovany')">Neorientovaný graf</button>
+        <button class="teoria-tab" onclick="openTab(event, 'orientovany')">Orientovaný graf</button>
+        <button class="teoria-tab" onclick="openTab(event, 'ohodnoceny')">Ohodnocený graf</button>
+      </div>
+      
+      <div id="neorientovany" class="teoria-content active">
+        <div class="teoria-definition">
+          <p>
+            <strong>Neorientovaný graf</strong> je graf, kde hrany nemají směr. 
+            Spojení mezi vrcholy A a B je stejné jako spojení mezi B a A.
+          </p>
+        </div>
+        
+        <p>
+          Příklady: Silniční síť s obousměrnými silnicemi, síť přátelství na Facebooku (kde přátelství je vzájemné).
         </p>
+      </div>
+      
+      <div id="orientovany" class="teoria-content">
+        <div class="teoria-definition">
+          <p>
+            <strong>Orientovaný graf</strong> (digraf) je graf, kde každá hrana má určený směr - vede od jednoho vrcholu k druhému.
+          </p>
+        </div>
+        
+        <p>
+          Příklady: Silniční síť s jednosměrkami, síť sledujících na Twitteru (kde sledování nemusí být vzájemné), toky v potrubí.
+        </p>
+      </div>
+      
+      <div id="ohodnoceny" class="teoria-content">
+        <div class="teoria-definition">
+          <p>
+            <strong>Ohodnocený graf</strong> je graf, kde hrany mají přiřazené hodnoty (váhy) představující 
+            vzdálenost, cenu, čas nebo jinou vlastnost.
+          </p>
+        </div>
+       
+        <p>
+          Příklady: Mapa s uvedenými vzdálenostmi mezi městy, síť leteckých spojení s cenami letenek nebo délkami letů.
+        </p>
+      </div>
+    </div>
+
+    <div class="teoria-section">
+      <h2>Základní koncepty</h2>
+      
+      <div class="teoria-definition">
+        <h3>Stupeň vrcholu</h3>
+        <p>
+          Počet hran, které vedou do vrcholu (nebo z něj v případě orientovaného grafu).
+        </p>
+      </div>
+      
+      <div class="teoria-definition">
+        <h3>Cesta</h3>
+        <p>
+          Posloupnost vrcholů a hran, které je spojují, kde se žádný vrchol neopakuje.
+        </p>
+      </div>
+      
+      <div class="teoria-definition">
+        <h3>Cyklus</h3>
+        <p>
+          Cesta, která začíná a končí ve stejném vrcholu.
+        </p>
+      </div>
+      
+      <div class="teoria-definition">
+        <h3>Souvislost</h3>
+        <p>
+          Graf je souvislý, pokud existuje cesta mezi každými dvěma vrcholy.
+        </p>
+      </div>
+    </div>
+
+    <div class="teoria-section">
+      <h2>Praktický příklad</h2>
+      
+      <div class="teoria-example">
+        <h3>Hledání nejkratší cesty</h3>
+        <p>
+          Představme si, že chceme najít nejkratší cestu mezi městy A a D, s možnými průjezdy přes města B a C.
+        </p>
+        
+        <p>
+          V tomto grafu města (A, B, C, D) představují vrcholy a silnice mezi nimi jsou hrany. 
+          Čísla na hranách označují vzdálenosti v kilometrech. Pomocí Dijkstrova algoritmu můžeme zjistit, 
+          že nejkratší cesta z A do D vede přes město C a měří celkem 10 km.
+        </p>
+      </div>
+    </div>
+
+    <div class="teoria-navigation">
+      <a class="teoria-nav-button" href="teorie.html">Zpět na přehled Teorie</a>
+      <a class="teoria-nav-button" href="zaklady.html">Pokračovat na základy</a>
+    </div>
   </div>
+
+  <script>
+    function openTab(evt, tabName) {
+      // Skryjeme všechny záložky
+      var tabContents = document.getElementsByClassName("teoria-content");
+      for (var i = 0; i < tabContents.length; i++) {
+        tabContents[i].className = tabContents[i].className.replace(" active", "");
+      }
+      
+      // Odebereme aktivní třídu ze všech tlačítek
+      var tabLinks = document.getElementsByClassName("teoria-tab");
+      for (var i = 0; i < tabLinks.length; i++) {
+        tabLinks[i].className = tabLinks[i].className.replace(" active", "");
+      }
+      
+      // Aktivujeme vybranou záložku a tlačítko
+      document.getElementById(tabName).className += " active";
+      evt.currentTarget.className += " active";
+    }
+  </script>
 </body>
 </html>

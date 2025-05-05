@@ -3,16 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GRAPHyti-Teorie</title>
+  <title>GRAPHyti - Pojmy teorie grafů</title>
   <link rel="icon" type="image/x-icon" href="resources/images/pudl.png">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="theory-style.css">
 </head>
 <body>
   <div class="header">
-
     <div class="logo">
       <a href="index.html">
-        <img class="logo-img" src="resources\images\placeholder-cat.png" alt="Logo" width="32" height="32"> <!--This img is just a placeholder-->
+        <img class="logo-img" src="resources/images/pudl.png" alt="Logo" width="32" height="32">
         <span class="logo-text">GRAPHyti</span>
       </a>
     </div>
@@ -20,62 +20,228 @@
     <nav class="navigation">
       <a class="nav-button" href="index.html">Domov</a>
       <a class="nav-button" href="aboutus.html">O nás</a>
-      <a class="nav-button" href="theory.html">Teorie</a>
+      <a class="nav-button" href="teorie.html">Teorie</a>
     </nav>
-
   </div>
-  <div class = "text">
-    
-    
-    <h1>Pojmy</h1>
-    <h2>Matematická definice</h2>
-    <h3>Definice</h3>
-    <p>Jak už bylo naznačeno v úvodu, grafy jsou vhodným prostředkem pro popis situací, které lze znázornit pomocí konečného množství bodů a vztahů mezi nimi znázornění pomocí hran.<br>
-    Samotný graf G je definován jako dvojice dvou množin - vrcholů (V) a hran (E).
-    Někdy místo dvojice mluvíme o uspořádané dvojici (V,E) - myslí se tím, že na prvním místě jsou uvedeny vrcholy a na druhém hrany. Zkratky V a E pocházejí z angličtiny - vrcholy jsou anglicky VERTICES, hrany EDGES.
-    <br>
-    G = (V,E)
-    <br>
-    V dalších definicích používáme označení V(G) a E(G) pro množinu vrcholů V (resp. množinu hran E) grafu G.
-    <br>
-    <h3>Značení</h3>
-    V ... množina vrcholů
-    |V| ... velikost množiny vrcholů, tedy počet vrcholů (číslo)
-    E ... množina hran
-    |E| ... velikost množiny hran, tedy počet hran (číslo)
-    <br>
-    <h3>Důsledky</h3>
-    Množina hran E je podmnožinou množiny všech možných dvojic navzájem různých vrcholů - nepřipoušíme tedy "násobné" hrany ani "smyčky".
 
-    E je podmnožinou V nad 2
-  </p>
-  <h2>Úplný graf</h2>
-  <h3>Popis</h3>
-  Úplný graf je takový graf, ve kterém jsou každé dva vrcholy spojené hranou.
-  <br>
-  |E| = |V| nad 2
-  <br>
-  Úplné grafy značíme <strong>Kn</strong>, kde  <strong>n</strong> je počet vrcholů.
-  
-  <br>
-  <br>
-  Příklady úplných grafů:
-  <br>
-  <br>
-  <img src="resources\images\prikladyuplnychgrafu.png" alt="prikladyuplnychgrafu">
-    <h2>Kostra grafu</h2>
-    <p>
-      Kostrou grafu budeme rozumět libovolný podgraf, který hranami spojuje všechny vrcholy původního grafu a zároveň sám neobsahuje žádnou kružnici (→ jde o strom).
-  <br>
-  <h3>Definice kostry</h3>
-  <br>
-  Nechť G = (V,E) je graf. Libovolný strom (V,E'), kde E' je podmnožinouE, nazveme kostrou grafu.
-<br>
-<h3>Příklady</h3>
-<br>
-Pokud původní graf (graf, ke kterému hledáme kostru) obsahuje kružnici, pak máme více možností, jak kostru zvolit.
-    </p>
+  <div class="teoria-container">
+    <h1 class="teoria-nadpis">Pojmy teorie grafů</h1>
+    
+    <div class="teoria-section">
+      <p>
+        V této části se podrobněji zaměříme na matematické definice a klíčové pojmy v teorii grafů. 
+        Pochopení těchto pojmů je zásadní pro hlubší proniknutí do problematiky grafů a jejich aplikací.
+      </p>
+    </div>
+
+    <div class="teoria-section">
+      <h2>Matematická definice grafu</h2>
+      
+      <div class="teoria-definition">
+        <h3>Definice grafu</h3>
+        <p>
+          Graf <strong>G</strong> je definován jako uspořádaná dvojice množin <strong>G = (V, E)</strong>, kde:
+        </p>
+        <ul>
+          <li><strong>V</strong> je neprázdná množina vrcholů (vertices)</li>
+          <li><strong>E</strong> je množina hran (edges), které spojují dvojice vrcholů</li>
+        </ul>
+      </div>
+      
+      <div class="teoria-formula">
+        G = (V, E), kde E ⊆ { {u, v} | u, v ∈ V, u ≠ v }
+      </div>
+      
+      <p>
+        V neorientovaném grafu je hrana reprezentována jako neuspořádaná dvojice vrcholů {u, v}, 
+        zatímco v orientovaném grafu jako uspořádaná dvojice (u, v), kde u je počáteční vrchol a v je koncový vrchol.
+      </p>
+      
+      <div class="teoria-alert">
+        <p>
+          <strong>Poznámka:</strong> V běžné definici neorientovaného grafu nepřipouštíme násobné hrany (vícenásobné spojení mezi stejnými vrcholy) 
+          ani smyčky (hrany spojující vrchol sám se sebou). Graf, který tyto prvky může obsahovat, nazýváme multigraf.
+        </p>
+      </div>
+    </div>
+
+    <div class="teoria-section">
+      <h2>Základní značení</h2>
+      
+      <div class="teoria-table">
+        <table>
+          <thead>
+            <tr>
+              <th>Symbol</th>
+              <th>Význam</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>V nebo V(G)</td>
+              <td>Množina vrcholů grafu G</td>
+            </tr>
+            <tr>
+              <td>E nebo E(G)</td>
+              <td>Množina hran grafu G</td>
+            </tr>
+            <tr>
+              <td>|V|</td>
+              <td>Počet vrcholů grafu (mohutnost množiny V)</td>
+            </tr>
+            <tr>
+              <td>|E|</td>
+              <td>Počet hran grafu (mohutnost množiny E)</td>
+            </tr>
+            <tr>
+              <td>deg(v)</td>
+              <td>Stupeň vrcholu v (počet hran incidentních s vrcholem v)</td>
+            </tr>
+            <tr>
+              <td>N(v)</td>
+              <td>Množina sousedů vrcholu v</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      
+      <div class="teoria-formula">
+        ∑<sub>v∈V</sub> deg(v) = 2|E|
+      </div>
+      
+      <p>
+        Tato rovnost, známá jako <strong>princip sudosti</strong>, říká, že součet stupňů všech vrcholů v grafu je roven dvojnásobku počtu hran. 
+        Důvod je jednoduchý: každá hrana přispívá ke stupni dvou vrcholů (svých konců).
+      </p>
+    </div>
+
+    <div class="teoria-section">
+      <h2>Úplný graf</h2>
+      
+      <div class="teoria-definition">
+        <h3>Definice úplného grafu</h3>
+        <p>
+          <strong>Úplný graf</strong> je takový graf, ve kterém jsou každé dva různé vrcholy spojeny hranou.
+          Úplný graf s n vrcholy se značí K<sub>n</sub>.
+        </p>
+      </div>
+      
+      
+      
+      <p>
+        Pro úplný graf K<sub>n</sub> s n vrcholy platí:
+      </p>
+      
+      <div class="teoria-formula">
+        |E| = <sup>n</sup>C<sub>2</sub> = <frac>n(n-1)</frac>/<frac>2</frac> = <frac>n×(n-1)</frac>/<frac>2</frac>
+      </div>
+      
+      <p>
+        Počet hran v úplném grafu je roven počtu všech možných dvojic vrcholů. Každý vrchol v úplném grafu má stupeň n-1.
+      </p>
+      
+      <div class="teoria-example">
+        <h3>Příklad</h3>
+        <p>
+          Úplný graf K<sub>5</sub> s 5 vrcholy má |E| = 5×4/2 = 10 hran. Každý vrchol má stupeň 4.
+        </p>
+      </div>
+    </div>
+
+    <div class="teoria-section">
+      <h2>Kostra grafu</h2>
+      
+      <div class="teoria-definition">
+        <h3>Definice kostry grafu</h3>
+        <p>
+          <strong>Kostra grafu</strong> G je takový podgraf, který:
+        </p>
+        <ul>
+          <li>Obsahuje všechny vrcholy původního grafu G</li>
+          <li>Je souvislý</li>
+          <li>Je strom (tj. neobsahuje žádný cyklus)</li>
+        </ul>
+      </div>
+      
+      
+      
+      <p>
+        Formálně, nechť G = (V, E) je souvislý graf. Pak kostra grafu G je strom T = (V, E'), kde E' ⊆ E.
+      </p>
+      
+      <p>
+        Důležité vlastnosti kostry:
+      </p>
+      <ul>
+        <li>Každý souvislý graf má alespoň jednu kostru</li>
+        <li>Pokud graf G má n vrcholů, pak jeho kostra má přesně n-1 hran</li>
+        <li>Přidání jakékoli další hrany do kostry vytvoří cyklus</li>
+        <li>Když graf obsahuje cykly, existuje více možných koster</li>
+      </ul>
+      
+      <div class="teoria-example">
+        <h3>Příklad</h3>
+        <p>
+          Pokud graf obsahuje cyklus, můžeme vytvořit kostru tak, že odstraníme jednu hranu z tohoto cyklu. 
+          To je princip, na kterém jsou založeny algoritmy pro hledání kostry, jako je Kruskalův nebo Primův algoritmus.
+        </p>
+      </div>
+    </div>
+
+    <div class="teoria-section">
+      <h2>Další důležité pojmy</h2>
+      
+      <div class="teoria-card-container">
+        <div class="teoria-card">
+          <h4>Cesta (Path)</h4>
+          <p>
+            Posloupnost vrcholů a hran, kde se žádný vrchol neopakuje. Cesta délky k má k hran a k+1 vrcholů.
+          </p>
+        </div>
+        
+        <div class="teoria-card">
+          <h4>Cyklus (Cycle)</h4>
+          <p>
+            Uzavřená cesta, která začíná a končí ve stejném vrcholu a všechny ostatní vrcholy se vyskytují právě jednou.
+          </p>
+        </div>
+        
+        <div class="teoria-card">
+          <h4>Souvislost (Connectivity)</h4>
+          <p>
+            Graf je souvislý, pokud existuje cesta mezi každými dvěma vrcholy. V opačném případě se skládá z několika komponent souvislosti.
+          </p>
+        </div>
+      </div>
+      
+      <div class="teoria-card-container">
+        <div class="teoria-card">
+          <h4>Bipartitní graf</h4>
+          <p>
+            Graf, jehož vrcholy lze rozdělit do dvou disjunktních množin tak, že každá hrana spojuje vrcholy z různých množin.
+          </p>
+        </div>
+        
+        <div class="teoria-card">
+          <h4>Planární graf</h4>
+          <p>
+            Graf, který lze nakreslit v rovině tak, aby se žádné dvě hrany nekřížily. Podle Eulerova vzorce v+f-e=2.
+          </p>
+        </div>
+        
+        <div class="teoria-card">
+          <h4>Eulerův tah</h4>
+          <p>
+            Tah (procházka), který obsahuje každou hranu grafu právě jednou. Existuje právě tehdy, když má graf nejvýše dva vrcholy lichého stupně.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="teoria-navigation">
+      <a class="teoria-nav-button" href="zaklady.html">Zpět na základy</a>
+      <a class="teoria-nav-button" href="problemy.html">Pokračovat na problémy</a>
+    </div>
   </div>
-  
 </body>
 </html>
