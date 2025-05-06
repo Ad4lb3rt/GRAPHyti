@@ -117,6 +117,7 @@ function parseCSV(fileContent)
     const rows = fileContent.split('\n');
     var labels = [];
     var values = [];
+    let name = null;
 
     rows.forEach((row, index) => {
         var columns = "";
@@ -134,9 +135,24 @@ function parseCSV(fileContent)
             labels.push(columns[0]);
             values.push(columns[1]);
         }
+        else if(columns[0].toLowerCase() == "name")
+        {
+            name = columns[1];
+        }
+        else if(columns[1].toLowerCase() == "name")
+        {
+            name = columns[0];
+        }
         console.log(`Row ${index + 1}:`, columns);
     });
-    generateGraph(labels, values);
+    if(name)
+    {
+        generateGraph(labels, values, name);
+    }
+    else
+    {
+        generateGraph(labels, values);
+    }
 }
 
 function parseXML(file) {
