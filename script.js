@@ -1,3 +1,10 @@
+const hardDefinedBackgroundColors = [
+    'rgba(255, 0, 212, 0.5)',
+    'rgba(160, 0, 133, 0.5)',
+    'rgba(156, 67, 141, 0.5)',
+    'rgba(231, 137, 255, 0.5)',
+    'rgba(199, 27, 226, 0.5)'
+]
 var currentChart = null;
 document.getElementById("fileInput").addEventListener('change', function(event) {
     const file = event.target.files[0];
@@ -257,7 +264,7 @@ function parseXML(file) {
 
 
 
-function generateGraph(labels = [], data = [], name = "Unknown Chart")
+function generateGraph(labels = [], data = [], name = "Unknown Chart", graphType = "line")
 {
     var uploadButton = document.getElementById("uploadButton");
     uploadButton.style.width = "250px";
@@ -286,43 +293,174 @@ function generateGraph(labels = [], data = [], name = "Unknown Chart")
         hiddenGraphics.remove();
     }
 
-  
-    // Create a new chart
-    var newChart = new Chart(ctx, {
-      type: 'line',
-      data: {
-        labels: labels,
-        datasets: [{
-          label: name,
-          data: data,
-          borderColor: 'rgb(73, 42, 68)',
-          pointBorderColor: 'rgb(255, 0, 212)',
-          pointBorderWidth: 3,
-          pointBackgroundColor: 'rgb(255, 0, 212)',
-          tension: 0.1
-        }]
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        scales: {
-          y: {
-            beginAtZero: false,
-            grid: {
-                color: "#595959"
+    if(graphType == "line")
+    {
+        // Create a new chart - line
+        var newChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+            labels: labels,
+            datasets: [{
+                label: name,
+                data: data,
+                borderColor: 'rgb(73, 42, 68)',
+                pointBorderColor: 'rgb(255, 0, 212)',
+                pointBorderWidth: 3,
+                pointBackgroundColor: 'rgb(255, 0, 212)',
+                backgroundColor: 'rgb(255, 0, 212)',
+                tension: 0.1
+            }]
+            },
+            options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                y: {
+                    beginAtZero: false,
+                    grid: {
+                        color: "#595959"
+                    }
+                },
+                x: {
+                    beginAtZero: false,
+                    grid: {
+                        color: "#595959"
+                    }
+                }
             }
-          },
-          x: {
-            beginAtZero: false,
-            grid: {
-                color: "#595959"
             }
-          }
-        }
-      }
-    });
+        });
+    }
+    else if(graphType == "bar")
+    {
+        // Create a new chart - bar
+        var newChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+            labels: labels,
+            datasets: [{
+                label: name,
+                data: data,
+                borderColor: 'rgb(255, 0, 212)',
+                barThickness: 100,
+                barPercentage: 0.5,
+                tension: 0.1,
+                backgroundColor: 'rgb(255, 0, 212)'
+            }]
+            },
+            options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                y: {
+                grid: {
+                    color: "#595959"
+                }
+                },
+                x: {
+                grid: {
+                    color: "#595959"
+                }
+                }
+            }
+            }
+        });
+    }
+    else if(graphType == "doughnut")
+    {
+        // Create a new chart - doughnut
+        var newChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+            labels: labels,
+            datasets: [{
+                label: name,
+                data: data,
+                borderColor: 'rgb(73, 42, 68)',
+                barThickness: 100,
+                barPercentage: 0.5,
+                tension: 0.1,
+                backgroundColor: getValidColors(labels.length)
+            }]
+            },
+            options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            }
+        });
+    }
+    else if(graphType == "polar")
+    {
+        // Create a new chart - Polar Area
+        var newChart = new Chart(ctx, {
+            type: 'polarArea',
+            data: {
+            labels: labels,
+            datasets: [{
+                label: name,
+                data: data,
+                borderColor: 'rgb(73, 42, 68)',
+                backgroundColor: getValidColors(labels.length)
+            }]
+            },
+            options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                r: {
+                    beginAtZero: true,
+                    grid: {
+                        color: "#595959"
+                    }
+                }
+            }
+            }
+        });
+    }
+    else if(graphType == "radar")
+    {
+        // Create a new chart - Radar
+        var newChart = new Chart(ctx, {
+            type: 'radar',
+            data: {
+            labels: labels,
+            datasets: [{
+                label: name,
+                data: data,
+                borderColor: 'rgb(73, 42, 68)',
+                backgroundColor: 'rgba(255, 0, 212, 0.5)',
+                pointBackgroundColor: 'rgb(255, 255, 255)'
+            }]
+            },
+            options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                r: {
+                    beginAtZero: true,
+                    grid: {
+                        color: "#595959"
+                    },
+                    angleLines: {
+                        color: "#595959"
+                    }
+                }
+            }
+            }
+        });
+    }
 
     currentChart = newChart;
+}
+
+function getValidColors(numberOfNames)
+{
+    let validColors = hardDefinedBackgroundColors;
+    if((numberOfNames - 1) % hardDefinedBackgroundColors.length == 0)
+    {
+        validColors.pop();
+    }
+    return validColors;
 }
 
 document.getElementById("uploadButton").addEventListener("click", function() {
