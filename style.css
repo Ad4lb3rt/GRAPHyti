@@ -50,28 +50,95 @@
 }
 
 @keyframes ChangeFileType {
-  33% {
-    content: ".json";
-    transform: translateY(-32px);
+  13% {
+    transform: translateY(0px);
+    opacity: 1;
   }
-  66% {
+
+  16% {
+    content: ".csv";
+    transform: translateY(16px);
+    opacity: 0;
+  }
+  17% {
+    content: ".json";
+    transform: translateY(-16px);
+    opacity: 0;
+  }
+
+  20% {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+  46% {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+
+  49% {
+    content: ".json";
+    transform: translateY(16px);
+    opacity: 0;
+  }
+  50% {
     content: ".xml";
-    transform: translateY(32px);
+    transform: translateY(-16px);
+    opacity: 0;
+  }
+
+  53% {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+  79% {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+
+  82% {
+    content: ".xml";
+    transform: translateY(16px);
+    opacity: 0;
+  }
+  83% {
+    content: ".csv";
+    transform: translateY(-16px);
+    opacity: 0;
+  }
+
+  86% {
+    transform: translateY(0px);
+    opacity: 1;
   }
 }
 
 @keyframes ChangeFileTypeWrapper {
-  33% {
-    background-color: rgb(0, 15, 99);
+  13% {
+    background-color: rgba(33, 177, 254, 0.1);;
   }
-  66% {
-    background-color: rgb(99, 0, 0);
+
+  20% {
+    background-color: rgba(254, 216, 0, 0.1);
+  }
+  46% {
+    background-color: rgba(254, 216, 0, 0.1);
+  }
+
+  53% {
+    background-color: rgba(254, 33, 140, 0.1);
+  }
+  79% {
+    background-color: rgba(254, 33, 140, 0.1);
+  }
+
+  86% {
+    background-color: rgba(33, 177, 254, 0.1);
   }
 }
 
 #fileTypeAnimWrapper {
-  animation: ChangeFileTypeWrapper infinite 3s;
-  background-color: rgb(0, 99, 0);
+  animation: ChangeFileTypeWrapper infinite 9s;
+  background-color: rgba(33, 177, 254, 0.1);
   border-radius: 5px;
   display: inline-block;
   width: 64px;
@@ -79,7 +146,9 @@
 
 #fileTypeAnim::before {
   content: ".csv";
-  animation: ChangeFileType infinite 3s;
+  transform: translateY(0px);
+
+  animation: ChangeFileType infinite 9s;
 
   color: #ffffff;
   display: inline-block;
