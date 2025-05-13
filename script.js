@@ -77,10 +77,6 @@ function parseJSON(file)
             // Start recursive search
             findLabelsAndValues(parsedData);
     
-            // Example use of name
-            console.log(`Generating graph for: ${name}`);
-    
-            // Generate graph (placeholder)
             generateGraph(labels, values, name);
     
         } catch (e) {
@@ -113,7 +109,7 @@ function parseCSVIntoContent(file)
 
 function parseCSV(fileContent)
 {
-    fileContent = String(fileContent)
+    fileContent = String(fileContent);
     const rows = fileContent.split('\n');
     var labels = [];
     var values = [];
