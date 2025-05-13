@@ -49,6 +49,45 @@
   }
 }
 
+@keyframes ChangeFileType {
+  33% {
+    content: ".json";
+    transform: translateY(-32px);
+  }
+  66% {
+    content: ".xml";
+    transform: translateY(32px);
+  }
+}
+
+@keyframes ChangeFileTypeWrapper {
+  33% {
+    background-color: rgb(0, 15, 99);
+  }
+  66% {
+    background-color: rgb(99, 0, 0);
+  }
+}
+
+#fileTypeAnimWrapper {
+  animation: ChangeFileTypeWrapper infinite 3s;
+  background-color: rgb(0, 99, 0);
+  border-radius: 5px;
+  display: inline-block;
+  width: 64px;
+}
+
+#fileTypeAnim::before {
+  content: ".csv";
+  animation: ChangeFileType infinite 3s;
+
+  color: #ffffff;
+  display: inline-block;
+  width: 50px;
+  
+  padding: 4px 4px 4px 2px;
+}
+
 /* Sidebar */
 
 .sidebar {
