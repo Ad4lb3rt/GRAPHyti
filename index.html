@@ -28,7 +28,7 @@
 
   </div>
 
-  <div class="upload">
+  <!-- <div class="upload">
     <div class="upload-graphics-hide" style="visibility: visible;">
       <div class="upload-icon">
         <img src="resources\svgs\upload.svg" alt="Upload" width="92" height="92">
@@ -47,9 +47,39 @@
           <input id="fileInput" type="file" accept=".json,.csv,.xml" style="display: none;"/>
         </form>
       </div>
+  </div> -->
+
+  <div class="graph-settings-wrapper">
+    <div class="graph-settings">
+      <div id="dropdown-select">
+        <input id="graphTypeInput" type="text" placeholder="Search.." onkeyup="filterFunction()">
+        <a>AAA</a>
+        <a>BBB</a>
+        <a>CCC</a>
+        <a>DDD</a>
+        <a>EEE</a>
+      </div>
+    </div>
   </div>
+
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="script.js"></script> 
+  <script>
+    function filterFunction() {
+      const input = document.getElementById("graphTypeInput");
+      const filter = input.value.toUpperCase();
+      const div = document.getElementById("dropdown-select");
+      const a = div.getElementsByTagName("a");
+      for (let i = 0; i < a.length; i++) {
+        txtValue = a[i].textContent || a[i].innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+          a[i].style.display = "";
+        } else {
+          a[i].style.display = "none";
+        }
+      }
+    }
+  </script>
 </body>
 
 </html>
