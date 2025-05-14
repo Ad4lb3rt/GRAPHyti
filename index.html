@@ -28,7 +28,7 @@
 
   </div>
 
-  <!-- <div class="upload">
+<!--   <div class="upload">
     <div class="upload-graphics-hide" style="visibility: visible;">
       <div class="upload-icon">
         <img src="resources\svgs\upload.svg" alt="Upload" width="92" height="92">
@@ -50,14 +50,18 @@
   </div> -->
 
   <div class="graph-settings-wrapper">
+    <div class="upload-title">
+      <h1>Jaký chcete typ grafu?</h1>
+      <p>Podporujeme typy grafů z nabídky níže.</p>
+    </div>
     <div class="graph-settings">
       <div id="dropdown-select">
         <input id="graphTypeInput" type="text" placeholder="Search.." onkeyup="filterFunction()">
-        <a>AAA</a>
-        <a>BBB</a>
-        <a>CCC</a>
-        <a>DDD</a>
-        <a>EEE</a>
+        <a>Line</a>
+        <a>Bar</a>
+        <a>Doughnut</a>
+        <a>Polar Area</a>
+        <a>Radar</a>
       </div>
     </div>
   </div>
@@ -73,9 +77,11 @@
       for (let i = 0; i < a.length; i++) {
         txtValue = a[i].textContent || a[i].innerText;
         if (txtValue.toUpperCase().indexOf(filter) > -1) {
-          a[i].style.display = "";
+          a[i].style.filter = "none";
+          a[i].style.opacity = "1";
         } else {
-          a[i].style.display = "none";
+          a[i].style.filter = "blur(4px)";
+          a[i].style.opacity = "0.6";
         }
       }
     }

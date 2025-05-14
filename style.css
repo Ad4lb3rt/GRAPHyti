@@ -367,33 +367,57 @@ h3 {
 .graph-settings {
   position: relative;
   display: block;
+  width: 480px;
+  height: 160px;
 }
 
 #graphTypeInput {
-  box-sizing: border-box;
-  background-image: url('searchicon.png');
-  background-position: 14px 12px;
-  background-repeat: no-repeat;
+  width: 100%;
+  height: 64px;
+  border-radius: 12px 12px 0 0;
   font-size: 16px;
-  padding: 14px 20px 12px 45px;
+  padding: 14px 20px 12px 24px;
   border: none;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid var(--color-outline);
+  background-color: var(--color-button-inactive);
+  color: white;
+}
+
+#graphTypeInput:focus {
+  outline: none;
 }
 
 #dropdown-select {
-  position: absolute;
-  background-color: #f6f6f6;
-  min-width: 230px;
-  overflow: auto;
-  border: 1px solid #ddd;
-  z-index: 1;
+  width: 480px;
+  height: auto;
+  background-color: var(--color-button-inactive);
+  border: 1px solid var(--color-outline);
+  border-radius: 12px;
+  color: var(--color-primary);
+  font-size: 1.2rem;
+  transition: 300ms;
 }
 
 #dropdown-select a {
-  color: black;
+  color: white;
   padding: 12px 16px;
   text-decoration: none;
   display: block;
+  margin: 8px;
+  border-radius: 12px;
+  background-color: var(--color-button-inactive);
+  text-align: left;
+  transition: 300ms;
+}
+
+#dropdown-select a:hover {
+  background-color: var(--color-button-hover);
+  transition: 300ms;
+}
+
+#dropdown-select a:active {
+  background-color: var(--color-outline);
+  transition: 300ms;
 }
 
 /* about us */
