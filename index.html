@@ -28,8 +28,8 @@
 
   </div>
 
-<!--   <div class="upload">
-    <div class="upload-graphics-hide" style="visibility: visible;">
+  <div class="upload">
+    <div class="upload-graphics-hide">
       <div class="upload-icon">
         <img src="resources\svgs\upload.svg" alt="Upload" width="92" height="92">
       </div>
@@ -47,7 +47,7 @@
           <input id="fileInput" type="file" accept=".json,.csv,.xml" style="display: none;"/>
         </form>
       </div>
-  </div> -->
+  </div>
 
   <div class="graph-settings-wrapper">
     <div class="upload-title">
@@ -57,35 +57,17 @@
     <div class="graph-settings">
       <div id="dropdown-select">
         <input id="graphTypeInput" type="text" placeholder="Search.." onkeyup="filterFunction()">
-        <a>Line</a>
-        <a>Bar</a>
-        <a>Doughnut</a>
-        <a>Polar Area</a>
-        <a>Radar</a>
+        <a onclick="selectGraphType('line')">Line</a>
+        <a onclick="selectGraphType('bar')">Bar</a>
+        <a onclick="selectGraphType('doughnut')">Doughnut</a>
+        <a onclick="selectGraphType('polar')">Polar Area</a>
+        <a onclick="selectGraphType('radar')">Radar</a>
       </div>
     </div>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="script.js"></script> 
-  <script>
-    function filterFunction() {
-      const input = document.getElementById("graphTypeInput");
-      const filter = input.value.toUpperCase();
-      const div = document.getElementById("dropdown-select");
-      const a = div.getElementsByTagName("a");
-      for (let i = 0; i < a.length; i++) {
-        txtValue = a[i].textContent || a[i].innerText;
-        if (txtValue.toUpperCase().indexOf(filter) > -1) {
-          a[i].style.filter = "none";
-          a[i].style.opacity = "1";
-        } else {
-          a[i].style.filter = "blur(4px)";
-          a[i].style.opacity = "0.6";
-        }
-      }
-    }
-  </script>
 </body>
 
 </html>

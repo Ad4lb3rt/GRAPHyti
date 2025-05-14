@@ -6,17 +6,51 @@ const hardDefinedBackgroundColors = [
     'rgba(199, 27, 226, 0.5)'
 ]
 var currentChart = null;
+var desiredGraphType = "";
+var cachedFile = null;
+var menuScreen = document.getElementsByClassName("upload")[0];
+var settingsScreen = document.getElementsByClassName("graph-settings-wrapper")[0];
+settingsScreen.style.contentVisibility = "hidden";
+var topResult = document.getElementById("dropdown-select").getElementsByTagName("a")[0];
+var searching = false;
+
 document.getElementById("fileInput").addEventListener('change', function(event) {
     const file = event.target.files[0];
     if (file) {
         console.log('File selected:', file.name);
-        onFileUpload(file);
+        cachedFile = file;
+        openSettingsMenu();
     }
 });
 
+topResult.style.backgroundColor = "rgb(64, 64, 73)";
 
-function onFileUpload(file)
+function openSettingsMenu()
 {
+    searching = true;
+    menuScreen.style.contentVisibility = "hidden";
+    moveUpInTree(settingsScreen);
+    settingsScreen.style.contentVisibility = "visible";
+}
+
+function moveUpInTree(element)
+{
+    element.parentNode.insertBefore(element, element.previousElementSibling);
+}
+
+function selectGraphType(type)
+{
+    desiredGraphType = type;
+    menuScreen.style.contentVisibility = "visible";
+    moveUpInTree(menuScreen);
+    settingsScreen.style.contentVisibility = "hidden";
+    parseFile(cachedFile);
+}
+
+function parseFile(file)
+{
+    searching = false;
+    topResult = undefined;
     console.log(file);
     if(!(file instanceof File))
     {
@@ -52,7 +86,7 @@ function parseJSON(file)
 
     reader.onload = function(event) {
         const fileContent = event.target.result;
-        let name = '';  // variable to store the name
+        let name = null;  // variable to store the name
     
         try {
             const parsedData = JSON.parse(fileContent);
@@ -83,8 +117,15 @@ function parseJSON(file)
     
             // Start recursive search
             findLabelsAndValues(parsedData);
-    
-            generateGraph(labels, values, name);
+            
+            if(name)
+            {
+                generateGraph(labels, values, name, desiredGraphType);
+            }
+            else
+            {
+                generateGraph(labels, values, undefined, desiredGraphType);
+            }
     
         } catch (e) {
             console.error('Failed to parse JSON:', e);
@@ -150,11 +191,11 @@ function parseCSV(fileContent)
     });
     if(name)
     {
-        generateGraph(labels, values, name);
+        generateGraph(labels, values, name, desiredGraphType);
     }
     else
     {
-        generateGraph(labels, values);
+        generateGraph(labels, values, undefined, desiredGraphType);
     }
 }
 
@@ -245,13 +286,14 @@ function parseXML(file) {
                 return;  // Exit loop early if the 'name' attribute is found
             }
         });
+        
         if(name)
         {
-            generateGraph(labels, values, name);
+            generateGraph(labels, values, name, desiredGraphType);
         }
         else
         {
-            generateGraph(labels, values);
+            generateGraph(labels, values, undefined, desiredGraphType);
         }
     };
 
@@ -462,6 +504,68 @@ function getValidColors(numberOfNames)
     }
     return validColors;
 }
+
+function filterFunction()
+{
+    const input = document.getElementById("graphTypeInput");
+    const filter = input.value.toUpperCase();
+    const div = document.getElementById("dropdown-select");
+    const a = div.getElementsByTagName("a");
+    for(let i = 0; i < a.length; i++) {
+        var txtValue = a[i].textContent || a[i].innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1)
+        {
+            a[i].style.filter = "none";
+            a[i].style.opacity = "1";
+        } 
+        else
+        {
+            a[i].style.filter = "blur(4px)";
+            a[i].style.opacity = "0.6";
+            a[i].style.backgroundColor = "rgb(28, 28, 32)";
+        }
+    }
+    
+    if(filter == "")
+    {
+        topResult = a[0];
+        topResult.style.backgroundColor = "rgb(64, 64, 73)";
+        for(let j = 0; j < a.length; j++)
+        {
+            if(a[j] != topResult)
+            {
+                a[j].style.backgroundColor = "rgb(28, 28, 32)";
+            }
+        }
+        return;
+    }
+
+    for(let i = 0; i < a.length; i++)
+    {
+        console.log(a[i].textContent + ": " + window.getComputedStyle(a[i]).filter);
+        if(window.getComputedStyle(a[i]).filter === "none")
+        {
+            topResult = a[i];
+            topResult.style.backgroundColor = "rgb(64, 64, 73)";
+            for(let j = 0; j < a.length; j++)
+            {
+                if(a[j] != topResult)
+                {
+                    a[j].style.backgroundColor = "rgb(28, 28, 32)";
+                }
+            }
+            return;
+        }
+    }
+    topResult = a[0];
+}
+
+document.addEventListener("keydown", function(event) {
+    if(event.key === "Enter" && searching)
+    {
+        topResult.click();
+    }
+});
 
 document.getElementById("uploadButton").addEventListener("click", function() {
     document.getElementById("fileInput").click();
