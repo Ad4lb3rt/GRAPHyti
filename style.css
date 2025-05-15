@@ -230,8 +230,6 @@
   border-radius: 12px;
 
   animation: 0.5s ease-in-out 0s 1 SlideIn;
-  
-  visibility: hidden;
 }
 
 .popup h2 {

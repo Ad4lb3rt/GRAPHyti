@@ -8,13 +8,15 @@ const hardDefinedBackgroundColors = [
 var currentChart = null;
 var desiredGraphType = "";
 var cachedFile = null;
-var menuScreen = document.getElementsByClassName("upload")[0];
-var settingsScreen = document.getElementsByClassName("graph-settings-wrapper")[0];
+const menuScreen = document.getElementsByClassName("upload")[0];
+const settingsScreen = document.getElementsByClassName("graph-settings-wrapper")[0];
 settingsScreen.style.contentVisibility = "hidden";
 var topResult = document.getElementById("dropdown-select").getElementsByTagName("a")[0];
 var highlighted = [true, false, false, false, false];
 var searching = false;
+const errorPopup = document.getElementsByClassName("popup")[0];
 filterFunction();
+closeError();
 
 document.getElementById("fileInput").addEventListener('change', function(event) {
     const file = event.target.files[0];
@@ -37,6 +39,19 @@ function openSettingsMenu()
 function moveUpInTree(element)
 {
     element.parentNode.insertBefore(element, element.previousElementSibling);
+}
+
+function showError(errorHeader, errorMessage)
+{
+    errorPopup.style.visibility = "visible";
+    document.getElementById("popup-header").textContent = errorHeader;
+    document.getElementById("popup-message").textContent = errorMessage;
+    errorPopup.style.animation = "0.5s ease-in-out 0s 1 SlideIn";
+}
+
+function closeError()
+{
+    errorPopup.style.visibility = "hidden";
 }
 
 function selectGraphType(type)
@@ -77,7 +92,7 @@ function parseFile(file)
     }
     else
     {
-        alert("Unsupported extension!");
+        showError("Neplatný soubor!", "Tento soubor nepodporujeme! Podporované soubory mají koncovku .csv, .json, nebo .xml!")
     }
 }
 
