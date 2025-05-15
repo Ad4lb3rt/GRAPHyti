@@ -31,6 +31,7 @@ function openSettingsMenu()
     menuScreen.style.contentVisibility = "hidden";
     moveUpInTree(settingsScreen);
     settingsScreen.style.contentVisibility = "visible";
+    document.getElementById("graphTypeInput").focus();
 }
 
 function moveUpInTree(element)
@@ -306,13 +307,20 @@ function parseXML(file) {
     reader.readAsText(file);
 }
 
-
-
 function generateGraph(labels = [], data = [], name = "Unknown Chart", graphType = "line")
 {
     var uploadButton = document.getElementById("uploadButton");
     uploadButton.style.width = "250px";
-    uploadButton.textContent = "Vyberte nový soubor";
+    uploadButton.textContent = "Vybrat nový soubor";
+    if(!document.getElementById("retryButton"))
+    {
+        retryButton = uploadButton.cloneNode(true);
+        retryButton.textContent = "Vybrat jiný typ grafu"
+        retryButton.id = "retryButton";
+        retryButton.style.marginLeft = "25px";
+        retryButton.onclick = openSettingsMenu;
+        uploadButton.after(retryButton);
+    }
     
     const canvasDiv = document.getElementById('canvasDiv');
     const canvas = document.getElementById("myChart");
