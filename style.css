@@ -399,6 +399,11 @@ a {
   transition: 100ms;
 }
 
+.button img {
+  margin-bottom: -4px;
+  margin-right: 5px;
+}
+
 .text{
   margin-left: 20px;
 }
@@ -483,6 +488,11 @@ h3 {
 #dropdown-select a:active {
   background-color: var(--color-outline);
   transition: 300ms;
+}
+
+#typeSvg {
+  margin-bottom: -5px;
+  margin-right: 12px;
 }
 
 /* about us */
