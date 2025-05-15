@@ -1,0 +1,30 @@
+{
+    "name": "Annual Sales Performance Report",
+    "year": 2024,
+    "unit": "USD (Thousands)",
+    "author": "Sales Analytics Team",
+    "region": "North America",
+    "notes": "Includes combined online and in-store sales",
+    "data": [
+      { "label": "January", "value": 142.3 },
+      { "label": "February", "value": 153.7 },
+      { "label": "March", "value": 168.1 },
+      { "label": "April", "value": 175.4 },
+      { "label": "May", "value": 198.6 },
+      { "label": "June", "value": 215.9 },
+      { "label": "July", "value": 201.3 },
+      { "label": "August", "value": 223.8 },
+      { "label": "September", "value": 190.0 },
+      { "label": "October", "value": 248.6 },
+      { "label": "November", "value": 265.7 },
+      { "label": "December", "value": 312.4 }
+    ],
+    "totals": {
+      "yearly_total": 2495.8,
+      "monthly_average": 207.98,
+      "peak_month": "December",
+      "lowest_month": "January"
+    },
+    "tags": ["sales", "report", "2024", "monthly", "performance"]
+  }
+  
