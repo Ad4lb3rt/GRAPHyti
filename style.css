@@ -490,9 +490,14 @@ h3 {
   transition: 300ms;
 }
 
+<<<<<<< Updated upstream
 #typeSvg {
   margin-bottom: -5px;
   margin-right: 12px;
+=======
+.graph-settings-wrapper .upload-icon {
+  margin-top: -140px;
+>>>>>>> Stashed changes
 }
 
 /* about us */
