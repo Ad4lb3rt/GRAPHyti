@@ -12,7 +12,9 @@ var menuScreen = document.getElementsByClassName("upload")[0];
 var settingsScreen = document.getElementsByClassName("graph-settings-wrapper")[0];
 settingsScreen.style.contentVisibility = "hidden";
 var topResult = document.getElementById("dropdown-select").getElementsByTagName("a")[0];
+var highlighted = [true, false, false, false, false];
 var searching = false;
+filterFunction();
 
 document.getElementById("fileInput").addEventListener('change', function(event) {
     const file = event.target.files[0];
@@ -22,8 +24,6 @@ document.getElementById("fileInput").addEventListener('change', function(event) 
         openSettingsMenu();
     }
 });
-
-topResult.style.backgroundColor = "rgb(64, 64, 73)";
 
 function openSettingsMenu()
 {
@@ -44,6 +44,8 @@ function selectGraphType(type)
     menuScreen.style.contentVisibility = "visible";
     moveUpInTree(menuScreen);
     settingsScreen.style.contentVisibility = "hidden";
+    document.getElementById("graphTypeInput").value = null;
+    filterFunction();
     parseFile(cachedFile);
 }
 
@@ -318,7 +320,7 @@ function generateGraph(labels = [], data = [], name = "Unknown Chart", graphType
     canvasDiv.width = window.innerWidth;
     canvasDiv.height = window.innerHeight;
     canvas.width = window.innerWidth * 0.9;
-    canvas.height = window.innerHeight * 0.5;
+    canvas.height = window.innerHeight * 0.6;
     canvasDiv.style.contentVisibility = "visible";
     canvasDiv.style.marginBottom = "50px";
 
@@ -347,8 +349,10 @@ function generateGraph(labels = [], data = [], name = "Unknown Chart", graphType
                 data: data,
                 borderColor: 'rgb(73, 42, 68)',
                 pointBorderColor: 'rgb(255, 0, 212)',
-                pointBorderWidth: 3,
+                pointBorderWidth: 4,
                 pointBackgroundColor: 'rgb(255, 0, 212)',
+                pointHoverBackgroundColor: 'rgb(255, 255, 255)',
+                pointHoverRadius: 10,
                 backgroundColor: 'rgb(255, 0, 212)',
                 tension: 0.1
             }]
@@ -387,7 +391,7 @@ function generateGraph(labels = [], data = [], name = "Unknown Chart", graphType
                 barThickness: 100,
                 barPercentage: 0.5,
                 tension: 0.1,
-                backgroundColor: 'rgb(255, 0, 212)'
+                backgroundColor: hardDefinedBackgroundColors
             }]
             },
             options: {
@@ -422,12 +426,14 @@ function generateGraph(labels = [], data = [], name = "Unknown Chart", graphType
                 barThickness: 100,
                 barPercentage: 0.5,
                 tension: 0.1,
-                backgroundColor: getValidColors(labels.length)
+                backgroundColor: getValidColors(labels.length),
+                hoverBorderWidth: 5,
+                hoverOffset: 2
             }]
             },
             options: {
-            responsive: true,
-            maintainAspectRatio: false,
+                responsive: true,
+                maintainAspectRatio: false,
             }
         });
     }
@@ -442,7 +448,8 @@ function generateGraph(labels = [], data = [], name = "Unknown Chart", graphType
                 label: name,
                 data: data,
                 borderColor: 'rgb(73, 42, 68)',
-                backgroundColor: getValidColors(labels.length)
+                backgroundColor: getValidColors(labels.length),
+                hoverBorderWidth: 5
             }]
             },
             options: {
@@ -471,7 +478,11 @@ function generateGraph(labels = [], data = [], name = "Unknown Chart", graphType
                 data: data,
                 borderColor: 'rgb(73, 42, 68)',
                 backgroundColor: 'rgba(255, 0, 212, 0.5)',
-                pointBackgroundColor: 'rgb(255, 255, 255)'
+                pointRadius: 5,
+                pointBackgroundColor: 'rgb(255, 255, 255)',
+                pointHoverBackgroundColor: 'rgb(255, 255, 255)',
+                pointHoverRadius: 10,
+                pointBorderWidth: 4
             }]
             },
             options: {
@@ -485,7 +496,7 @@ function generateGraph(labels = [], data = [], name = "Unknown Chart", graphType
                     },
                     angleLines: {
                         color: "#595959"
-                    }
+                    },
                 }
             }
             }
@@ -517,13 +528,19 @@ function filterFunction()
         {
             a[i].style.filter = "none";
             a[i].style.opacity = "1";
+            highlighted[i] = true;
         } 
         else
         {
             a[i].style.filter = "blur(4px)";
             a[i].style.opacity = "0.6";
-            a[i].style.backgroundColor = "rgb(28, 28, 32)";
+            highlighted[i] = false;
         }
+    }
+
+    if(!highlighted.some(x => x == true))
+    {
+        highlighted[0] = true;
     }
     
     if(filter == "")
@@ -542,8 +559,8 @@ function filterFunction()
 
     for(let i = 0; i < a.length; i++)
     {
-        console.log(a[i].textContent + ": " + window.getComputedStyle(a[i]).filter);
-        if(window.getComputedStyle(a[i]).filter === "none")
+        console.log(a[i].textContent + ": " +  highlighted[i]);
+        if(highlighted[i])
         {
             topResult = a[i];
             topResult.style.backgroundColor = "rgb(64, 64, 73)";
