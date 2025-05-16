@@ -6,8 +6,6 @@ const hardDefinedBackgroundColors = [
     'rgba(199, 27, 226, 0.5)'
 ]
 var currentChart = null;
-var desiredGraphType = "";
-var cachedFile = null;
 const menuScreen = document.getElementsByClassName("upload")[0];
 const settingsScreen = document.getElementsByClassName("graph-settings-wrapper")[0];
 settingsScreen.style.contentVisibility = "hidden";
@@ -15,6 +13,8 @@ var topResult = document.getElementById("dropdown-select").getElementsByTagName(
 var highlighted = [true, false, false, false, false];
 var searching = false;
 const errorPopup = document.getElementsByClassName("popup")[0];
+const siteHeader = document.getElementsByClassName("header")[0];
+var cachedGraphSettings = null;
 filterFunction();
 closeError();
 
@@ -22,8 +22,7 @@ document.getElementById("fileInput").addEventListener('change', function(event) 
     const file = event.target.files[0];
     if (file) {
         console.log('File selected:', file.name);
-        cachedFile = file;
-        openSettingsMenu();
+        parseFile(file);
     }
 });
 
@@ -46,7 +45,8 @@ function showError(errorHeader, errorMessage)
     errorPopup.style.visibility = "visible";
     document.getElementById("popup-header").textContent = errorHeader;
     document.getElementById("popup-message").textContent = errorMessage;
-    errorPopup.style.animation = "0.5s ease-in-out 0s 1 SlideIn";
+    moveUpInTree(errorPopup);
+    moveUpInTree(siteHeader);
 }
 
 function closeError()
@@ -56,13 +56,13 @@ function closeError()
 
 function selectGraphType(type)
 {
-    desiredGraphType = type;
+    cachedGraphSettings.graphType = type;
     menuScreen.style.contentVisibility = "visible";
     moveUpInTree(menuScreen);
     settingsScreen.style.contentVisibility = "hidden";
     document.getElementById("graphTypeInput").value = null;
     filterFunction();
-    parseFile(cachedFile);
+    generateGraph(cachedGraphSettings);
 }
 
 function parseFile(file)
@@ -138,12 +138,13 @@ function parseJSON(file)
             
             if(name)
             {
-                generateGraph(labels, values, name, desiredGraphType);
+                cachedGraphSettings = new GraphSettings(labels, values, name, undefined);
             }
             else
             {
-                generateGraph(labels, values, undefined, desiredGraphType);
+                cachedGraphSettings = new GraphSettings(labels, values, undefined, undefined);
             }
+            openSettingsMenu();
     
         } catch (e) {
             console.error('Failed to parse JSON:', e);
@@ -207,14 +208,16 @@ function parseCSV(fileContent)
         }
         console.log(`Row ${index + 1}:`, columns);
     });
+    
     if(name)
     {
-        generateGraph(labels, values, name, desiredGraphType);
+        cachedGraphSettings = new GraphSettings(labels, values, name, undefined);
     }
     else
     {
-        generateGraph(labels, values, undefined, desiredGraphType);
+        cachedGraphSettings = new GraphSettings(labels, values, undefined, undefined);
     }
+    openSettingsMenu();
 }
 
 function parseXML(file) {
@@ -307,12 +310,13 @@ function parseXML(file) {
         
         if(name)
         {
-            generateGraph(labels, values, name, desiredGraphType);
+            cachedGraphSettings = new GraphSettings(labels, values, name, undefined);
         }
         else
         {
-            generateGraph(labels, values, undefined, desiredGraphType);
+            cachedGraphSettings = new GraphSettings(labels, values, undefined, undefined);
         }
+        openSettingsMenu();
     };
 
     reader.onerror = function(error) {
@@ -322,18 +326,26 @@ function parseXML(file) {
     reader.readAsText(file);
 }
 
-function generateGraph(labels = [], data = [], name = "Unknown Chart", graphType = "line")
+function generateGraph(graphSettings)
 {
     var uploadButton = document.getElementById("uploadButton");
+    const graphType = graphSettings.graphType;
     uploadButton.style.width = "250px";
     uploadButton.textContent = "Vybrat nový soubor";
+    var uploadButtonImage = document.createElement('img');
+    uploadButtonImage.src = "resources/svgs/openfile.svg";
+    uploadButton.insertBefore(uploadButtonImage, uploadButton.firstChild);
     if(!document.getElementById("retryButton"))
     {
         retryButton = uploadButton.cloneNode(true);
         retryButton.textContent = "Vybrat jiný typ grafu"
+        retryButton.style.width = "265px";
         retryButton.id = "retryButton";
         retryButton.style.marginLeft = "25px";
         retryButton.onclick = openSettingsMenu;
+        var retryButtonImage = document.createElement('img');
+        retryButtonImage.src = "resources/svgs/switch.svg";
+        retryButton.insertBefore(retryButtonImage, retryButton.firstChild);
         uploadButton.after(retryButton);
     }
     
@@ -366,10 +378,10 @@ function generateGraph(labels = [], data = [], name = "Unknown Chart", graphType
         var newChart = new Chart(ctx, {
             type: 'line',
             data: {
-            labels: labels,
+            labels: graphSettings.labels,
             datasets: [{
-                label: name,
-                data: data,
+                label: graphSettings.name,
+                data: graphSettings.data,
                 borderColor: 'rgb(73, 42, 68)',
                 pointBorderColor: 'rgb(255, 0, 212)',
                 pointBorderWidth: 4,
@@ -406,10 +418,10 @@ function generateGraph(labels = [], data = [], name = "Unknown Chart", graphType
         var newChart = new Chart(ctx, {
             type: 'bar',
             data: {
-            labels: labels,
+            labels: graphSettings.labels,
             datasets: [{
-                label: name,
-                data: data,
+                label: graphSettings.name,
+                data: graphSettings.data,
                 borderColor: 'rgb(255, 0, 212)',
                 barThickness: 100,
                 barPercentage: 0.5,
@@ -441,15 +453,15 @@ function generateGraph(labels = [], data = [], name = "Unknown Chart", graphType
         var newChart = new Chart(ctx, {
             type: 'doughnut',
             data: {
-            labels: labels,
+            labels: graphSettings.labels,
             datasets: [{
-                label: name,
-                data: data,
+                label: graphSettings.name,
+                data: graphSettings.data,
                 borderColor: 'rgb(73, 42, 68)',
                 barThickness: 100,
                 barPercentage: 0.5,
                 tension: 0.1,
-                backgroundColor: getValidColors(labels.length),
+                backgroundColor: getValidColors(graphSettings.labels.length),
                 hoverBorderWidth: 5,
                 hoverOffset: 2
             }]
@@ -466,12 +478,12 @@ function generateGraph(labels = [], data = [], name = "Unknown Chart", graphType
         var newChart = new Chart(ctx, {
             type: 'polarArea',
             data: {
-            labels: labels,
+            labels: graphSettings.labels,
             datasets: [{
-                label: name,
-                data: data,
+                label: graphSettings.name,
+                data: graphSettings.data,
                 borderColor: 'rgb(73, 42, 68)',
-                backgroundColor: getValidColors(labels.length),
+                backgroundColor: getValidColors(graphSettings.labels.length),
                 hoverBorderWidth: 5
             }]
             },
@@ -495,10 +507,10 @@ function generateGraph(labels = [], data = [], name = "Unknown Chart", graphType
         var newChart = new Chart(ctx, {
             type: 'radar',
             data: {
-            labels: labels,
+            labels: graphSettings.labels,
             datasets: [{
-                label: name,
-                data: data,
+                label: graphSettings.name,
+                data: graphSettings.data,
                 borderColor: 'rgb(73, 42, 68)',
                 backgroundColor: 'rgba(255, 0, 212, 0.5)',
                 pointRadius: 5,
@@ -610,3 +622,14 @@ document.addEventListener("keydown", function(event) {
 document.getElementById("uploadButton").addEventListener("click", function() {
     document.getElementById("fileInput").click();
 });
+
+class GraphSettings
+{
+    constructor(labels = ["Label1", "Label2", "Label3"], data = [1, 2, 3], name = "Unknown Chart", graphType = "line")
+    {
+        this.labels = labels;
+        this.data = data;
+        this.name = name;
+        this.graphType = graphType;
+    }
+}
