@@ -29,14 +29,14 @@
 
   </div>
 
-  <div class="link-icons">
+<!--   <div class="link-icons">
     <img src="resources\svgs\upload.svg" alt="Upload" width="32" height="32">
     <img src="resources\svgs\upload.svg" alt="Upload" width="32" height="32">
     <img src="resources\svgs\upload.svg" alt="Upload" width="32" height="32">
     <img src="resources\svgs\upload.svg" alt="Upload" width="32" height="32">
     <img src="resources\svgs\upload.svg" alt="Upload" width="32" height="32">
   </div>
-
+ -->
   <div class="popup">
     <img id="popup-icon" src="resources\svgs\warning.svg" alt="PriorityHigh" width="32" height="32">
     <h2 id="popup-header">Example Error</h2>
@@ -44,7 +44,39 @@
     <a onclick="closeError()">
       <img id="popup-close" src="resources\svgs\close.svg" alt="Close" width="32" height="32">
     </a>
+    <p id="popup-show-details">Zobrazit podrobnosti</p>
   </div>
+
+  <div class="popup-details">
+    <h1>Podrobnosti o chybě</h1>
+    <p>Failed to parse JSON: SyntaxError: JSON.parse: bad control character in string literal at line 2 column 35 of the JSON data<br>
+    onload http://127.0.0.1:5500/script.js:63<br>
+    parseJSON http://127.0.0.1:5500/script.js:58<br>
+    parseFile http://127.0.0.1:5500/script.js:36<br>
+    http://127.0.0.1:5500/script.js:26<br>
+    script.js:103:21<br>
+    onload http://127.0.0.1:5500/script.js:103<br>
+    (Async: EventHandlerNonNull)<br>
+    parseJSON http://127.0.0.1:5500/script.js:58<br>
+    parseFile http://127.0.0.1:5500/script.js:36<br>
+    parseFile http://127.0.0.1:5500/script.js:36<br>
+    http://127.0.0.1:5500/script.js:26<br>
+    script.js:103:21<br>
+    onload http://127.0.0.1:5500/script.js:103<br>
+    (Async: EventHandlerNonNull)<br>
+    parseJSON http://127.0.0.1:5500/script.js:58<br>
+    parseFile http://127.0.0.1:5500/script.js:36<br>
+    parseFile http://127.0.0.1:5500/script.js:36<br>
+    http://127.0.0.1:5500/script.js:26<br>
+    script.js:103:21<br>
+    onload http://127.0.0.1:5500/script.js:103<br>
+    (Async: EventHandlerNonNull)<br>
+    parseJSON http://127.0.0.1:5500/script.js:58<br>
+    parseFile http://127.0.0.1:5500/script.js:36<br>
+    http://127.0.0.1:5500/script.js:26</p>
+    <a onclick="closeError()">
+      <img id="popup-close" src="resources\svgs\close.svg" alt="Close" width="32" height="32">
+    </a>
 
   <div class="accept-request">
     <img id="popup-icon" src="resources\svgs\warning_yellow.svg" alt="PriorityHigh" width="128" height="128">
