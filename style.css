@@ -158,6 +158,16 @@
   }
 }
 
+@keyframes BlurOut {
+  0% {
+    backdrop-filter: blur(10px);
+  }
+
+  100% {
+    backdrop-filter: blur(0px);
+  }
+}
+
 #fileTypeAnimWrapper {
   animation: ChangeFileTypeWrapper infinite 9s;
   background-color: rgba(33, 177, 254, 0.1);
@@ -255,6 +265,42 @@
   left: 16px;
 }
 
+/* Link icons */
+
+.link-icons {
+  width: auto;
+  height: 32px;
+
+  position: absolute;
+  bottom: 24px;
+  right: 24px;
+}
+
+.link-icons img {
+  animation: 0.5s ease-in-out 0s 1 PopIn forwards;
+  opacity: 0;
+}
+
+.link-icons img:Nth-child(1) {
+  animation-delay: 0.2s;
+}
+
+.link-icons img:Nth-child(2) {
+  animation-delay: 0.24s;
+}
+
+.link-icons img:Nth-child(3) {
+  animation-delay: 0.28s;
+}
+
+.link-icons img:Nth-child(4) {
+  animation-delay: 0.32s;
+}
+
+.link-icons img:Nth-child(5) {
+  animation-delay: 0.36s;
+}
+
 /* Middle accept req */
 
 .accept-request {
@@ -307,7 +353,24 @@
   margin-left: calc(32% - 112px);
   margin-top: 32px;
   position: absolute;
+
+  transition: 300ms;
 }
+
+.button-ar-should:hover {
+  background-color: #553c05;
+  border-color: #ffbb00;
+  scale: 1.05;
+  transition: 300ms;
+}
+
+.button-ar-should:active {
+  background-color: #9c7218;
+  border-color: #ffda75;
+  scale: 0.95;
+  transition: 100ms;
+}
+
 
 .button-ar {
   width: 224px;
@@ -323,6 +386,22 @@
   margin-left: calc(68% - 112px);
   margin-top: 32px;
   position: absolute;
+
+  transition: 300ms;
+}
+
+.button-ar:hover {
+  background-color: #66635a;
+  border-color: #bdb39b;
+  scale: 1.05;
+  transition: 300ms;
+}
+
+.button-ar:active {
+  background-color: #aaa597;
+  border-color: #ece4d0;
+  scale: 0.95;
+  transition: 100ms;
 }
 
 /* O nás cursor override (cuz im lazy) */
