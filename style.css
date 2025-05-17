@@ -255,6 +255,74 @@
   left: 16px;
 }
 
+/* Middle accept req */
+
+.accept-request {
+  position: absolute;
+  top: calc(50% - 240px);
+  left: calc(50% - 360px);
+
+  width: 720px;
+  height: 480px;
+
+  background-color: #805d1050;
+  border: 1px solid #ffcb3d50;
+  border-radius: 12px;
+
+  visibility: hidden;
+}
+
+.accept-request img {
+  position: absolute;
+  margin: 40px auto;
+}
+
+.accept-request h1 {
+  color: #ffbb00;
+  line-height: 32px;
+  text-align: center;
+  margin-top: 192px;
+  font-size: 3rem;
+}
+
+.accept-request p {
+  color: #c0b9a0;
+  text-align: center;
+  font-size: 1.3rem;
+}
+
+.button-ar-should {
+  width: 224px;
+  height: 64px;
+  background-color: #382703;
+  border: 1px solid #79550a;
+  border-radius: 12px;
+  color: var(--color-primary);
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #ffbb00;
+
+  margin-left: calc(32% - 112px);
+  margin-top: 32px;
+  position: absolute;
+}
+
+.button-ar {
+  width: 224px;
+  height: 64px;
+  background-color: #35332d;
+  border: 1px solid #5a5549;
+  border-radius: 12px;
+  color: var(--color-primary);
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #c5c1b2;
+
+  margin-left: calc(68% - 112px);
+  margin-top: 32px;
+  position: absolute;
+}
+
 /* O nás cursor override (cuz im lazy) */
 
 .nh {
@@ -265,6 +333,27 @@
 
 * {
   box-sizing: border-box; /* Include padding and border in element's dimensions */
+}
+
+/* Body, Background dots pattern */
+
+.side-menu {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 480px;
+  height: calc(100vh - 256px);
+  margin-top: 128px;
+  margin-bottom: 128px;
+  background-color: rgba(0, 0, 0, 0.5);
+
+  border-radius: 16px 0px 0px 16px;
+  border: solid 1px var(--color-outline);
+  background-color: var(--color-background);
+
+  padding: 16px;
+
+  animation: 0.5s ease-in-out 0s 1 SlideIn;
 }
 
 /* Body, Background dots pattern */
