@@ -13,9 +13,11 @@ var topResult = document.getElementById("dropdown-select").getElementsByTagName(
 var highlighted = [true, false, false, false, false];
 var searching = false;
 const errorPopup = document.getElementsByClassName("popup")[0];
+const errorDetailsPopup = document.getElementsByClassName("popup-details")[0];
 const warningPopup = document.getElementsByClassName("accept-request")[0];
 const siteHeader = document.getElementsByClassName("header")[0];
 var cachedGraphSettings = null;
+var cachedErrorDetails = null;
 filterFunction();
 closeError();
 
@@ -101,7 +103,7 @@ function parseJSON(file)
     
         } catch (e) {
             console.error('Failed to parse JSON:', e);
-            showError("Chyba při analýze souboru!", "Váš JSON soubor je pravděpodobně poškozený. Zkontrolujte ho a zkuste to znovu!");
+            showError("Chyba při analýze souboru!", "Váš JSON soubor je pravděpodobně poškozený. Zkontrolujte ho a zkuste to znovu!", e);
         }
     };    
 
@@ -157,7 +159,7 @@ function parseCSV(fileContent)
         catch(e)
         {
             console.error('Failed to parse CSV:', e);
-            showError("Chyba při analýze souboru!", "Váš CSV soubor je pravděpodobně poškozený. Zkontrolujte ho a zkuste to znovu!");
+            showError("Chyba při analýze souboru!", "Váš CSV soubor je pravděpodobně poškozený. Zkontrolujte ho a zkuste to znovu!", e);
             return;
         }
 
@@ -205,7 +207,7 @@ function parseXML(file) {
         // Handle parsing errors
         if (doc.getElementsByTagName("parsererror").length > 0) {
             console.error("Failed to parse XML: " + doc.getElementsByTagName("parsererror")[0].textContent);
-            showError("Chyba při analýze souboru!", "Váš XML soubor je pravděpodobně poškozený. Zkontrolujte ho a zkuste to znovu!");
+            showError("Chyba při analýze souboru!", "Váš XML soubor je pravděpodobně poškozený. Zkontrolujte ho a zkuste to znovu!", doc.getElementsByTagName("parsererror")[0].textContent);
             return;
         }
 
@@ -631,18 +633,41 @@ function moveUpInTree(element)
     element.parentNode.insertBefore(element, element.previousElementSibling);
 }
 
-function showError(errorHeader, errorMessage)
+function showError(errorHeader, errorMessage, errorDetails)
 {
     errorPopup.style.display = "block";
     document.getElementById("popup-header").textContent = errorHeader;
     document.getElementById("popup-message").textContent = errorMessage;
+
+    if (typeof errorDetails === "undefined")
+    {
+        document.getElementById("popup-show-details").style.display = "none";
+        cachedErrorDetails = null;
+    }
+    else
+    {
+        document.getElementById("popup-show-details").style.display = "block";
+        cachedErrorDetails = errorDetails;
+    }
     moveUpInTree(errorPopup);
     moveUpInTree(siteHeader);
 }
 
+
 function closeError()
 {
     errorPopup.style.display = "none";
+}
+
+function showErrorDetails()
+{
+    errorDetailsPopup.style.display = "block";
+    document.getElementById("popup-details-message").textContent = cachedErrorDetails;
+}
+
+function closeErrorDetails()
+{
+    errorDetailsPopup.style.display = "none";
 }
 
 function showWarning(warningHeader, warningMessage)
