@@ -56,6 +56,7 @@ function closeError()
 
 function selectGraphType(type)
 {
+    searching = false;
     cachedGraphSettings.graphType = type;
     menuScreen.style.contentVisibility = "visible";
     moveUpInTree(menuScreen);
@@ -67,17 +68,8 @@ function selectGraphType(type)
 
 function parseFile(file)
 {
-    searching = false;
-    topResult = undefined;
-    console.log(file);
-    if(!(file instanceof File))
-    {
-        console.error("onFileUpload didn't receive correct variable type!");
-        return;
-    }
     const f = String(file.name);
     const extension = f.split('.').pop();
-    console.log(extension);
     if(extension == "json")
     {
         parseJSON(file);
@@ -148,6 +140,7 @@ function parseJSON(file)
     
         } catch (e) {
             console.error('Failed to parse JSON:', e);
+            showError("Chyba při analýze souboru!", "Váš JSON soubor je pravděpodobně poškozený. Zkontrolujte ho a zkuste to znovu!");
         }
     };    
 
@@ -182,33 +175,48 @@ function parseCSV(fileContent)
     var values = [];
     let name = null;
 
-    rows.forEach((row, index) => {
-        var columns = "";
-        if(row.includes(";"))
+    for (let index = 0; index < rows.length; index++)
+    {
+        const row = rows[index];
+        let columns = [];
+
+        if (row.includes(";"))
         {
             columns = row.split(';');   
         }
-        else
+        else 
         {
             columns = row.split(",");
         }
-        columns[1] = columns[1].replace(/\r/g, '');
-        if(isFinite(columns[1]) || isFinite(columns[0]))
+
+        try
+        {
+            columns[1] = columns[1].replace(/\r/g, '');
+        }
+        catch(e)
+        {
+            console.error('Failed to parse CSV:', e);
+            showError("Chyba při analýze souboru!", "Váš CSV soubor je pravděpodobně poškozený. Zkontrolujte ho a zkuste to znovu!");
+            return;
+        }
+
+        if (isFinite(columns[1]) || isFinite(columns[0])) 
         {
             labels.push(columns[0]);
             values.push(columns[1]);
         }
-        else if(columns[0].toLowerCase() == "name")
+        else if (columns[0].toLowerCase() === "name")
         {
             name = columns[1];
         }
-        else if(columns[1].toLowerCase() == "name")
+        else if (columns[1].toLowerCase() === "name")
         {
             name = columns[0];
         }
+
         console.log(`Row ${index + 1}:`, columns);
-    });
-    
+    }
+
     if(name)
     {
         cachedGraphSettings = new GraphSettings(labels, values, name, undefined);
@@ -217,8 +225,10 @@ function parseCSV(fileContent)
     {
         cachedGraphSettings = new GraphSettings(labels, values, undefined, undefined);
     }
+
     openSettingsMenu();
 }
+
 
 function parseXML(file) {
     const reader = new FileReader();
@@ -230,6 +240,14 @@ function parseXML(file) {
 
         const parser = new DOMParser();
         const doc = parser.parseFromString(fileContent, "text/xml");
+
+        // Handle parsing errors
+        if (doc.getElementsByTagName("parsererror").length > 0) {
+            console.error("Failed to parse XML: " + doc.getElementsByTagName("parsererror")[0].textContent);
+            showError("Chyba při analýze souboru!", "Váš XML soubor je pravděpodobně poškozený. Zkontrolujte ho a zkuste to znovu!");
+            return;
+        }
+
 
         // Recursively parse the XML document
         function traverseNode(node) {

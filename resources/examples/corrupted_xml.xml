@@ -1,0 +1,34 @@
+<dataset name"Weekly Sales Data">
+    <item>
+        <label>Week 1</label>
+        <value>100</value>
+    </item>
+    <item>
+        <label>Week 2</label>
+        <value>150</value>
+    </item>
+    <item>
+        <label>Week 3</label>
+        <value>200</value>
+    </item>
+    <item>
+        <label>Week 4</label>
+        <value>180</value>
+    </item>
+    <item>
+        <label>Week 5</label>
+        <value>210</value>
+    </item>
+    <item>
+        <label>Week 6</label>
+        <value>250</value>
+    </item>
+    <item>
+        <label>Week 7</label>
+        <value>270</value>
+    </item>
+    item>
+        <label>Week 8</label>
+        <value>300</value>
+    </item>
+</dataset
