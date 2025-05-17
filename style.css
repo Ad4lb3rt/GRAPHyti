@@ -259,17 +259,17 @@
 
 .accept-request {
   position: absolute;
-  top: calc(50% - 240px);
-  left: calc(50% - 360px);
+  top: calc(50% - 275px);
+  left: calc(50% - 380px);
 
-  width: 720px;
-  height: 480px;
+  width: 760px;
+  height: 550px;
 
   background-color: #805d1050;
   border: 1px solid #ffcb3d50;
   border-radius: 12px;
 
-  visibility: hidden;
+  display: none;
 }
 
 .accept-request img {
@@ -283,12 +283,14 @@
   text-align: center;
   margin-top: 192px;
   font-size: 3rem;
+  margin-left: 0;
 }
 
 .accept-request p {
   color: #c0b9a0;
   text-align: center;
   font-size: 1.3rem;
+  white-space: pre-line;
 }
 
 .button-ar-should {
@@ -652,7 +654,7 @@ a {
 }
 
 #canvasDiv{
-  content-visibility: hidden
+  display: none
 }
 
 .theory-link {

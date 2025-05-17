@@ -8,11 +8,12 @@ const hardDefinedBackgroundColors = [
 var currentChart = null;
 const menuScreen = document.getElementsByClassName("upload")[0];
 const settingsScreen = document.getElementsByClassName("graph-settings-wrapper")[0];
-settingsScreen.style.contentVisibility = "hidden";
+settingsScreen.style.display = "none";
 var topResult = document.getElementById("dropdown-select").getElementsByTagName("a")[0];
 var highlighted = [true, false, false, false, false];
 var searching = false;
 const errorPopup = document.getElementsByClassName("popup")[0];
+const warningPopup = document.getElementsByClassName("accept-request")[0];
 const siteHeader = document.getElementsByClassName("header")[0];
 var cachedGraphSettings = null;
 filterFunction();
@@ -25,46 +26,6 @@ document.getElementById("fileInput").addEventListener('change', function(event) 
         parseFile(file);
     }
 });
-
-function openSettingsMenu()
-{
-    searching = true;
-    menuScreen.style.contentVisibility = "hidden";
-    moveUpInTree(settingsScreen);
-    settingsScreen.style.contentVisibility = "visible";
-    document.getElementById("graphTypeInput").focus();
-}
-
-function moveUpInTree(element)
-{
-    element.parentNode.insertBefore(element, element.previousElementSibling);
-}
-
-function showError(errorHeader, errorMessage)
-{
-    errorPopup.style.visibility = "visible";
-    document.getElementById("popup-header").textContent = errorHeader;
-    document.getElementById("popup-message").textContent = errorMessage;
-    moveUpInTree(errorPopup);
-    moveUpInTree(siteHeader);
-}
-
-function closeError()
-{
-    errorPopup.style.visibility = "hidden";
-}
-
-function selectGraphType(type)
-{
-    searching = false;
-    cachedGraphSettings.graphType = type;
-    menuScreen.style.contentVisibility = "visible";
-    moveUpInTree(menuScreen);
-    settingsScreen.style.contentVisibility = "hidden";
-    document.getElementById("graphTypeInput").value = null;
-    filterFunction();
-    generateGraph(cachedGraphSettings);
-}
 
 function parseFile(file)
 {
@@ -136,7 +97,7 @@ function parseJSON(file)
             {
                 cachedGraphSettings = new GraphSettings(labels, values, undefined, undefined);
             }
-            openSettingsMenu();
+            checkForWarnings();
     
         } catch (e) {
             console.error('Failed to parse JSON:', e);
@@ -226,7 +187,7 @@ function parseCSV(fileContent)
         cachedGraphSettings = new GraphSettings(labels, values, undefined, undefined);
     }
 
-    openSettingsMenu();
+    checkForWarnings();
 }
 
 
@@ -334,7 +295,7 @@ function parseXML(file) {
         {
             cachedGraphSettings = new GraphSettings(labels, values, undefined, undefined);
         }
-        openSettingsMenu();
+        checkForWarnings();
     };
 
     reader.onerror = function(error) {
@@ -342,6 +303,40 @@ function parseXML(file) {
     };
 
     reader.readAsText(file);
+}
+
+function checkForWarnings()
+{
+    if(cachedGraphSettings.labels.length > 100)
+    {
+        showWarning("Varování", "Váš soubor přesahuje náš doporučený objem dat, konkrétně obsahuje:\r\n\r\n" + cachedGraphSettings.labels.length + " hodnot!\r\n\r\nTo může mít za následek pomalejší rychlost stránky, sekání, zmražení obrazu\r\n a/nebo méně čitelnější výsledný graf.");
+    }
+    else
+    {
+        openSettingsMenu();
+    }
+}
+
+function openSettingsMenu()
+{
+    searching = true;
+    warningPopup.style.display = "none";
+    menuScreen.style.display = "none";
+    moveUpInTree(settingsScreen);
+    settingsScreen.style.display = "flex";
+    document.getElementById("graphTypeInput").focus();
+}
+
+function selectGraphType(type)
+{
+    searching = false;
+    cachedGraphSettings.graphType = type;
+    menuScreen.style.display = "flex";
+    moveUpInTree(menuScreen);
+    settingsScreen.style.display = "none";
+    document.getElementById("graphTypeInput").value = null;
+    filterFunction();
+    generateGraph(cachedGraphSettings);
 }
 
 function generateGraph(graphSettings)
@@ -374,7 +369,7 @@ function generateGraph(graphSettings)
     canvasDiv.height = window.innerHeight;
     canvas.width = window.innerWidth * 0.9;
     canvas.height = window.innerHeight * 0.6;
-    canvasDiv.style.contentVisibility = "visible";
+    canvasDiv.style.display = "flex";
     canvasDiv.style.marginBottom = "50px";
 
     var ctx = canvas.getContext('2d');
@@ -628,6 +623,39 @@ function filterFunction()
         }
     }
     topResult = a[0];
+}
+
+
+function moveUpInTree(element)
+{
+    element.parentNode.insertBefore(element, element.previousElementSibling);
+}
+
+function showError(errorHeader, errorMessage)
+{
+    errorPopup.style.display = "block";
+    document.getElementById("popup-header").textContent = errorHeader;
+    document.getElementById("popup-message").textContent = errorMessage;
+    moveUpInTree(errorPopup);
+    moveUpInTree(siteHeader);
+}
+
+function closeError()
+{
+    errorPopup.style.display = "none";
+}
+
+function showWarning(warningHeader, warningMessage)
+{
+    menuScreen.style.display = "none";
+    warningPopup.style.display = "block";
+    document.getElementById("accept-header").textContent = warningHeader;
+    document.getElementById("accept-message").textContent = warningMessage;
+}
+
+function refreshSite()
+{
+    location.reload();
 }
 
 document.addEventListener("keydown", function(event) {
