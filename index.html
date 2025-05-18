@@ -16,27 +16,21 @@
 
     <div class="logo">
       <a href="index.html">
-        <img class="logo-img" src="resources\images\pudl.png" alt="Logo" width="32" height="32"> <!--This img is just a placeholder-->
+        <img class="logo-img" src="resources\images\pudl.png" alt="Logo" width="32" height="32">
         <span class="logo-text">GRAPHyti</span>
       </a>
     </div>
 
     <nav class="navigation">
-      <a class="nav-button" href="index.html">Domov</a>
-      <a class="nav-button" href="teorie.html">Teorie</a>
-      <a class="nav-button" href="aboutus.html">O nás</a>
+      <a class="nav-button glow" href="index.html">Domov</a>
+      <a class="nav-button glow-inactive" href="teorie.html">Teorie</a>
+      <a class="nav-button glow-inactive" href="aboutus.html">O nás</a>
     </nav>
 
-  </div>
+    <button class="theme-change" type="button"><img src="resources\svgs\brush.svg"></img>Motiv</button>
 
-  <!--<div class="link-icons">
-    <img src="resources\svgs\upload.svg" alt="Upload" width="32" height="32">
-    <img src="resources\svgs\upload.svg" alt="Upload" width="32" height="32">
-    <img src="resources\svgs\upload.svg" alt="Upload" width="32" height="32">
-    <img src="resources\svgs\upload.svg" alt="Upload" width="32" height="32">
-    <img src="resources\svgs\upload.svg" alt="Upload" width="32" height="32">
   </div>
-  -->
+ 
   <div class="popup">
     <img id="popup-icon" src="resources\svgs\warning.svg" alt="PriorityHigh" width="32" height="32">
     <h2 id="popup-header">Example Error</h2>
@@ -63,10 +57,28 @@
     <button class="button-ar" type="button" onclick="openSettingsMenu()">Pokračovat</button>
   </div>
 
-<!--   <div class="side-menu">
-    <h2 id="popup-header">Example Error</h2>
-    <p id="popup-message">Example error message.</p>
-  </div> -->
+  <div class="side-menu">
+    <h1>Motiv stránky</h1>
+    <label for="website-theme-button1"><img src="resources\svgs\warning_yellow.svg">theme1</label>
+    <input type="radio" id="website-theme-button1" name="website-theme" value="w-theme1"><br>
+    
+    <label for="website-theme-button2"><img src="resources\svgs\warning_yellow.svg">theme2</label>
+    <input type="radio" id="website-theme-button2" name="website-theme" value="w-theme2"><br>
+    
+    <label for="website-theme-button3"><img src="resources\svgs\warning_yellow.svg">theme3</label>
+    <input type="radio" id="website-theme-button3" name="website-theme" value="w-theme3"><br>
+    
+    <h1>Motiv grafu</h1>
+    <label for="graph-theme-button1"><img src="resources\svgs\warning_yellow.svg">theme1</label>
+    <input type="radio" id="graph-theme-button1" name="graph-theme" value="g-theme1"><br>
+    
+    <label for="graph-theme-button2"><img src="resources\svgs\warning_yellow.svg">theme2</label>
+    <input type="radio" id="graph-theme-button2" name="graph-theme" value="g-theme3"><br>
+    
+    <label for="graph-theme-button3"><img src="resources\svgs\warning_yellow.svg">theme3</label>
+    <input type="radio" id="graph-theme-button3" name="graph-theme" value="g-theme2"><br>
+    
+  </div>
 
   <div class="upload">
     <div class="upload-graphics-hide">
@@ -107,6 +119,14 @@
         <a onclick="selectGraphType('radar')"><img id="typeSvg" src="resources/svgs/radar.svg"></img>Radar</a>
       </div>
     </div>
+  </div>
+
+  <div class="link-icons">
+    <img src="resources\svgs\upload.svg" alt="Upload" width="32" height="32">
+    <img src="resources\svgs\upload.svg" alt="Upload" width="32" height="32">
+    <img src="resources\svgs\upload.svg" alt="Upload" width="32" height="32">
+    <img src="resources\svgs\upload.svg" alt="Upload" width="32" height="32">
+    <img src="resources\svgs\upload.svg" alt="Upload" width="32" height="32">
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>

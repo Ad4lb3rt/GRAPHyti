@@ -231,7 +231,7 @@
   height: auto;
   width: 380px;
   right: 16px;
-  top: 92px;
+  top: 128px;
 
   padding: 16px 16px 24px 16px;
 
@@ -240,6 +240,8 @@
   border-radius: 12px;
 
   animation: 0.5s ease-in-out 0s 1 SlideIn;
+
+  z-index: 500;
 }
 
 .popup h2 {
@@ -478,19 +480,40 @@
   position: absolute;
   top: 0;
   right: 0;
-  width: 480px;
+  width: 380px;
   height: calc(100vh - 256px);
-  margin-top: 128px;
-  margin-bottom: 128px;
+  margin: 128px 16px;
+
   background-color: rgba(0, 0, 0, 0.5);
 
-  border-radius: 16px 0px 0px 16px;
+  border-radius: 16px;
   border: solid 1px var(--color-outline);
   background-color: var(--color-background);
 
   padding: 16px;
 
   animation: 0.5s ease-in-out 0s 1 SlideIn;
+}
+
+.side-menu h1 {
+  color: var(--color-primary);
+  line-height: 1.5rem;
+  text-align: left;
+  font-size: 1.6rem;
+  margin-left: 16px;
+}
+
+.side-menu label {
+  color: #d1b9d4;
+  text-align: left;
+  font-size: 1.2rem;
+  line-height: 2rem;
+  margin: 0px 16px;
+  gap: 8px;
+}
+
+.side-menu img {
+  margin-right: 8px;
 }
 
 /* Body, Background dots pattern */
@@ -527,10 +550,11 @@ body::after {
   justify-content: space-between;
   height: 72px;
   width: 100%;
-  background-color: var(--color-background);
+  background-color: transparent;
   color: var(--color-primary);
-  padding: 0 32px;
-  border-bottom: 1px solid var(--color-foreground);
+  padding: 0 240px;
+  font-size: 20px;
+  margin: 16px 0px;
 }
 
 .logo {
@@ -559,7 +583,8 @@ body::after {
 .navigation {
   display: flex;
   align-items: center;
-  gap: 32px;
+  gap: 48px;
+  font-size: 20px;
 }
 
 /* All its contents */
@@ -574,6 +599,63 @@ a {
   text-decoration: none;
 }
 
+.theme-change {
+  border-radius: 12px;
+  background-color: var(--color-primary);
+  color: var(--color-background);
+  padding: 12px 20px;
+  margin-left: 64px;
+  border: none;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px; /* Adjust the gap size as needed */
+  cursor: pointer;
+  line-height: 24px;
+  transition: 300ms;
+  width: 128px;
+}
+
+.theme-change:hover {
+  scale: 1.05;
+  transition: 300ms;
+}
+
+.theme-change:active {
+  scale: 0.95;
+  transition: 100ms;
+}
+
+.glow {
+  color: #fff;
+  text-shadow: 
+    0 0 5px #bb80b8,
+    0 0 20px #d387cf,
+    0 0 40px #ffc1fc,
+    0 0 60px #ffc1fc;
+    transition: 1000ms;
+}
+
+.glow:hover {
+  text-shadow: 
+    0 0 5px #ffecfe,
+    0 0 40px #ffc1fc,
+    0 0 60px #ffc1fc;
+  transition: 500ms;
+}
+
+.glow-inactive {
+  transition: 500ms;
+}
+
+
+.glow-inactive:hover {
+  text-shadow: 
+    0 0 20px #fd96f8,
+    0 0 40px #ffc1fc;
+  transition: 500ms;
+}
+
 /* Upload - Icon, Title, Form */
 
 .upload {
@@ -582,7 +664,7 @@ a {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: calc(100vh - 172px);
+  height: calc(100vh - 232px);
   text-align: center;
 }
 
