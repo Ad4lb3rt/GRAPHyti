@@ -722,7 +722,6 @@ function changeGraphTheme(buttonIndex)
 {
     localStorage.setItem("currentGraphTheme", buttonIndex);
     currentGraphTheme = buttonIndex;
-    console.log("running at theme: " + (buttonIndex + 1));
 }
 
 document.addEventListener("keydown", function(event) {
