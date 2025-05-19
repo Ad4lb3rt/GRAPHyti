@@ -18,8 +18,12 @@ const warningPopup = document.getElementsByClassName("accept-request")[0];
 const siteHeader = document.getElementsByClassName("header")[0];
 var cachedGraphSettings = null;
 var cachedErrorDetails = null;
+var sidebarState = true;
+var currentSiteTheme = localStorage.getItem("currentSiteTheme") ?? 0;
+var currentGraphTheme = localStorage.getItem("currentGraphTheme") ?? 0;
 filterFunction();
 closeError();
+toggleSidebar();
 
 document.getElementById("fileInput").addEventListener('change', function(event) {
     const file = event.target.files[0];
@@ -27,6 +31,16 @@ document.getElementById("fileInput").addEventListener('change', function(event) 
         console.log('File selected:', file.name);
         parseFile(file);
     }
+});
+
+window.addEventListener("load", (event) => {
+    var siteTheme = document.getElementsByClassName("website-theme-button")[currentSiteTheme];
+    siteTheme.checked = "true";
+    siteTheme.click();
+
+    var graphTheme = document.getElementsByClassName("graph-theme-button")[currentGraphTheme];
+    graphTheme.checked = "true";
+    graphTheme.click();
 });
 
 function parseFile(file)
@@ -651,6 +665,7 @@ function showError(errorHeader, errorMessage, errorDetails)
     }
     moveUpInTree(errorPopup);
     moveUpInTree(siteHeader);
+    closeSidebar();
 }
 
 
@@ -676,11 +691,38 @@ function showWarning(warningHeader, warningMessage)
     warningPopup.style.display = "block";
     document.getElementById("accept-header").textContent = warningHeader;
     document.getElementById("accept-message").textContent = warningMessage;
+    closeSidebar();
 }
 
 function refreshSite()
 {
     location.reload();
+}
+
+function toggleSidebar()
+{
+    sidebarState = !sidebarState;
+    document.getElementsByClassName("side-menu")[0].style.display = sidebarState == true ? "block" : "none";
+    closeError();
+}
+
+function closeSidebar()
+{
+    sidebarState = false;
+    document.getElementsByClassName("side-menu")[0].style.display = "none";
+}
+
+function changeSiteTheme(buttonIndex)
+{
+    localStorage.setItem("currentSiteTheme", buttonIndex);
+    currentSiteTheme = buttonIndex;
+}
+
+function changeGraphTheme(buttonIndex)
+{
+    localStorage.setItem("currentGraphTheme", buttonIndex);
+    currentGraphTheme = buttonIndex;
+    console.log("running at theme: " + (buttonIndex + 1));
 }
 
 document.addEventListener("keydown", function(event) {

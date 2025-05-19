@@ -27,7 +27,7 @@
       <a class="nav-button glow-inactive" href="aboutus.html">O nás</a>
     </nav>
 
-    <button class="theme-change" type="button"><img src="resources\svgs\brush.svg"></img>Motiv</button>
+    <button class="theme-change" type="button" onclick="toggleSidebar()"><img src="resources\svgs\brush.svg"></img>Motiv</button>
 
   </div>
  
@@ -61,48 +61,48 @@
     <h1>Motiv stránky</h1>
     <label for="website-theme-button1">
       <div class="color-circle"></div>Theme 1
-      <input type="radio" id="website-theme-button1" name="website-theme" value="w-theme1">
+      <input onclick="changeSiteTheme(0)" class="website-theme-button" type="radio" id="website-theme-button1" name="website-theme" value="w-theme1">
     </label>
   
     <label for="website-theme-button2">
       <div class="color-circle"></div>Theme 2
-      <input type="radio" id="website-theme-button2" name="website-theme" value="w-theme2">
+      <input onclick="changeSiteTheme(1)" class="website-theme-button" type="radio" id="website-theme-button2" name="website-theme" value="w-theme2">
     </label>
   
     <label for="website-theme-button3">
       <div class="color-circle"></div>Theme 3
-      <input type="radio" id="website-theme-button3" name="website-theme" value="w-theme3">
+      <input onclick="changeSiteTheme(2)" class="website-theme-button" type="radio" id="website-theme-button3" name="website-theme" value="w-theme3">
     </label>
 
     <label for="website-theme-button4">
       <div class="color-circle"></div>Theme 4
-      <input type="radio" id="website-theme-button4" name="website-theme" value="w-theme4">
+      <input onclick="changeSiteTheme(3)" class="website-theme-button" type="radio" id="website-theme-button4" name="website-theme" value="w-theme4">
     </label>
   
     <label for="website-theme-button5">
       <div class="color-circle"></div>Theme 5
-      <input type="radio" id="website-theme-button5" name="website-theme" value="w-theme5">
+      <input onclick="changeSiteTheme(4)" class="website-theme-button" type="radio" id="website-theme-button5" name="website-theme" value="w-theme5">
     </label>
 
     <label for="website-theme-button6">
       <div class="color-circle"></div>Theme 6
-      <input type="radio" id="website-theme-button6" name="website-theme" value="w-theme6">
+      <input onclick="changeSiteTheme(5)" class="website-theme-button" type="radio" id="website-theme-button6" name="website-theme" value="w-theme6">
     </label>
   
     <h1>Motiv grafu</h1>
     <label for="graph-theme-button1">
       <div class="color-circle"></div>Theme 1
-      <input type="radio" id="graph-theme-button1" name="graph-theme" value="g-theme1">
+      <input onclick="changeGraphTheme(0)" class="graph-theme-button" type="radio" id="graph-theme-button1" name="graph-theme" value="g-theme1">
     </label>
   
     <label for="graph-theme-button2">
       <div class="color-circle"></div>Theme 2
-      <input type="radio" id="graph-theme-button2" name="graph-theme" value="g-theme2">
+      <input onclick="changeGraphTheme(1)" class="graph-theme-button" type="radio" id="graph-theme-button2" name="graph-theme" value="g-theme2">
     </label>
   
     <label for="graph-theme-button3">
       <div class="color-circle"></div>Theme 3
-      <input type="radio" id="graph-theme-button3" name="graph-theme" value="g-theme3">
+      <input onclick="changeGraphTheme(2)" class="graph-theme-button" type="radio" id="graph-theme-button3" name="graph-theme" value="g-theme3">
     </label>
   </div>
 
