@@ -43,6 +43,8 @@ window.addEventListener("load", (event) => {
     graphTheme.click();
 });
 
+//TO-DO: Side menu should be added to page tree via js to preserve newly added elements to all html pages without the need to change them one by one
+
 function parseFile(file)
 {
     const f = String(file.name);
