@@ -474,8 +474,7 @@
   box-sizing: border-box; /* Include padding and border in element's dimensions */
 }
 
-/* Body, Background dots pattern */
-
+/* Sidemenu */
 .side-menu {
   position: absolute;
   top: 0;
@@ -483,16 +482,16 @@
   width: 380px;
   height: calc(100vh - 256px);
   margin: 128px 16px;
-
   background-color: rgba(0, 0, 0, 0.5);
-
   border-radius: 16px;
   border: solid 1px var(--color-outline);
   background-color: var(--color-background);
-
   padding: 16px;
-
   animation: 0.5s ease-in-out 0s 1 SlideIn;
+  overflow-y: scroll;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(71, 52, 71, 0.2) #ffffff00;
+  scroll-behavior: smooth; /* Enable smooth scrolling */
 }
 
 .side-menu h1 {
@@ -504,17 +503,69 @@
 }
 
 .side-menu label {
+  display: flex;
+  justify-content: space-between;  /* Pushes the radio button to the right */
+  align-items: center;
   color: #d1b9d4;
   text-align: left;
   font-size: 1.2rem;
-  line-height: 2rem;
-  margin: 0px 16px;
+  line-height: 3rem;
+  margin: 10px 16px;
   gap: 8px;
+  background-color: #222222;
+  padding: 10px 16px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.side-menu label:hover {
+  background-color: #333333;  /* Hover effect */
+  transform: scale(1.05);  /* Slight zoom effect */
+}
+
+.side-menu label input {
+  margin-left: 10px;
+  accent-color: #ffcc00;  /* Custom accent color for radio buttons */
 }
 
 .side-menu img {
   margin-right: 8px;
+  width: 20px;  /* Adjust icon size */
+  height: auto;
 }
+
+.side-menu input[type="radio"] {
+  margin-left: 10px;
+  accent-color: #ff8cf9;  /* Custom color for radio buttons */
+  width: 20px;
+  height: 20px;
+}
+
+/* Color Circle - Divided into 4 parts */
+.color-circle {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: conic-gradient(
+    rgb(255, 144, 236) 0% 25%, 
+    rgb(27, 27, 27) 25% 50%, 
+    rgb(82, 35, 88) 50% 75%, 
+    rgb(255, 255, 255) 75% 100%
+  );
+  margin-right: 10px;
+}
+
+/* Slide-in animation */
+@keyframes SlideIn {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
 
 /* Body, Background dots pattern */
 
