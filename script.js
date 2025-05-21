@@ -45,20 +45,6 @@ document.getElementById("fileInput").addEventListener('change', function(event) 
     }
 });
 
-window.addEventListener("load", (event) => {
-    var siteTheme = document.getElementsByClassName("website-theme-button")[currentSiteTheme];
-    siteTheme.checked = "true";
-    siteTheme.click();
-
-    var graphTheme = document.getElementsByClassName("graph-theme-button")[currentGraphTheme];
-    graphTheme.checked = "true";
-    graphTheme.click();
-});
-
-//TO-DO: Side menu should be added to page tree via js to preserve newly added elements to all html pages without the need to change them one by one
-
-=======
->>>>>>> Stashed changes
 function parseFile(file)
 {
     const f = String(file.name);
