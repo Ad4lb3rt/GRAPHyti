@@ -476,6 +476,7 @@
 
 /* Sidemenu */
 .side-menu {
+  z-index: 100000;
   position: absolute;
   top: 0;
   right: 0;

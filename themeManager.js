@@ -1,19 +1,20 @@
 var sidebarState = true;
-
-toggleSidebar();
-
 var currentSiteTheme = localStorage.getItem("currentSiteTheme") ?? 0;
 var currentGraphTheme = localStorage.getItem("currentGraphTheme") ?? 0;
 
-window.addEventListener("load", (event) => {
-    var siteTheme = document.getElementsByClassName("website-theme-button")[currentSiteTheme];
-    siteTheme.checked = "true";
-    siteTheme.click();
+fetch("side_menu.html")
+    .then(res => res.text())
+    .then(html => {
+        document.getElementById("side-menu-placeholder").innerHTML = html;
+        toggleSidebar();
+        var siteTheme = document.getElementsByClassName("website-theme-button")[currentSiteTheme];
+        siteTheme.checked = "true";
+        siteTheme.click();
 
-    var graphTheme = document.getElementsByClassName("graph-theme-button")[currentGraphTheme];
-    graphTheme.checked = "true";
-    graphTheme.click();
-});
+        var graphTheme = document.getElementsByClassName("graph-theme-button")[currentGraphTheme];
+        graphTheme.checked = "true";
+        graphTheme.click();
+    });
 
 function toggleSidebar()
 {
