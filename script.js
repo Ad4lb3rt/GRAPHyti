@@ -21,9 +21,21 @@ var cachedErrorDetails = null;
 var sidebarState = true;
 var currentSiteTheme = localStorage.getItem("currentSiteTheme") ?? 0;
 var currentGraphTheme = localStorage.getItem("currentGraphTheme") ?? 0;
+fetch("side_menu.html")
+    .then(res => res.text())
+    .then(html => {
+        document.getElementById("side-menu-placeholder").innerHTML = html;
+        toggleSidebar();
+        var siteTheme = document.getElementsByClassName("website-theme-button")[currentSiteTheme];
+        siteTheme.checked = "true";
+        siteTheme.click();
+
+        var graphTheme = document.getElementsByClassName("graph-theme-button")[currentGraphTheme];
+        graphTheme.checked = "true";
+        graphTheme.click();
+    });
 filterFunction();
 closeError();
-toggleSidebar();
 
 document.getElementById("fileInput").addEventListener('change', function(event) {
     const file = event.target.files[0];
@@ -33,6 +45,7 @@ document.getElementById("fileInput").addEventListener('change', function(event) 
     }
 });
 
+<<<<<<< Updated upstream
 window.addEventListener("load", (event) => {
     var siteTheme = document.getElementsByClassName("website-theme-button")[currentSiteTheme];
     siteTheme.checked = "true";
@@ -45,6 +58,8 @@ window.addEventListener("load", (event) => {
 
 //TO-DO: Side menu should be added to page tree via js to preserve newly added elements to all html pages without the need to change them one by one
 
+=======
+>>>>>>> Stashed changes
 function parseFile(file)
 {
     const f = String(file.name);
