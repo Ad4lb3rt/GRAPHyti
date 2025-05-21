@@ -45,7 +45,6 @@ document.getElementById("fileInput").addEventListener('change', function(event) 
     }
 });
 
-<<<<<<< Updated upstream
 window.addEventListener("load", (event) => {
     var siteTheme = document.getElementsByClassName("website-theme-button")[currentSiteTheme];
     siteTheme.checked = "true";
