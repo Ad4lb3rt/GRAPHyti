@@ -2,7 +2,7 @@
   --color-background: rgb(16, 14, 16);
   --color-foreground: rgba(117, 64, 106, 0.308);
   --color-outline: rgb(71, 52, 71);
-  --color-primary: #ffc1fc;
+  --color-primary: rgb(255, 193, 252);
 
   --color-button-hover: rgb(32, 32, 36);
   --color-button-inactive: rgb(28, 28, 32);
@@ -182,7 +182,7 @@
 
   animation: ChangeFileType infinite 9s;
 
-  color: #ffffff;
+  color: rgb(255, 255, 255);
   display: inline-block;
   width: 50px;
   
@@ -235,8 +235,8 @@
 
   padding: 16px 16px 24px 16px;
 
-  background-color: #80101050;
-  border: 1px solid #ff3d3d50;
+  background-color: rgba(128, 16, 16, 0.314);
+  border: 1px solid rgba(255, 61, 61, 0.314);
   border-radius: 12px;
 
   animation: 0.5s ease-in-out 0s 1 SlideIn;
@@ -251,12 +251,12 @@
 }
 
 .popup p {
-  color: #c0a0a0;
+  color: rgb(192, 160, 160);
   margin: 0px;
 }
 
 #popup-show-details {
-  color: #ca7575;
+  color: rgb(202, 117, 117);
   text-decoration: underline;
   cursor: pointer;
   margin-top: 16px;
@@ -301,10 +301,10 @@
 }
 
 .popup-details p {
-  background-color: #0f0f0f;
-  border: solid 1px #333333;
+  background-color: rgb(15, 15, 15);
+  border: solid 1px rgb(51, 51, 51);
   padding: 12px;
-  color: #ae98b1;
+  color: rgb(174, 152, 177);
   text-align: left;
   font-size: 1.2rem;
   line-height: 1.5rem;
@@ -313,7 +313,7 @@
   max-height: 82%;
 
   scrollbar-width: thin;
-  scrollbar-color: rgba(104, 104, 104, 0.2) #ffffff00;
+  scrollbar-color: rgba(104, 104, 104, 0.2) rgba(255, 255, 255, 0);
 
   scroll-behavior: smooth; /* Enable smooth scrolling */
 }
@@ -369,8 +369,8 @@
   width: 760px;
   height: 550px;
 
-  background-color: #805d1050;
-  border: 1px solid #ffcb3d50;
+  background-color: rgba(128, 93, 16, 0.314);
+  border: 1px solid rgba(255, 203, 61, 0.314);
   border-radius: 12px;
 
   display: none;
@@ -382,7 +382,7 @@
 }
 
 .accept-request h1 {
-  color: #ffbb00;
+  color: rgb(255, 187, 0);
   line-height: 32px;
   text-align: center;
   margin-top: 192px;
@@ -391,7 +391,7 @@
 }
 
 .accept-request p {
-  color: #c0b9a0;
+  color: rgb(192, 185, 160);
   text-align: center;
   font-size: 1.3rem;
   white-space: pre-line;
@@ -400,13 +400,13 @@
 .button-ar-should {
   width: 224px;
   height: 64px;
-  background-color: #382703;
-  border: 1px solid #79550a;
+  background-color: rgb(56, 39, 3);
+  border: 1px solid rgb(121, 85, 10);
   border-radius: 12px;
   color: var(--color-primary);
   font-size: 1.5rem;
   cursor: pointer;
-  color: #ffbb00;
+  color: rgb(255, 187, 0);
 
   margin-left: calc(32% - 112px);
   margin-top: 32px;
@@ -416,15 +416,15 @@
 }
 
 .button-ar-should:hover {
-  background-color: #553c05;
-  border-color: #ffbb00;
+  background-color: rgb(85, 60, 5);
+  border-color: rgb(255, 187, 0);
   scale: 1.05;
   transition: 300ms;
 }
 
 .button-ar-should:active {
-  background-color: #9c7218;
-  border-color: #ffda75;
+  background-color: rgb(156, 114, 24);
+  border-color: rgb(255, 218, 117);
   scale: 0.95;
   transition: 100ms;
 }
@@ -433,13 +433,13 @@
 .button-ar {
   width: 224px;
   height: 64px;
-  background-color: #35332d;
-  border: 1px solid #5a5549;
+  background-color: rgb(53, 51, 45);
+  border: 1px solid rgb(90, 85, 73);
   border-radius: 12px;
   color: var(--color-primary);
   font-size: 1.5rem;
   cursor: pointer;
-  color: #c5c1b2;
+  color: rgb(197, 193, 178);
 
   margin-left: calc(68% - 112px);
   margin-top: 32px;
@@ -449,15 +449,15 @@
 }
 
 .button-ar:hover {
-  background-color: #66635a;
-  border-color: #bdb39b;
+  background-color: rgb(102, 99, 90);
+  border-color: rgb(189, 179, 155);
   scale: 1.05;
   transition: 300ms;
 }
 
 .button-ar:active {
-  background-color: #aaa597;
-  border-color: #ece4d0;
+  background-color: rgb(170, 165, 151);
+  border-color: rgb(236, 228, 208);
   scale: 0.95;
   transition: 100ms;
 }
@@ -491,7 +491,7 @@
   animation: 0.5s ease-in-out 0s 1 SlideIn;
   overflow-y: scroll;
   scrollbar-width: thin;
-  scrollbar-color: rgba(71, 52, 71, 0.2) #ffffff00;
+  scrollbar-color: rgba(71, 52, 71, 0.2) rgba(255, 255, 255, 0);
   scroll-behavior: smooth; /* Enable smooth scrolling */
 }
 
@@ -507,13 +507,13 @@
   display: flex;
   justify-content: space-between;  /* Pushes the radio button to the right */
   align-items: center;
-  color: #d1b9d4;
+  color: rgb(209, 185, 212);
   text-align: left;
   font-size: 1.2rem;
   line-height: 3rem;
   margin: 10px 16px;
   gap: 8px;
-  background-color: #222222;
+  background-color: rgb(34, 34, 34);
   padding: 10px 16px;
   border-radius: 12px;
   cursor: pointer;
@@ -521,13 +521,13 @@
 }
 
 .side-menu label:hover {
-  background-color: #333333;  /* Hover effect */
+  background-color: rgb(51, 51, 51);  /* Hover effect */
   transform: scale(1.05);  /* Slight zoom effect */
 }
 
 .side-menu label input {
   margin-left: 10px;
-  accent-color: #ffcc00;  /* Custom accent color for radio buttons */
+  accent-color: rgb(255, 204, 0);  /* Custom accent color for radio buttons */
 }
 
 .side-menu img {
@@ -538,7 +538,7 @@
 
 .side-menu input[type="radio"] {
   margin-left: 10px;
-  accent-color: #ff8cf9;  /* Custom color for radio buttons */
+  accent-color: rgb(255, 140, 249);  /* Custom color for radio buttons */
   width: 20px;
   height: 20px;
 }
@@ -679,20 +679,20 @@ a {
 }
 
 .glow {
-  color: #fff;
+  color: rgb(255, 255, 255);
   text-shadow: 
-    0 0 5px #bb80b8,
-    0 0 20px #d387cf,
-    0 0 40px #ffc1fc,
-    0 0 60px #ffc1fc;
+    0 0 5px rgb(187, 128, 184),
+    0 0 20px rgb(211, 135, 207),
+    0 0 40px rgb(255, 193, 252),
+    0 0 60px rgb(255, 193, 252);
     transition: 1000ms;
 }
 
 .glow:hover {
   text-shadow: 
-    0 0 5px #ffecfe,
-    0 0 40px #ffc1fc,
-    0 0 60px #ffc1fc;
+    0 0 5px rgb(255, 236, 254),
+    0 0 40px rgb(255, 193, 252),
+    0 0 60px rgb(255, 193, 252);
   transition: 500ms;
 }
 
@@ -703,8 +703,8 @@ a {
 
 .glow-inactive:hover {
   text-shadow: 
-    0 0 20px #fd96f8,
-    0 0 40px #ffc1fc;
+    0 0 20px rgb(253, 150, 248),
+    0 0 40px rgb(255, 193, 252);
   transition: 500ms;
 }
 
@@ -727,7 +727,7 @@ a {
 }
 
 .upload-title p {
-  color: gray;
+  color: rgb(128, 128, 128);
   font-size: 1.5rem;
   margin: 8px 0 0;
   padding-bottom: 32px;
@@ -988,7 +988,7 @@ a {
 /* Scrollbar */
 .teoria-container {
   scrollbar-width: thin;
-  scrollbar-color: rgba(71, 52, 71, 0.2) #ffffff00;
+  scrollbar-color: rgba(71, 52, 71, 0.2) rgba(255, 255, 255, 0);
 
   scroll-behavior: smooth; /* Enable smooth scrolling */
 }
@@ -1340,7 +1340,7 @@ a {
 
 .teoria-box p {
   margin: 0;
-  color: #aaa;
+  color: rgb(170, 170, 170);
 }
 
 
