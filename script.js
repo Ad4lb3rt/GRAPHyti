@@ -1,10 +1,21 @@
-const hardDefinedBackgroundColors = [
+const hardcodedGraphColors = [
     'rgba(255, 0, 212, 0.5)',
     'rgba(160, 0, 133, 0.5)',
     'rgba(156, 67, 141, 0.5)',
     'rgba(231, 137, 255, 0.5)',
     'rgba(199, 27, 226, 0.5)'
-]
+];
+
+const siteThemeColors = [
+    /* Order of parameters - 1 - primary color, 2 - background color, 3 - foreground color, 4 - outline color, 5- button hover color, 6 - inactive button color*/
+    ["#ffc1fc", "rgb(16, 14, 16)", "rgba(117, 64, 106, 0.308)", "rgb(71, 52, 71)", "rgb(32, 32, 36)", "rgb(28, 28, 32)"],
+    ["#ffc1fc", "rgb(16, 14, 16)", "rgba(117, 64, 106, 0.308)", "rgb(71, 52, 71)", "rgb(32, 32, 36)", "rgb(28, 28, 32)"],
+    ["#ffc1fc", "rgb(16, 14, 16)", "rgba(117, 64, 106, 0.308)", "rgb(71, 52, 71)", "rgb(32, 32, 36)", "rgb(28, 28, 32)"],
+    ["#ffc1fc", "rgb(16, 14, 16)", "rgba(117, 64, 106, 0.308)", "rgb(71, 52, 71)", "rgb(32, 32, 36)", "rgb(28, 28, 32)"],
+    ["#ffc1fc", "rgb(16, 14, 16)", "rgba(117, 64, 106, 0.308)", "rgb(71, 52, 71)", "rgb(32, 32, 36)", "rgb(28, 28, 32)"],
+    ["#ffc1fc", "rgb(16, 14, 16)", "rgba(117, 64, 106, 0.308)", "rgb(71, 52, 71)", "rgb(32, 32, 36)", "rgb(28, 28, 32)"],
+    ["#ffc1fc", "rgb(16, 14, 16)", "rgba(117, 64, 106, 0.308)", "rgb(71, 52, 71)", "rgb(32, 32, 36)", "rgb(28, 28, 32)"],
+];
 var currentChart = null;
 const menuScreen = document.getElementsByClassName("upload")[0];
 const settingsScreen = document.getElementsByClassName("graph-settings-wrapper")[0];
@@ -21,6 +32,7 @@ var cachedErrorDetails = null;
 var sidebarState = true;
 var currentSiteTheme = localStorage.getItem("currentSiteTheme") ?? 0;
 var currentGraphTheme = localStorage.getItem("currentGraphTheme") ?? 0;
+var root = document.querySelector(':root');
 fetch("side_menu.html")
     .then(res => res.text())
     .then(html => {
@@ -457,7 +469,7 @@ function generateGraph(graphSettings)
                 barThickness: 100,
                 barPercentage: 0.5,
                 tension: 0.1,
-                backgroundColor: hardDefinedBackgroundColors
+                backgroundColor: hardcodedGraphColors
             }]
             },
             options: {
@@ -574,8 +586,8 @@ function generateGraph(graphSettings)
 
 function getValidColors(numberOfNames)
 {
-    let validColors = hardDefinedBackgroundColors;
-    if((numberOfNames - 1) % hardDefinedBackgroundColors.length == 0)
+    let validColors = hardcodedGraphColors;
+    if((numberOfNames - 1) % hardcodedGraphColors.length == 0)
     {
         validColors.pop();
     }
@@ -718,6 +730,12 @@ function changeSiteTheme(buttonIndex)
 {
     localStorage.setItem("currentSiteTheme", buttonIndex);
     currentSiteTheme = buttonIndex;
+    const pickedTheme = siteThemeColors[currentSiteTheme];
+    root.style.setProperty('--color-primary', pickedTheme[0]);
+    root.style.setProperty('--color-background', pickedTheme[1]);
+    root.style.setProperty('--color-foreground', pickedTheme[2]);
+    root.style.setProperty('--color-button-hover', pickedTheme[3]);
+    root.style.setProperty('--color-button-inactive', pickedTheme[4]);
 }
 
 function changeGraphTheme(buttonIndex)
