@@ -5,17 +5,6 @@ const hardcodedGraphColors = [
     'rgba(231, 137, 255, 0.5)',
     'rgba(199, 27, 226, 0.5)'
 ];
-
-const siteThemeColors = [
-    /* Order of parameters - 1 - primary color, 2 - background color, 3 - foreground color, 4 - outline color, 5- button hover color, 6 - inactive button color*/
-    ["rgb(255, 193, 252)", "rgb(16, 14, 16)", "rgba(117, 64, 106, 0.308)", "rgb(71, 52, 71)", "rgb(32, 32, 36)", "rgb(28, 28, 32)"],
-    ["rgb(255, 193, 252)", "rgb(16, 14, 16)", "rgba(117, 64, 106, 0.308)", "rgb(71, 52, 71)", "rgb(32, 32, 36)", "rgb(28, 28, 32)"],
-    ["rgb(255, 193, 252)", "rgb(16, 14, 16)", "rgba(117, 64, 106, 0.308)", "rgb(71, 52, 71)", "rgb(32, 32, 36)", "rgb(28, 28, 32)"],
-    ["rgb(255, 193, 252)", "rgb(16, 14, 16)", "rgba(117, 64, 106, 0.308)", "rgb(71, 52, 71)", "rgb(32, 32, 36)", "rgb(28, 28, 32)"],
-    ["rgb(255, 193, 252)", "rgb(16, 14, 16)", "rgba(117, 64, 106, 0.308)", "rgb(71, 52, 71)", "rgb(32, 32, 36)", "rgb(28, 28, 32)"],
-    ["rgb(255, 193, 252)", "rgb(16, 14, 16)", "rgba(117, 64, 106, 0.308)", "rgb(71, 52, 71)", "rgb(32, 32, 36)", "rgb(28, 28, 32)"],
-    ["rgb(255, 193, 252)", "rgb(16, 14, 16)", "rgba(117, 64, 106, 0.308)", "rgb(71, 52, 71)", "rgb(32, 32, 36)", "rgb(28, 28, 32)"],
-];
 var currentChart = null;
 const menuScreen = document.getElementsByClassName("upload")[0];
 const settingsScreen = document.getElementsByClassName("graph-settings-wrapper")[0];
@@ -29,23 +18,6 @@ const warningPopup = document.getElementsByClassName("accept-request")[0];
 const siteHeader = document.getElementsByClassName("header")[0];
 var cachedGraphSettings = null;
 var cachedErrorDetails = null;
-var sidebarState = true;
-var currentSiteTheme = localStorage.getItem("currentSiteTheme") ?? 0;
-var currentGraphTheme = localStorage.getItem("currentGraphTheme") ?? 0;
-var root = document.querySelector(':root');
-fetch("side_menu.html")
-    .then(res => res.text())
-    .then(html => {
-        document.getElementById("side-menu-placeholder").innerHTML = html;
-        toggleSidebar();
-        var siteTheme = document.getElementsByClassName("website-theme-button")[currentSiteTheme];
-        siteTheme.checked = "true";
-        siteTheme.click();
-
-        var graphTheme = document.getElementsByClassName("graph-theme-button")[currentGraphTheme];
-        graphTheme.checked = "true";
-        graphTheme.click();
-    });
 filterFunction();
 closeError();
 
@@ -711,37 +683,6 @@ function showWarning(warningHeader, warningMessage)
 function refreshSite()
 {
     location.reload();
-}
-
-function toggleSidebar()
-{
-    sidebarState = !sidebarState;
-    document.getElementsByClassName("side-menu")[0].style.display = sidebarState == true ? "block" : "none";
-    closeError();
-}
-
-function closeSidebar()
-{
-    sidebarState = false;
-    document.getElementsByClassName("side-menu")[0].style.display = "none";
-}
-
-function changeSiteTheme(buttonIndex)
-{
-    localStorage.setItem("currentSiteTheme", buttonIndex);
-    currentSiteTheme = buttonIndex;
-    const pickedTheme = siteThemeColors[currentSiteTheme];
-    root.style.setProperty('--color-primary', pickedTheme[0]);
-    root.style.setProperty('--color-background', pickedTheme[1]);
-    root.style.setProperty('--color-foreground', pickedTheme[2]);
-    root.style.setProperty('--color-button-hover', pickedTheme[3]);
-    root.style.setProperty('--color-button-inactive', pickedTheme[4]);
-}
-
-function changeGraphTheme(buttonIndex)
-{
-    localStorage.setItem("currentGraphTheme", buttonIndex);
-    currentGraphTheme = buttonIndex;
 }
 
 document.addEventListener("keydown", function(event) {

@@ -1,7 +1,7 @@
 var sidebarState = true;
 var currentSiteTheme = localStorage.getItem("currentSiteTheme") ?? 0;
 var currentGraphTheme = localStorage.getItem("currentGraphTheme") ?? 0;
-
+var root = document.querySelector(':root');
 fetch("side_menu.html")
     .then(res => res.text())
     .then(html => {
@@ -32,10 +32,20 @@ function changeSiteTheme(buttonIndex)
 {
     localStorage.setItem("currentSiteTheme", buttonIndex);
     currentSiteTheme = buttonIndex;
+    root.style.setProperty('--color-primary', getSiteColor(0));
+    root.style.setProperty('--color-background', getSiteColor(1));
+    root.style.setProperty('--color-foreground', getSiteColor(2));
+    root.style.setProperty('--color-button-hover', getSiteColor(3));
+    root.style.setProperty('--color-button-inactive', getSiteColor(4));
 }
 
 function changeGraphTheme(buttonIndex)
 {
     localStorage.setItem("currentGraphTheme", buttonIndex);
     currentGraphTheme = buttonIndex;
+}
+
+function getCurrentSiteThemeIndex()
+{
+    return localStorage.getItem("currentSiteTheme");
 }
