@@ -1,11 +1,58 @@
-:root {
-  --color-background: rgb(16, 14, 16);
-  --color-foreground: rgba(117, 64, 106, 0.308);
-  --color-outline: rgb(71, 52, 71);
-  --color-primary: rgb(255, 193, 252);
+/* you need to update the glow colors to be easily changable */
 
-  --color-button-hover: rgb(32, 32, 36);
-  --color-button-inactive: rgb(28, 28, 32);
+:root {
+  --color-text-primary: rgb(255, 193, 252);
+  --color-text-secondary: rgb(169, 103, 228);
+  --color-text-tertiary: rgb(166, 154, 168);
+  --color-text-h2: rgb(124, 89, 165);
+  --color-text-h3: rgb(105, 77, 136);
+
+  --color-background-primary: rgb(16, 14, 16);
+  --color-background-secondary: rgba(117, 64, 106, 0.3);
+  
+  --color-teoria-alert-bg: rgba(169, 103, 228, 0.15);
+  --color-teoria-example-bg: rgba(117, 64, 106, 0.15);
+  --color-teoria-definition-bg: rgba(71, 52, 52, 0.2);
+  --color-teoria-definition-outline: rgba(114, 93, 93, 0.2);
+
+  --color-button-primary: rgb(28, 28, 32);
+  --color-button-secondary: rgb(21, 21, 24);
+  --color-button-hover: rgb(48, 36, 48);
+  --color-button-active: var(--color-button-outline);
+  --color-button-outline: rgb(71, 52, 71);
+
+  
+  --color-popup-bg: rgba(128, 16, 16, 0.314);
+  --color-popup-outline: rgba(255, 61, 61, 0.314);
+  --color-popup-header: rgb(255, 124, 124);
+  --color-popup-text: rgb(192, 160, 160);
+  --color-popup-extra: rgb(202, 117, 117);
+
+  --color-request-bg: rgba(128, 93, 16, 0.314);
+  --color-request-outline: rgba(255, 203, 61, 0.314);
+  --color-request-header: rgb(255, 187, 0);
+  --color-request-text: rgb(192, 185, 160);
+
+  --color-request-button-should-bg: rgb(56, 39, 3);
+  --color-request-button-should-outline: rgb(121, 85, 10);
+  --color-request-button-should-text: rgb(255, 187, 0);
+  --color-request-button-should-hover: rgb(85, 60, 5);
+
+  --color-request-button-bg: rgb(53, 51, 45);
+  --color-request-button-outline: rgb(90, 85, 73);
+  --color-request-button-text: rgb(197, 193, 178);
+  --color-request-button-hover: rgb(102, 99, 90);
+
+  --color-filetype-csv: rgba(33, 177, 254, 0.1);
+  --color-filetype-json: rgba(254, 216, 0, 0.1);
+  --color-filetype-xml: rgba(254, 33, 140, 0.1);
+
+  --color-white: rgb(255, 255, 255);
+
+  --radius-small: 4px;
+  --radius-medium: 12px;
+  --radius-large: 16px;
+  --radius-full: 50%;
 }
 
 @keyframes LoadIn {
@@ -136,25 +183,25 @@
 
 @keyframes ChangeFileTypeWrapper {
   13% {
-    background-color: rgba(33, 177, 254, 0.1);;
+    background-color: var(--color-filetype-csv);
   }
 
   20% {
-    background-color: rgba(254, 216, 0, 0.1);
+    background-color: var(--color-filetype-json);
   }
   46% {
-    background-color: rgba(254, 216, 0, 0.1);
+    background-color: var(--color-filetype-json);
   }
 
   53% {
-    background-color: rgba(254, 33, 140, 0.1);
+    background-color: var(--color-filetype-xml);
   }
   79% {
-    background-color: rgba(254, 33, 140, 0.1);
+    background-color: var(--color-filetype-xml);
   }
 
   86% {
-    background-color: rgba(33, 177, 254, 0.1);
+    background-color: var(--color-filetype-csv);
   }
 }
 
@@ -170,8 +217,8 @@
 
 #fileTypeAnimWrapper {
   animation: ChangeFileTypeWrapper infinite 9s;
-  background-color: rgba(33, 177, 254, 0.1);
-  border-radius: 5px;
+  background-color: var(--color-filetype-csv);
+  border-radius: var(--radius-small);
   display: inline-block;
   width: 64px;
 }
@@ -182,7 +229,7 @@
 
   animation: ChangeFileType infinite 9s;
 
-  color: rgb(255, 255, 255);
+  color: var(--color-white);
   display: inline-block;
   width: 50px;
   
@@ -209,7 +256,7 @@
 }
 
 .sidebar a {
-  color: rgb(124, 89, 165);
+  color: var(--color-text-secondary);
   font-size: 1.4rem;
   margin-top: 30px;
   margin-bottom: 15px;
@@ -219,8 +266,8 @@
 }
 
 .sidebar a:hover {
-  color: var(--color-primary);
-  border-left: 4px solid var(--color-primary);
+  color: var(--color-text-primary);
+  border-left: 4px solid var(--color-text-primary);
   transition: 200ms;
 }
 
@@ -235,9 +282,9 @@
 
   padding: 16px 16px 24px 16px;
 
-  background-color: rgba(128, 16, 16, 0.314);
-  border: 1px solid rgba(255, 61, 61, 0.314);
-  border-radius: 12px;
+  background-color: var(--color-popup-bg);
+  border: 1px solid var(--color-popup-outline);
+  border-radius: var(--radius-medium);
 
   animation: 0.5s ease-in-out 0s 1 SlideIn;
 
@@ -245,18 +292,18 @@
 }
 
 .popup h2 {
-  color: rgb(255, 124, 124);
+  color: var(--color-popup-header);
   margin: 0px 0px 8px 40px;
   line-height: 32px;
 }
 
 .popup p {
-  color: rgb(192, 160, 160);
+  color: var(--color-popup-text);
   margin: 0px;
 }
 
 #popup-show-details {
-  color: rgb(202, 117, 117);
+  color: var(--color-popup-extra);
   text-decoration: underline;
   cursor: pointer;
   margin-top: 16px;
@@ -284,16 +331,16 @@
   width: 760px;
   height: 550px;
 
-  background-color: var(--color-button-inactive);
-  border: 1px solid var(--color-outline);
-  border-radius: 12px;
+  background-color: var(--color-button-primary);
+  border: 1px solid var(--color-button-outline);
+  border-radius: var(--radius-medium);
   display: none;
 
   z-index: 1000;
 }
 
 .popup-details h1 {
-  color: var(--color-primary);
+  color: var(--color-text-primary);
   line-height: 2rem;
   text-align: left;
   font-size: 2rem;
@@ -301,10 +348,10 @@
 }
 
 .popup-details p {
-  background-color: rgb(15, 15, 15);
-  border: solid 1px rgb(51, 51, 51);
+  background-color: var(--color-button-secondary);
+  border: solid 1px var(--color-button-outline);
   padding: 12px;
-  color: rgb(174, 152, 177);
+  color: var(--color-text-tertiary);
   text-align: left;
   font-size: 1.2rem;
   line-height: 1.5rem;
@@ -369,9 +416,9 @@
   width: 760px;
   height: 550px;
 
-  background-color: rgba(128, 93, 16, 0.314);
-  border: 1px solid rgba(255, 203, 61, 0.314);
-  border-radius: 12px;
+  background-color: var(--color-request-bg);
+  border: 1px solid var(--color-request-outline);
+  border-radius: var(--radius-medium);
 
   display: none;
 }
@@ -382,7 +429,7 @@
 }
 
 .accept-request h1 {
-  color: rgb(255, 187, 0);
+  color: var(--color-request-header);
   line-height: 32px;
   text-align: center;
   margin-top: 192px;
@@ -391,7 +438,7 @@
 }
 
 .accept-request p {
-  color: rgb(192, 185, 160);
+  color: var(--color-request-text);
   text-align: center;
   font-size: 1.3rem;
   white-space: pre-line;
@@ -400,13 +447,12 @@
 .button-ar-should {
   width: 224px;
   height: 64px;
-  background-color: rgb(56, 39, 3);
-  border: 1px solid rgb(121, 85, 10);
-  border-radius: 12px;
-  color: var(--color-primary);
+  background-color: var(--color-request-button-should-bg);
+  border: 1px solid var(--color-request-button-should-outline);
+  border-radius: var(--radius-medium);
   font-size: 1.5rem;
   cursor: pointer;
-  color: rgb(255, 187, 0);
+  color: var(--color-request-button-should-text);
 
   margin-left: calc(32% - 112px);
   margin-top: 32px;
@@ -416,15 +462,16 @@
 }
 
 .button-ar-should:hover {
-  background-color: rgb(85, 60, 5);
-  border-color: rgb(255, 187, 0);
+  background-color: var(--color-request-button-should-hover);
+  border-color: var(--color-request-button-should-text);
   scale: 1.05;
   transition: 300ms;
 }
 
 .button-ar-should:active {
-  background-color: rgb(156, 114, 24);
-  border-color: rgb(255, 218, 117);
+  background-color: var(--color-request-button-should-text);
+  border-color: var(--color-request-button-should-text);
+  color: var(--color-request-button-should-bg);
   scale: 0.95;
   transition: 100ms;
 }
@@ -433,13 +480,13 @@
 .button-ar {
   width: 224px;
   height: 64px;
-  background-color: rgb(53, 51, 45);
-  border: 1px solid rgb(90, 85, 73);
-  border-radius: 12px;
+  background-color: var(--color-request-button-bg);
+  border: 1px solid var(--color-request-button-outline);
+  border-radius: var(--radius-medium);
   color: var(--color-primary);
   font-size: 1.5rem;
   cursor: pointer;
-  color: rgb(197, 193, 178);
+  color: var(--color-request-button-text);
 
   margin-left: calc(68% - 112px);
   margin-top: 32px;
@@ -449,15 +496,16 @@
 }
 
 .button-ar:hover {
-  background-color: rgb(102, 99, 90);
-  border-color: rgb(189, 179, 155);
+  background-color: var(--color-request-button-hover);
+  border-color: var(--color-request-button-text);
   scale: 1.05;
   transition: 300ms;
 }
 
 .button-ar:active {
-  background-color: rgb(170, 165, 151);
-  border-color: rgb(236, 228, 208);
+  background-color: var(--color-request-button-text);
+  border-color: var(--color-request-button-text);
+  color: var(--color-request-button-bg);
   scale: 0.95;
   transition: 100ms;
 }
@@ -484,19 +532,19 @@
   height: calc(100vh - 256px);
   margin: 128px 16px;
   background-color: rgba(0, 0, 0, 0.5);
-  border-radius: 16px;
-  border: solid 1px var(--color-outline);
-  background-color: var(--color-background);
+  border-radius: var(--radius-large);
+  border: solid 1px var(--color-button-outline);
+  background-color: var(--color-button-secondary);
   padding: 16px;
   animation: 0.5s ease-in-out 0s 1 SlideIn;
   overflow-y: scroll;
   scrollbar-width: thin;
   scrollbar-color: rgba(71, 52, 71, 0.2) rgba(255, 255, 255, 0);
-  scroll-behavior: smooth; /* Enable smooth scrolling */
+  scroll-behavior: smooth;
 }
 
 .side-menu h1 {
-  color: var(--color-primary);
+  color: var(--color-text-primary);
   line-height: 1.5rem;
   text-align: left;
   font-size: 1.6rem;
@@ -505,59 +553,48 @@
 
 .side-menu label {
   display: flex;
-  justify-content: space-between;  /* Pushes the radio button to the right */
+  justify-content: space-between;
   align-items: center;
-  color: rgb(209, 185, 212);
+  color: var(--color-text-secondary);
   text-align: left;
   font-size: 1.2rem;
   line-height: 3rem;
   margin: 10px 16px;
   gap: 8px;
-  background-color: rgb(34, 34, 34);
+  background-color: var(--color-button-primary);
   padding: 10px 16px;
-  border-radius: 12px;
+  border-radius: var(--radius-medium);
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .side-menu label:hover {
-  background-color: rgb(51, 51, 51);  /* Hover effect */
-  transform: scale(1.05);  /* Slight zoom effect */
-}
-
-.side-menu label input {
-  margin-left: 10px;
-  accent-color: rgb(255, 204, 0);  /* Custom accent color for radio buttons */
-}
-
-.side-menu img {
-  margin-right: 8px;
-  width: 20px;  /* Adjust icon size */
-  height: auto;
+  background-color: var(--color-button-hover);
+  transform: scale(1.05);
 }
 
 .side-menu input[type="radio"] {
   margin-left: 10px;
-  accent-color: rgb(255, 140, 249);  /* Custom color for radio buttons */
+  accent-color: var(--color-text-primary);
   width: 20px;
   height: 20px;
 }
 
-/* Color Circle - Divided into 4 parts */
 .color-circle {
   width: 30px;
   height: 30px;
-  border-radius: 50%;
+  border-radius: var(--radius-full);
   background: conic-gradient(
-    rgb(255, 144, 236) 0% 25%, 
-    rgb(27, 27, 27) 25% 50%, 
-    rgb(82, 35, 88) 50% 75%, 
-    rgb(255, 255, 255) 75% 100%
+    rgb(255, 193, 252) 0% 25%, /* --color-text-primary */
+    rgb(169, 103, 228) 25% 50%, /* --color-text-secondary */
+    rgb(16, 14, 16) 50% 75%, /* --color-background-primary */
+    rgba(117, 64, 106, 1) 75% 100% /* --color-background-secondary */
   );
   margin-right: 10px;
 }
 
 /* Slide-in animation */
+
 @keyframes SlideIn {
   from {
     transform: translateX(100%);
@@ -574,10 +611,10 @@ body {
   padding: 0;
   margin: 0;
   overflow: hidden;
-  background-color: var(--color-background);
-  background-image: radial-gradient(var(--color-foreground) 2px, transparent 1px);
+  background-color: var(--color-background-primary);
+  background-image: radial-gradient(var(--color-background-secondary) 2px, transparent 1px);
   background-size: 35px 35px;
-  color: var(--color-primary);
+  color: var(--color-text-primary);
   font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -589,7 +626,7 @@ body::after {
   width: 100%;
   height: 100%;
   pointer-events: none;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0) 25%, var(--color-background));
+  background: radial-gradient(circle, rgba(255, 255, 255, 0) 25%, var(--color-background-primary));
   z-index: -1;
 }
 
@@ -603,7 +640,7 @@ body::after {
   height: 72px;
   width: 100%;
   background-color: transparent;
-  color: var(--color-primary);
+  color: var(--color-text-primary);
   padding: 0 240px;
   font-size: 20px;
   margin: 16px 0px;
@@ -620,14 +657,14 @@ body::after {
 }
 
 .logo-img {
-  border-radius: 50%;
+  border-radius: var(--radius-full);
 }
 
 .logo-text {
   margin-left: 16px;
   font-weight: bold;
   font-size: 1.5rem;
-  color: var(--color-primary);
+  color: var(--color-text-primary);
 }
 
 /* Navigation bar */
@@ -646,15 +683,15 @@ a {
 }
 
 .nav-button {
-  color: var(--color-primary);
+  color: var(--color-text-primary);
   cursor: pointer;
   text-decoration: none;
 }
 
 .theme-change {
-  border-radius: 12px;
-  background-color: var(--color-primary);
-  color: var(--color-background);
+  border-radius: var(--radius-medium);
+  background-color: var(--color-text-primary);
+  color: var(--color-background-primary);
   padding: 12px 20px;
   margin-left: 64px;
   border: none;
@@ -681,18 +718,18 @@ a {
 .glow {
   color: rgb(255, 255, 255);
   text-shadow: 
-    0 0 5px rgb(187, 128, 184),
-    0 0 20px rgb(211, 135, 207),
-    0 0 40px rgb(255, 193, 252),
-    0 0 60px rgb(255, 193, 252);
+    0 0 5px var(--color-text-tertiary),
+    0 0 20px var(--color-text-secondary),
+    0 0 40px var(--color-text-primary),
+    0 0 60px var(--color-text-primary);
     transition: 1000ms;
 }
 
 .glow:hover {
   text-shadow: 
-    0 0 5px rgb(255, 236, 254),
-    0 0 40px rgb(255, 193, 252),
-    0 0 60px rgb(255, 193, 252);
+    0 0 5px var(--color-text-tertiary),
+    0 0 40px var(--color-text-primary),
+    0 0 60px var(--color-text-primary);
   transition: 500ms;
 }
 
@@ -721,13 +758,13 @@ a {
 }
 
 .upload-title h1 {
-  color: var(--color-primary);
+  color: var(--color-text-primary);
   font-size: 4rem;
   margin: 0;
 }
 
 .upload-title p {
-  color: rgb(128, 128, 128);
+  color: var(--color-text-tertiary);
   font-size: 1.5rem;
   margin: 8px 0 0;
   padding-bottom: 32px;
@@ -736,10 +773,10 @@ a {
 .button {
   width: 224px;
   height: 64px;
-  background-color: var(--color-button-inactive);
-  border: 1px solid var(--color-outline);
-  border-radius: 12px;
-  color: var(--color-primary);
+  background-color: var(--color-button-primary);
+  border: 1px solid var(--color-button-outline);
+  border-radius: var(--radius-medium);
+  color: var(--color-text-primary);
   font-size: 1.5rem;
   cursor: pointer;
   transition: 300ms;
@@ -752,7 +789,7 @@ a {
 }
 
 .button:active {
-  background-color: var(--color-outline);
+  background-color: var(--color-button-active);
   scale: 0.95;
   transition: 100ms;
 }
@@ -767,17 +804,17 @@ a {
 }
 
 h1 {
-  color: rgb(169, 103, 228);
-  font-weight:1000;
+  color: var(--color-text-secondary);
+  font-weight: 1000;
   margin-left: 3%;
 }
 
 h2 {
-  color: rgb(124, 89, 165);
+  color: var(--color-text-h2);
 }
 
 h3 {
-  color: rgb(105, 77, 136);
+  color: var(--color-text-h3);
 }
 
 /* Select Graph Type */
@@ -802,12 +839,12 @@ h3 {
 #graphTypeInput {
   width: 100%;
   height: 64px;
-  border-radius: 12px 12px 0 0;
+  border-radius: var(--radius-medium) var(--radius-medium) 0 0;
   font-size: 16px;
   padding: 14px 20px 12px 24px;
   border: none;
-  border-bottom: 1px solid var(--color-outline);
-  background-color: var(--color-button-inactive);
+  border-bottom: 1px solid var(--color-button-outline);
+  background-color: var(--color-button-secondary);
   color: white;
 }
 
@@ -818,10 +855,10 @@ h3 {
 #dropdown-select {
   width: 480px;
   height: auto;
-  background-color: var(--color-button-inactive);
-  border: 1px solid var(--color-outline);
-  border-radius: 12px;
-  color: var(--color-primary);
+  background-color: var(--color-button-secondary);
+  border: 1px solid var(--color-button-outline);
+  border-radius: var(--radius-medium);
+  color: var(--color-text-primary);
   font-size: 1.2rem;
   transition: 300ms;
 }
@@ -832,8 +869,8 @@ h3 {
   text-decoration: none;
   display: block;
   margin: 8px;
-  border-radius: 12px;
-  background-color: var(--color-button-inactive);
+  border-radius: var(--radius-medium);
+  background-color: var(--color-button-secondary);
   text-align: left;
   transition: 300ms;
 }
@@ -844,7 +881,7 @@ h3 {
 }
 
 #dropdown-select a:active {
-  background-color: var(--color-outline);
+  background-color: var(--color-button-active);
   transition: 300ms;
 }
 
@@ -876,9 +913,9 @@ h3 {
 .card {
   height: 200px;
   width: 300px;
-  background-color: var(--color-button-inactive);
-  border-radius: 12px;
-  border: 1px solid var(--color-outline);
+  background-color: var(--color-button-secondary);
+  border-radius: var(--radius-medium);
+  border: 1px solid var(--color-button-outline);
   margin: 0 15px;
   transition: 300ms;
   padding: 10px;
@@ -914,12 +951,12 @@ h3 {
 
 .card h3 {
   margin-top: 20%;
-  color: var(--color-primary);
+  color: var(--color-text-primary);
 }
 
 a {
   cursor: pointer;
-  color: var(--color-foreground);
+  color: var(--color-text-secondary);
 }
 
 #canvasDiv{
@@ -937,16 +974,16 @@ a {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--color-primary);
+  color: var(--color-text-primary);
 }
 
 
 .theory-bar {
   height: 80px;
   width: 480px;
-  background-color: var(--color-button-inactive);
+  background-color: var(--color-button-secondary);
   border-radius: 12px;
-  border: 1px solid var(--color-outline);
+  border: 1px solid var(--color-button-outline);
   transition: 300ms;
   animation: 0.5s ease-in-out 0s 1 PopIn forwards;
   opacity: 0;
@@ -995,16 +1032,16 @@ a {
 
 /* Rozšířené styly pro stránky teorie */
 .teoria-container {
-    max-width: 65%;
-    margin: 0 auto;
-    padding: 20px;
-    animation: 0.5s ease-in-out 0s 1 LoadIn;
-    overflow-y: auto;
-    height: calc(100vh - 100px);
+  max-width: 65%;
+  margin: 0 auto;
+  padding: 20px;
+  animation: 0.5s ease-in-out 0s 1 LoadIn;
+  overflow-y: auto;
+  height: calc(100vh - 100px);
 }
 
 .teoria-nadpis {
-  color: rgb(169, 103, 228);
+  color: var(--color-text-primary);
   font-size: 2.5rem;  
   text-align: center;
   margin-bottom: 30px;
@@ -1021,16 +1058,16 @@ a {
 }
 
 .teoria-section h2 {
-  color: rgb(124, 89, 165);
+  color: var(--color-text-h2);
   font-size: 1.8rem;
   margin-top: 30px;
   margin-bottom: 15px;
-  border-left: 4px solid rgb(169, 103, 228);
+  border-left: 4px solid var(--color-text-h2);
   padding-left: 15px;
 }
 
 .teoria-section h3 {
-  color: rgb(105, 77, 136);
+  color: var(--color-text-h3);
   font-size: 1.4rem;
   margin-top: 20px;
   margin-bottom: 10px;
@@ -1060,14 +1097,14 @@ a {
 .teoria-img {
   max-width: 80%;
   border-radius: 8px;
-  border: 1px solid var(--color-outline);
+  border: 1px solid var(--color-button-outline);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
 .teoria-code {
   background-color: rgba(16, 14, 16, 0.7);
-  border: 1px solid var(--color-outline);
-  border-radius: 5px;
+  border: 1px solid var(--color-button-outline);
+  border-radius: var(--radius-small);
   padding: 15px;
   margin: 15px 0;
   font-family: monospace;
@@ -1075,19 +1112,19 @@ a {
 }
 
 .teoria-example {
-  background-color: rgba(117, 64, 106, 0.15);
-  border-left: 4px solid rgb(169, 103, 228);
+  background-color: var(--color-teoria-example-bg);
+  border-left: 4px solid var(--color-text-secondary);
   padding: 15px;
   margin: 20px 0;
-  border-radius: 0 5px 5px 0;
+  border-radius: 0 var(--radius-small) var(--radius-small) 0;
 }
 
 .teoria-definition {
-  background-color: rgba(71, 52, 71, 0.2);
-  border: 1px solid var(--color-outline);
+  background-color: var(--color-teoria-definition-bg);
+  border: 1px solid var(--color-teoria-definition-outline);
   padding: 15px;
   margin: 20px 0;
-  border-radius: 5px;
+  border-radius: var(--radius-small);
 }
 
 .teoria-formula {
@@ -1103,15 +1140,15 @@ a {
   justify-content: space-between;
   margin-top: 40px;
   padding-top: 20px;
-  border-top: 1px solid var(--color-foreground);
+  border-top: 1px solid var(--color-background-secondary);
 }
 
 .teoria-nav-button {
-  background-color: var(--color-button-inactive);
-  border: 1px solid var(--color-outline);
-  border-radius: 8px;
+  background-color: var(--color-button-secondary);
+  border: 1px solid var(--color-button-outline);
+  border-radius: var(--radius-small);
   padding: 10px 20px;
-  color: var(--color-primary);
+  color: var(--color-text-primary);
   cursor: pointer;
   transition: 300ms;
   text-decoration: none;
@@ -1131,18 +1168,18 @@ a {
 }
 
 .teoria-table th, .teoria-table td {
-  border: 1px solid var(--color-outline);
+  border: 1px solid var(--color-button-outline);
   padding: 12px;
   text-align: left;
 }
 
 .teoria-table th {
-  background-color: rgba(117, 64, 106, 0.2);
-  color: var(--color-primary);
+  background-color: var(--color-teoria-example-bg);
+  color: var(--color-text-primary);
 }
 
 .teoria-table tr:nth-child(even) {
-  background-color: rgba(16, 14, 16, 0.5);
+  background-color: rgba(16, 16, 16, 0.5);
 }
 
 .teoria-card-container {
@@ -1154,9 +1191,9 @@ a {
 }
 
 .teoria-card {
-  background-color: var(--color-button-inactive);
-  border: 1px solid var(--color-outline);
-  border-radius: 8px;
+  background-color: var(--color-button-secondary);
+  border: 1px solid var(--color-button-outline);
+  border-radius: var(--radius-medium);
   padding: 20px;
   flex: 1 1 300px;
   transition: 300ms;
@@ -1177,7 +1214,7 @@ a {
 }
 
 .teoria-card h4 {
-  color: var(--color-primary);
+  color: var(--color-text-primary);
   margin-top: 0;
   margin-bottom: 15px;
   font-size: 1.2rem;
@@ -1190,11 +1227,11 @@ a {
 }
 
 .teoria-alert {
-  background-color: rgba(169, 103, 228, 0.15);
-  border-left: 4px solid rgb(169, 103, 228);
+  background-color: var(--color-teoria-alert-bg);
+  border-left: 4px solid var(--color-text-secondary);
   padding: 15px;
   margin: 20px 0;
-  border-radius: 0 5px 5px 0;
+  border-radius: 0 var(--radius-small) var(--radius-small) 0;
 }
 
 .teoria-alert p {
@@ -1203,14 +1240,14 @@ a {
 
 .teoria-tabs {
   display: flex;
-  border-bottom: 1px solid var(--color-outline);
+  border-bottom: 1px solid var(--color-button-outline);
   margin-bottom: 20px;
 }
 
 .teoria-tab {
   padding: 10px 20px;
   cursor: pointer;
-  color: var(--color-primary);
+  color: var(--color-text-primary);
   background-color: transparent;
   border: none;
   border-bottom: 3px solid transparent;
@@ -1218,12 +1255,12 @@ a {
 }
 
 .teoria-tab.active {
-  border-bottom: 3px solid var(--color-primary);
+  border-bottom: 3px solid var(--color-text-primary);
   font-weight: bold;
 }
 
 .teoria-tab:hover {
-  background-color: rgba(117, 64, 106, 0.1);
+  background-color: var(--color-teoria-example-bg);
 }
 
 .teoria-content {
@@ -1247,7 +1284,7 @@ a {
 }
 
 .teoria-homepage-nadpis {
-  color: var(--color-primary);
+  color: var(--color-text-primary);
   font-size: 3rem;
   text-align: center;
   margin-bottom: 50px;
@@ -1290,9 +1327,9 @@ a {
 }
 
 .teoria-box {
-  background-color: var(--color-button-inactive);
-  border: 1px solid var(--color-outline);
-  border-radius: 12px;
+  background-color: var(--color-button-primary);
+  border: 1px solid var(--color-button-outline);
+  border-radius: var(--radius-medium);
   padding: 30px;
   text-align: center;
   transition: all 0.3s ease;
@@ -1314,7 +1351,7 @@ a {
   left: 0;
   width: 100%;
   height: 4px;
-  background: linear-gradient(90deg, rgba(169,103,228,0), rgba(169,103,228,1), rgba(169,103,228,0));
+  background: linear-gradient(90deg, transparent, var(--color-text-primary), transparent);
   transform: translateX(-100%);
   transition: transform 0.5s ease;
 }
@@ -1330,7 +1367,7 @@ a {
 }
 
 .teoria-box h2 {
-  color: var(--color-primary);
+  color: var(--color-text-primary);
   margin-top: 0;
   margin-bottom: 15px;
   font-size: 1.8rem;
@@ -1340,7 +1377,7 @@ a {
 
 .teoria-box p {
   margin: 0;
-  color: rgb(170, 170, 170);
+  color: var(--color-text-tertiary);
 }
 
 
@@ -1411,11 +1448,11 @@ a {
 }
 
 .teoria-homepage-nadpis {
-  color: var(--color-primary);
+  color: var(--color-text-primary);
   font-size: 3rem;
   text-align: center;
   margin-bottom: 50px;
-  border-bottom: 2px solid var(--color-foreground);
+  border-bottom: 2px solid var(--color-background-secondary);
   padding-bottom: 20px;
   width: 80%;
   max-width: 800px;
@@ -1446,6 +1483,6 @@ a {
 }
 
 .t-link {
-  color: rgb(169, 103, 228);
+  color: var(--color-text-secondary);
   text-decoration: underline;
 }
