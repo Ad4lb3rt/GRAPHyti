@@ -347,9 +347,16 @@ function generateGraph(graphSettings)
     const graphType = graphSettings.graphType;
     uploadButton.style.width = "250px";
     uploadButton.textContent = "Vybrat nový soubor";
-    var uploadButtonImage = document.createElement('img');
-    uploadButtonImage.src = "resources/svgs/openfile.svg";
+    var SVG_NS = "http://www.w3.org/2000/svg";
+    var uploadButtonImage = document.createElementNS(SVG_NS, 'svg');
+    var uploadButtonImagePath = document.createElementNS(SVG_NS, "path");
+    uploadButtonImage.setAttribute("width", "24px");
+    uploadButtonImage.setAttribute("height", "24px");
+    uploadButtonImage.setAttribute("viewBox", "0 -960 960 960");
+    uploadButtonImage.setAttribute("fill", "var(--color-text-primary)");
+    uploadButtonImagePath.setAttribute("d", "M240-80q-33 0-56.5-23.5T160-160v-640q0-33 23.5-56.5T240-880h320l240 240v240h-80v-200H520v-200H240v640h360v80H240Zm638 15L760-183v89h-80v-226h226v80h-90l118 118-56 57Zm-638-95v-640 640Z");
     uploadButton.insertBefore(uploadButtonImage, uploadButton.firstChild);
+    uploadButtonImage.insertBefore(uploadButtonImagePath, uploadButtonImage.firstChild);
     if(!document.getElementById("retryButton"))
     {
         retryButton = uploadButton.cloneNode(true);
@@ -358,9 +365,16 @@ function generateGraph(graphSettings)
         retryButton.id = "retryButton";
         retryButton.style.marginLeft = "25px";
         retryButton.onclick = openSettingsMenu;
-        var retryButtonImage = document.createElement('img');
-        retryButtonImage.src = "resources/svgs/switch.svg";
+        var SVG_NS = "http://www.w3.org/2000/svg";
+        var retryButtonImage = document.createElementNS(SVG_NS, 'svg');
+        var retryButtonImagePath = document.createElementNS(SVG_NS, "path");
+        retryButtonImage.setAttribute("width", "24px");
+        retryButtonImage.setAttribute("height", "24px");
+        retryButtonImage.setAttribute("viewBox", "0 -960 960 960");
+        retryButtonImage.setAttribute("fill", "var(--color-text-primary)");
+        retryButtonImagePath.setAttribute("d", "M600-80q-127-48-203.5-158T320-484q0-91 36-172.5T458-800H320v-80h280v280h-80v-148q-57 51-88.5 119.5T400-484q0 102 54 187.5T600-167v87Z");
         retryButton.insertBefore(retryButtonImage, retryButton.firstChild);
+        retryButtonImage.insertBefore(retryButtonImagePath, retryButtonImage.firstChild);
         uploadButton.after(retryButton);
     }
     
@@ -596,12 +610,12 @@ function filterFunction()
     if(filter == "")
     {
         topResult = a[0];
-        topResult.style.backgroundColor = "rgb(64, 64, 73)";
+        topResult.style.backgroundColor = "var(--color-button-hover)";
         for(let j = 0; j < a.length; j++)
         {
             if(a[j] != topResult)
             {
-                a[j].style.backgroundColor = "rgb(28, 28, 32)";
+                a[j].style.backgroundColor = "var(--color-button-primary)";
             }
         }
         return;
@@ -609,16 +623,15 @@ function filterFunction()
 
     for(let i = 0; i < a.length; i++)
     {
-        console.log(a[i].textContent + ": " +  highlighted[i]);
         if(highlighted[i])
         {
             topResult = a[i];
-            topResult.style.backgroundColor = "rgb(64, 64, 73)";
+            topResult.style.backgroundColor = "var(--color-button-hover)";
             for(let j = 0; j < a.length; j++)
             {
                 if(a[j] != topResult)
                 {
-                    a[j].style.backgroundColor = "rgb(28, 28, 32)";
+                    a[j].style.backgroundColor = "var(--color-button-primary)";
                 }
             }
             return;

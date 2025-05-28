@@ -1,6 +1,5 @@
 var sidebarState = true;
 var currentSiteTheme = localStorage.getItem("currentSiteTheme") ?? 0;
-var currentGraphTheme = localStorage.getItem("currentGraphTheme") ?? 0;
 var root = document.querySelector(':root');
 const overridableVars = [
     "--color-text-primary",
@@ -47,16 +46,28 @@ fetch("side_menu.html")
         var siteTheme = document.getElementsByClassName("website-theme-button")[currentSiteTheme];
         siteTheme.checked = "true";
         siteTheme.click();
-
-        var graphTheme = document.getElementsByClassName("graph-theme-button")[currentGraphTheme];
-        graphTheme.checked = "true";
-        graphTheme.click();
+        onLoad();
     });
 
 function toggleSidebar()
 {
     sidebarState = !sidebarState;
     document.getElementsByClassName("side-menu")[0].style.display = sidebarState == true ? "block" : "none";
+}
+
+function onLoad()
+{
+    colorCircles = document.getElementsByClassName("color-circle");
+    for(let i = 0; i < colorCircles.length; i++)
+    {
+        colorCircles[i].style.background = `conic-gradient(
+            ${getColorFromTheme(i, 0)} 0% 25%,
+            ${getColorFromTheme(i, 1)} 25% 50%,
+            ${getColorFromTheme(i, 5)} 50% 75%,
+            ${getColorFromTheme(i, 6)} 75% 100%
+        )`;
+        console.log(colorCircles[i]);
+    }
 }
 
 function closeSidebar()
@@ -77,8 +88,7 @@ function changeSiteTheme(buttonIndex)
 
 function changeGraphTheme(buttonIndex)
 {
-    localStorage.setItem("currentGraphTheme", buttonIndex);
-    currentGraphTheme = buttonIndex;
+    
 }
 
 function getCurrentSiteThemeIndex()
