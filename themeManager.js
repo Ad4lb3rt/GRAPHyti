@@ -2,6 +2,9 @@ var sidebarState = true;
 var currentSiteTheme = localStorage.getItem("currentSiteTheme") ?? 0;
 var currentGraphTheme = localStorage.getItem("currentGraphTheme") ?? 0;
 var root = document.querySelector(':root');
+const overridableVars = [
+    "--color-text-primary",
+]
 fetch("side_menu.html")
     .then(res => res.text())
     .then(html => {
@@ -32,21 +35,10 @@ function changeSiteTheme(buttonIndex)
 {
     localStorage.setItem("currentSiteTheme", buttonIndex);
     currentSiteTheme = buttonIndex;
-    root.style.setProperty('--color-text-primary', getSiteColor(0));
-    root.style.setProperty('--color-text-secondary', getSiteColor(1));
-    root.style.setProperty('--color-text-tertiary', getSiteColor(2));
-    root.style.setProperty('--color-text-h2', getSiteColor(3));
-    root.style.setProperty('--color-text-h3', getSiteColor(4));
-    root.style.setProperty('--color-background-primary', getSiteColor(5));
-    root.style.setProperty('--color-background-secondary', getSiteColor(6));
-    root.style.setProperty('--color-teoria-alert-bg', getSiteColor(7));
-    root.style.setProperty('--color-teoria-example-bg', getSiteColor(8));
-    root.style.setProperty('--color-teoria-definition-bg', getSiteColor(9));
-    root.style.setProperty('--color-teoria-definition-outline', getSiteColor(10));
-    root.style.setProperty('--color-button-primary', getSiteColor(11));
-    root.style.setProperty('--color-button-secondary', getSiteColor(12));
-    root.style.setProperty('--color-button-hover', getSiteColor(13));
-    root.style.setProperty('--color-button-outline', getSiteColor(14));
+    for(let i = 0; i < overridableVars.length; i++)
+    {
+        root.style.setProperty(overridableVars[i], getSiteColor(i));
+    }
 }
 
 function changeGraphTheme(buttonIndex)
