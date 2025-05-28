@@ -267,6 +267,19 @@ const siteThemeColors = [
     ],
 ];
 
+var graphColors = regenerateGraphColors();
+
+function regenerateGraphColors()
+{
+    graphColors = [
+        `rgba(${getSiteColor(0).match(/\(([^)]+)\)/)[1].split(',').slice(0, 3).map(Number)}, 0.5)`,
+        `rgba(${getSiteColor(1).match(/\(([^)]+)\)/)[1].split(',').slice(0, 3).map(Number)}, 0.5)`,
+        `rgba(${getSiteColor(4).match(/\(([^)]+)\)/)[1].split(',').slice(0, 3).map(Number)}, 0.5)`,
+        `rgba(${getSiteColor(3).match(/\(([^)]+)\)/)[1].split(',').slice(0, 3).map(Number)}, 0.5)`,
+        `rgba(${getSiteColor(6).match(/\(([^)]+)\)/)[1].split(',').slice(0, 3).map(Number)}, 0.5)`
+    ]
+}
+
 function getSiteColor(colorIndex)
 {
     return siteThemeColors[getCurrentSiteThemeIndex()][colorIndex];

@@ -1,10 +1,3 @@
-const hardcodedGraphColors = [
-    'rgba(255, 0, 212, 0.5)',
-    'rgba(160, 0, 133, 0.5)',
-    'rgba(156, 67, 141, 0.5)',
-    'rgba(231, 137, 255, 0.5)',
-    'rgba(199, 27, 226, 0.5)'
-];
 var currentChart = null;
 const menuScreen = document.getElementsByClassName("upload")[0];
 const settingsScreen = document.getElementsByClassName("graph-settings-wrapper")[0];
@@ -411,13 +404,14 @@ function generateGraph(graphSettings)
             datasets: [{
                 label: graphSettings.name,
                 data: graphSettings.data,
-                borderColor: 'rgb(73, 42, 68)',
-                pointBorderColor: 'rgb(255, 0, 212)',
+                borderColor: getSiteColor(4),
+                pointBorderColor: getSiteColor(1),
                 pointBorderWidth: 4,
-                pointBackgroundColor: 'rgb(255, 0, 212)',
+                pointBackgroundColor: 'rgb(255, 255, 255)',
                 pointHoverBackgroundColor: 'rgb(255, 255, 255)',
+                pointRadius: 5,
                 pointHoverRadius: 10,
-                backgroundColor: 'rgb(255, 0, 212)',
+                backgroundColor: getSiteColor(1),
                 tension: 0.1
             }]
             },
@@ -451,11 +445,11 @@ function generateGraph(graphSettings)
             datasets: [{
                 label: graphSettings.name,
                 data: graphSettings.data,
-                borderColor: 'rgb(255, 0, 212)',
+                borderColor: getSiteColor(1),
                 barThickness: 100,
                 barPercentage: 0.5,
                 tension: 0.1,
-                backgroundColor: hardcodedGraphColors
+                backgroundColor: graphColors
             }]
             },
             options: {
@@ -486,7 +480,7 @@ function generateGraph(graphSettings)
             datasets: [{
                 label: graphSettings.name,
                 data: graphSettings.data,
-                borderColor: 'rgb(73, 42, 68)',
+                borderColor: getSiteColor(4),
                 barThickness: 100,
                 barPercentage: 0.5,
                 tension: 0.1,
@@ -511,7 +505,7 @@ function generateGraph(graphSettings)
             datasets: [{
                 label: graphSettings.name,
                 data: graphSettings.data,
-                borderColor: 'rgb(73, 42, 68)',
+                borderColor: getSiteColor(4),
                 backgroundColor: getValidColors(graphSettings.labels.length),
                 hoverBorderWidth: 5
             }]
@@ -540,8 +534,8 @@ function generateGraph(graphSettings)
             datasets: [{
                 label: graphSettings.name,
                 data: graphSettings.data,
-                borderColor: 'rgb(73, 42, 68)',
-                backgroundColor: 'rgba(255, 0, 212, 0.5)',
+                borderColor: getSiteColor(4),
+                backgroundColor: graphColors[0],
                 pointRadius: 5,
                 pointBackgroundColor: 'rgb(255, 255, 255)',
                 pointHoverBackgroundColor: 'rgb(255, 255, 255)',
@@ -572,8 +566,8 @@ function generateGraph(graphSettings)
 
 function getValidColors(numberOfNames)
 {
-    let validColors = hardcodedGraphColors;
-    if((numberOfNames - 1) % hardcodedGraphColors.length == 0)
+    let validColors = graphColors;
+    if((numberOfNames - 1) % graphColors.length == 0)
     {
         validColors.pop();
     }

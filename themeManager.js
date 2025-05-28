@@ -64,9 +64,8 @@ function onLoad()
             ${getColorFromTheme(i, 0)} 0% 25%,
             ${getColorFromTheme(i, 1)} 25% 50%,
             ${getColorFromTheme(i, 5)} 50% 75%,
-            ${getColorFromTheme(i, 6)} 75% 100%
+            ${getColorFromTheme(i, 3)} 75% 100%
         )`;
-        console.log(colorCircles[i]);
     }
 }
 
@@ -84,11 +83,8 @@ function changeSiteTheme(buttonIndex)
     {
         root.style.setProperty(overridableVars[i], getSiteColor(i));
     }
-}
-
-function changeGraphTheme(buttonIndex)
-{
-    
+    regenerateGraphColors();
+    generateGraph(cachedGraphSettings);
 }
 
 function getCurrentSiteThemeIndex()

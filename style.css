@@ -1320,7 +1320,7 @@ a {
 .teoria-box:hover {
   background-color: var(--color-button-hover);
   transform: translateY(-7px);
-  box-shadow: 0 10px 25px rgba(169, 103, 228, 0.2);
+  box-shadow: 0 10px 25px var(--color-text-secondary);
 }
 
 .teoria-box h2 {
