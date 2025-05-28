@@ -84,7 +84,10 @@ function changeSiteTheme(buttonIndex)
         root.style.setProperty(overridableVars[i], getSiteColor(i));
     }
     regenerateGraphColors();
-    generateGraph(cachedGraphSettings);
+    if(cachedGraphSettings)
+    {
+        generateGraph(cachedGraphSettings);
+    }
 }
 
 function getCurrentSiteThemeIndex()
